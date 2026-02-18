@@ -30,4 +30,10 @@ public class PlayerController : MonoBehaviour
 			Renderer.color = colors[currentSelection];
 		}
 	}
+
+	public void OnConfirm(InputAction.CallbackContext context)
+	{
+		transform.localScale *= 2;
+		PlayerInput.DeactivateInput();
+	}
 }
