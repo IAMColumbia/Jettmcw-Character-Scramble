@@ -176,3 +176,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   currentSelection: 0
+  firstRepeatDelay: 0.5
+  repeatRate: 0.25
+  threshold: 0.5
