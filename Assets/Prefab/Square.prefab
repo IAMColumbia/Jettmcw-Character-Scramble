@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5578447385306041674}
   - component: {fileID: 537861048992387703}
   - component: {fileID: 2577648118585837985}
-  - component: {fileID: 8163334702635071293}
   m_Layer: 5
   m_Name: Square
   m_TagString: Untagged
@@ -156,15 +155,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c184c8eba85b95044adc2939d74c683f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8163334702635071293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643675306919594915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92a5d44ab1023e498854d76216b444f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  PlayerInput: {fileID: 537861048992387703}
+  Renderer: {fileID: 5578447385306041674}
+  colors:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  currentSelection: 0
