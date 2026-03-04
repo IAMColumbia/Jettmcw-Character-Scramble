@@ -27,8 +27,7 @@ public class PlayerControlProcessor : MonoBehaviour
 		{
 			// If input is cancelled that means the player is no longer holding
 			case InputActionPhase.Canceled:
-				_horizontalData &= ~HoldData.Holding;
-				_verticalData &= ~HoldData.Holding;
+				_horizontalData = _verticalData = HoldData.None;
 				return;
 			case InputActionPhase.Performed:
 				break;
@@ -50,7 +49,7 @@ public class PlayerControlProcessor : MonoBehaviour
 		// Case where we're not holding anything.
 		if (!nowHolding)
 		{
-			data &= ~HoldData.Holding;
+			data = HoldData.None;
 			return;
 		}
 
@@ -115,6 +114,7 @@ public class PlayerControlProcessor : MonoBehaviour
 
 	private enum HoldData : byte
 	{
+		None = 0,
 		Holding = 1,
 		PositiveDir = 2,
 		Starting = 4
