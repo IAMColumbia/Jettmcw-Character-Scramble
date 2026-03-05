@@ -7,7 +7,7 @@ public class CyclicalOptions : MonoBehaviour
 	public static CyclicalOptions Instance { get; private set; }
 
 	[SerializeField] private Color[] _options;
-	private PlayerCycling[] _playerPositions;
+	[SerializeField] private PlayerCycling[] _playerPositions;
 	private int _freeSlots;
 	private Color _target;
 

@@ -140,7 +140,7 @@
                 },
                 {
                     "devicePath": "<Mouse>",
-                    "isOptional": true,
+                    "isOptional": false,
                     "isOR": false
                 }
             ]
