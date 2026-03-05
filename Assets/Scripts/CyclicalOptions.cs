@@ -33,6 +33,7 @@ public class CyclicalOptions : MonoBehaviour
 		// Count remaining free slots
 		_freeSlots--;
 
+		// Case where there's only one loose option
 		if (_freeSlots == 1)
 		{
 			int emptyCheck = insertionIndex + 1;
