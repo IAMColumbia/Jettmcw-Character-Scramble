@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerControllerManager : MonoBehaviour
@@ -16,10 +17,10 @@ public class PlayerControllerManager : MonoBehaviour
 	public static PlayerControllerManager Instance;
     public Transform Canvas;
     public List<PlayerInput> Players;
+	public UnityEvent ControlSchemeChanged;
 
-	public string MoveBindingSlot;
-	public string ConfirmBindingSlot;
-	public string CancelBindingSlot;
+	public string MoveBindingSlot, ConfirmBindingSlot, CancelBindingSlot;
+	public int MoveBindingIdx, ConfirmBindingIdx, CancelBindingIdx;
 
 	private void Awake()
 	{
@@ -29,9 +30,9 @@ public class PlayerControllerManager : MonoBehaviour
 
 	public void RandomizeBindings()
 	{
-		RandomizeBinding(MoveSlots, ref MoveBindingSlot);
-		RandomizeBinding(ConfirmSlots, ref ConfirmBindingSlot);
-		RandomizeBinding(CancelSlots, ref CancelBindingSlot);
+		RandomizeBinding(MoveSlots, ref MoveBindingSlot, ref MoveBindingIdx);
+		RandomizeBinding(ConfirmSlots, ref ConfirmBindingSlot, ref ConfirmBindingIdx);
+		RandomizeBinding(CancelSlots, ref CancelBindingSlot, ref CancelBindingIdx);
 
 		foreach (PlayerInput player in Players)
 		{
@@ -39,17 +40,19 @@ public class PlayerControllerManager : MonoBehaviour
 		}
 	}
 
-	private void RandomizeBinding(string[] slots, ref string output)
+	private void RandomizeBinding(string[] slots, ref string name, ref int idx)
 	{
-		int idx = Random.Range(0, slots.Length);
-		output = slots[idx];
-		Debug.Log(output);
+		idx = Random.Range(0, slots.Length);
+		name = slots[idx];
+		Debug.Log(name);
 	}
 
 	public void OnPlayerAdded(PlayerInput player)
     {
         Players.Add(player);
+
 		SetBindings(player.actions);
+		
 		player.DeactivateInput();
 		StartCoroutine(EnableNextFrame());
 
@@ -64,5 +67,6 @@ public class PlayerControllerManager : MonoBehaviour
 		DynamicControls.ApplyFilter(actions.FindAction("Move"), MoveBindingSlot);
 		DynamicControls.ApplyFilter(actions.FindAction("Confirm"), ConfirmBindingSlot);
 		DynamicControls.ApplyFilter(actions.FindAction("Cancel"), CancelBindingSlot);
+		ControlSchemeChanged.Invoke();
 	}
 }

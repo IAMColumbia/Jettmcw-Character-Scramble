@@ -20,6 +20,26 @@ public class PlayerControlProcessor : MonoBehaviour
 	public UnityEvent<bool> MoveHorizontal;
 	public UnityEvent<bool> MoveVertical;
 
+	[SerializeField] private IconSwap _leftIcon;
+	[SerializeField] private IconSwap _rightIcon;
+
+	private void OnEnable()
+	{
+		UpdateControlIcons();
+		PlayerControllerManager.Instance.ControlSchemeChanged.AddListener(UpdateControlIcons);
+	}
+
+	private void OnDisable()
+	{
+		PlayerControllerManager.Instance.ControlSchemeChanged.RemoveListener(UpdateControlIcons);
+	}
+
+	private void UpdateControlIcons()
+	{
+		_leftIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.MoveBindingIdx);
+		_rightIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.MoveBindingIdx);
+	}
+
 	public void OnDirectionalInput(InputAction.CallbackContext context)
 	{
 		// Only respond to "performed" phase, as to avoid duplicate signals at "started"

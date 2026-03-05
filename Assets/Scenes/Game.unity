@@ -970,9 +970,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 654267569}
   Players: []
+  ControlSchemeChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MoveBindingSlot: 
   ConfirmBindingSlot: 
   CancelBindingSlot: 
+  MoveBindingIdx: 0
+  ConfirmBindingIdx: 0
+  CancelBindingIdx: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
