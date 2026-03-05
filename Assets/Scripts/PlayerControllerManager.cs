@@ -16,13 +16,9 @@ public class PlayerControllerManager : MonoBehaviour
 	public void OnPlayerAdded(PlayerInput player)
     {
         Players.Add(player);
-        
-		//Debug.Log(player.user.controlScheme);
 
 		player.transform.SetParent(Canvas.GetChild(Players.Count - 1));
 		player.transform.localScale = Vector3.one * 100;
 		player.transform.localPosition = Vector3.zero;
-
-		//Debug.Log(player.user.controlScheme.Value.name);
 	}
 }

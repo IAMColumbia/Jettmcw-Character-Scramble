@@ -64,9 +64,13 @@ public class PlayerControlProcessor : MonoBehaviour
 		data |= HoldData.Holding;
 
 		if (nowHoldingPositive)
+		{
 			data |= HoldData.PositiveDir;
+		}
 		else
+		{
 			data &= ~HoldData.PositiveDir;
+		}
 	}
 
 	private void Update()
