@@ -112,7 +112,6 @@ public class PlayerControlProcessor : MonoBehaviour
 			return;
 		}
 
-		transform.localScale *= 4;
 		PlayerInput.DeactivateInput();
 	}
 

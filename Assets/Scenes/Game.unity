@@ -631,6 +631,7 @@ MonoBehaviour:
   - {r: 0, g: 0.055719543, b: 0.61635214, a: 1}
   - {r: 0.8616352, g: 0.6904205, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.9043126, a: 1}
+  _playerPositions: []
 --- !u!4 &876532804
 Transform:
   m_ObjectHideFlags: 0
@@ -703,8 +704,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -778,8 +779,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
