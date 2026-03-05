@@ -65,7 +65,7 @@ public class PlayerCycling : MonoBehaviour
 		}
 	}
 
-	public void Start()
+	public void Awake()
 	{
 		currentCircle = CyclicalOptions.Instance;
 		currentCircle.Register(this);
