@@ -19,9 +19,11 @@ public class PlayerControlProcessor : MonoBehaviour
 
 	public UnityEvent<bool> MoveHorizontal;
 	public UnityEvent<bool> MoveVertical;
+	public UnityEvent Confirm;
 
 	[SerializeField] private IconSwap _leftIcon;
 	[SerializeField] private IconSwap _rightIcon;
+	[SerializeField] private IconSwap _confirmIcon;
 
 	private void OnEnable()
 	{
@@ -38,6 +40,7 @@ public class PlayerControlProcessor : MonoBehaviour
 	{
 		_leftIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.MoveBindingIdx);
 		_rightIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.MoveBindingIdx);
+		_confirmIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.ConfirmBindingIdx);
 	}
 
 	public void OnDirectionalInput(InputAction.CallbackContext context)
@@ -131,6 +134,8 @@ public class PlayerControlProcessor : MonoBehaviour
 		{
 			return;
 		}
+
+		Confirm.Invoke();
 
 		PlayerInput.DeactivateInput();
 	}
