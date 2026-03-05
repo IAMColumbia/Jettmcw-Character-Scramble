@@ -15,6 +15,7 @@ public class PlayerCycling : MonoBehaviour
 	private Color _trueCurrentColor;
 	private Color _trueLeftColor;
 	private Color _trueRightColor;
+	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor;
 
 	public Color Current
 	{
@@ -70,11 +71,11 @@ public class PlayerCycling : MonoBehaviour
 		PlayerControllerManager pcm = PlayerControllerManager.Instance;
 		Transform parent = transform.parent;
 
-		parent.SetParent(pcm.Canvas.GetChild(pcm.Players.Count - 1));
-		parent.localScale = Vector3.one * 250;
+		parent.SetParent(pcm.Canvas.GetChild(pcm.Players.Count - 1), true);
+		//parent.localScale = Vector3.one * 250;
 		parent.localPosition = Vector3.zero;
 
-		currentCircle = CyclicalOptions.Instance;
+		currentCircle = CycleOptionsManager.Instance.Rows[0];
 		currentCircle.Register(this);
 	}
 
@@ -88,14 +89,14 @@ public class PlayerCycling : MonoBehaviour
 		if (right)
 		{
 			_hidden.color = Left;
-			_hidden.transform.position = _left.transform.parent.position;
+			_hidden.transform.position = _leftAnchor.position;
 
 			currentCircle.CycleRight(this);
 
 			CycleAnimation = Sequence.Create()
-				.Group(Tween.Position(_current.transform, _right.transform.parent.position, _current.transform.parent.position, time, Ease.InBack))
+				.Group(Tween.Position(_current.transform, _rightAnchor.position, _middleAnchor.position, time, Ease.InBack))
 				.Group(Tween.Scale(_current.transform, small, 1f, time, Ease.InSine))
-				.Group(Tween.Position(_left.transform, _current.transform.parent.position, _left.transform.parent.position, time, Ease.OutBack))
+				.Group(Tween.Position(_left.transform, _middleAnchor.position, _leftAnchor.position, time, Ease.OutBack))
 				.Group(Tween.Scale(_left.transform, 1f, small, time, Ease.OutSine))
 				.Group(Tween.Scale(_hidden.transform, small, 0f, time, Ease.InSine))
 				.Group(Tween.Scale(_right.transform, 0f, small, time, Ease.OutSine))
@@ -104,14 +105,14 @@ public class PlayerCycling : MonoBehaviour
 		else
 		{
 			_hidden.color = Right;
-			_hidden.transform.position = _right.transform.parent.position;
+			_hidden.transform.position = _rightAnchor.position;
 
 			currentCircle.CycleLeft(this);
 
 			CycleAnimation = Sequence.Create()
-				.Group(Tween.Position(_current.transform, _left.transform.parent.position, _current.transform.parent.position, time, Ease.InBack))
+				.Group(Tween.Position(_current.transform, _leftAnchor.position, _middleAnchor.position, time, Ease.InBack))
 				.Group(Tween.Scale(_current.transform, small, 1f, time, Ease.InSine))
-				.Group(Tween.Position(_right.transform, _current.transform.parent.position, _right.transform.parent.position, time, Ease.OutBack))
+				.Group(Tween.Position(_right.transform, _middleAnchor.position, _rightAnchor.position, time, Ease.OutBack))
 				.Group(Tween.Scale(_right.transform, 1f, small, time, Ease.OutSine))
 				.Group(Tween.Scale(_hidden.transform, small, 0f, time, Ease.InSine))
 				.Group(Tween.Scale(_left.transform, 0f, small, time, Ease.OutSine))

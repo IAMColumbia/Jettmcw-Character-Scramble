@@ -44,7 +44,6 @@ public class PlayerControllerManager : MonoBehaviour
 	{
 		idx = Random.Range(0, slots.Length);
 		name = slots[idx];
-		Debug.Log(name);
 	}
 
 	public void OnPlayerAdded(PlayerInput player)
