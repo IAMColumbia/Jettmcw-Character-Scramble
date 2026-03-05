@@ -36,8 +36,6 @@ public class ControlSchemeOverrider : MonoBehaviour
 
 			bool isRightSlot = binding.groups.Contains(activeSlot);
 
-			if (isRightSlot) Debug.Log(binding.name);
-
 			string path = isRightSlot ? null : string.Empty;
 			InputBinding bindingOverride = new() { overridePath = path };
 			action.ApplyBindingOverride(i, bindingOverride);
