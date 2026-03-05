@@ -9,7 +9,10 @@ public class CyclicalOptions : MonoBehaviour
 	[SerializeField] private Color[] _options;
 	[SerializeField] private PlayerCycling[] _playerPositions;
 	private int _freeSlots;
+
 	public int FirstFreeIndex;
+	public bool IsFull;
+
 	private Color _target;
 
 	private void Awake()
@@ -18,6 +21,7 @@ public class CyclicalOptions : MonoBehaviour
 		Utility.Shuffle(_options);
 		_freeSlots = _options.Length;
 		FirstFreeIndex = 0;
+		IsFull = false;
 		_playerPositions = new PlayerCycling[_freeSlots];
 	}
 
@@ -25,17 +29,25 @@ public class CyclicalOptions : MonoBehaviour
 	{
 		// Insert player at first open index from the left
 		int insertionIndex = FirstFreeIndex;
+
+		player.Current = _options[insertionIndex];
+		_playerPositions[insertionIndex] = player;
+
+		// Track remaining free slots
+		_freeSlots--;
+
+		if (_freeSlots == 0)
+		{
+			IsFull = true;
+			return;
+		}
+
 		do
 		{
 			FirstFreeIndex++;
 		}
 		while (_playerPositions[FirstFreeIndex] != null);
 
-		player.Current = _options[insertionIndex];
-		_playerPositions[insertionIndex] = player;
-
-		// Count remaining free slots
-		_freeSlots--;
 
 		// Case where there's only one loose option
 		if (_freeSlots == 1)

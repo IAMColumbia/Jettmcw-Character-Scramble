@@ -81,6 +81,11 @@ public class PlayerCycling : MonoBehaviour
 
 	public void Cycle(bool right)
 	{
+		if (currentCircle.IsFull)
+		{
+			return;
+		}
+
 		float time = 0.25f;
 		float small = 0.6f;
 
