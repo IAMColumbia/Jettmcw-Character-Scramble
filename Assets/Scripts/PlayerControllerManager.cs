@@ -18,7 +18,7 @@ public class PlayerControllerManager : MonoBehaviour
         Players.Add(player);
 
 		player.transform.SetParent(Canvas.GetChild(Players.Count - 1));
-		player.transform.localScale = Vector3.one * 100;
+		player.transform.localScale = Vector3.one * 250;
 		player.transform.localPosition = Vector3.zero;
 	}
 }
