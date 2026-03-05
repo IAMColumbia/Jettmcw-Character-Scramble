@@ -9,6 +9,7 @@ public class CyclicalOptions : MonoBehaviour
 	[SerializeField] private Color[] _options;
 	[SerializeField] private PlayerCycling[] _playerPositions;
 	private int _freeSlots;
+	public int FirstFreeIndex;
 	private Color _target;
 
 	private void Awake()
@@ -16,17 +17,20 @@ public class CyclicalOptions : MonoBehaviour
 		Instance = this;
 		Utility.Shuffle(_options);
 		_freeSlots = _options.Length;
+		FirstFreeIndex = 0;
 		_playerPositions = new PlayerCycling[_freeSlots];
 	}
 
 	public void Register(PlayerCycling player)
 	{
 		// Insert player at first open index from the left
-		int insertionIndex = 0;
-		while (_playerPositions[insertionIndex] != null)
+		int insertionIndex = FirstFreeIndex;
+		do
 		{
-			insertionIndex++;
+			FirstFreeIndex++;
 		}
+		while (_playerPositions[FirstFreeIndex] != null);
+
 		player.Current = _options[insertionIndex];
 		_playerPositions[insertionIndex] = player;
 
@@ -69,6 +73,19 @@ public class CyclicalOptions : MonoBehaviour
 		int end = Array.IndexOf(_options, player.Right);
 		_playerPositions[end] = player;
 
+		if (start < FirstFreeIndex)
+		{
+			FirstFreeIndex = start;
+		}
+		else if (FirstFreeIndex == end)
+		{
+			do
+			{
+				FirstFreeIndex++;
+			}
+			while (_playerPositions[FirstFreeIndex] != null);
+		}
+
 		// Case where there's only one loose option
 		if (_freeSlots == 1)
 		{
@@ -105,6 +122,19 @@ public class CyclicalOptions : MonoBehaviour
 		player.Current = player.Left;
 		int end = Array.IndexOf(_options, player.Left);
 		_playerPositions[end] = player;
+
+		if (start < FirstFreeIndex)
+		{
+			FirstFreeIndex = start;
+		}
+		else if (FirstFreeIndex == end)
+		{
+			do
+			{
+				FirstFreeIndex++;
+			}
+			while (_playerPositions[FirstFreeIndex] != null);
+		}
 
 		// Case where there's only one loose option
 		if (_freeSlots == 1)
