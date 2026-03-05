@@ -8,15 +8,16 @@ public class CyclicalOptions : MonoBehaviour
 
 	[SerializeField] private Color[] _options;
 	private PlayerCycling[] _playerPositions;
+	private int _freeSlots;
+	private Color _target;
 
 	private void Awake()
 	{
 		Instance = this;
-		ShuffleOptions();
-		_playerPositions = new PlayerCycling[_options.Length];
+		Utility.Shuffle(_options);
+		_freeSlots = _options.Length;
+		_playerPositions = new PlayerCycling[_freeSlots];
 	}
-
-	public void ShuffleOptions() => Utility.Shuffle(_options);
 
 	public void Register(PlayerCycling player)
 	{
@@ -29,30 +30,31 @@ public class CyclicalOptions : MonoBehaviour
 		player.Current = _options[insertionIndex];
 		_playerPositions[insertionIndex] = player;
 
+		// Count remaining free slots
+		_freeSlots--;
+
+		if (_freeSlots == 1)
+		{
+			int emptyCheck = insertionIndex + 1;
+			while (_playerPositions[emptyCheck] != null)
+			{
+				emptyCheck++;
+			}
+
+			DirectAllTo(_options[emptyCheck]);
+			return;
+		}
+
 		// Step 1: Find R-Open
 		int rightIndex = CycleWhile(WrapRight, i => _playerPositions[i] != null, insertionIndex, true);
+		_target = _options[rightIndex];
 
 		// Step 2: (L-Open, start] -> R-Open
 		int leftIndex = CycleWhile(WrapLeft, SetRight, insertionIndex, false);
+		_target = _options[leftIndex];
 
 		// Step 3: L-Open <- [Start, R-Open)
 		CycleWhile(WrapRight, SetLeft, insertionIndex, false);
-
-		bool SetLeft(int i)
-		{
-			PlayerCycling check = _playerPositions[i];
-			if (check == null) return false;
-			check.Left = _options[leftIndex];
-			return true;
-		}
-
-		bool SetRight(int i)
-		{
-			PlayerCycling check = _playerPositions[i];
-			if (check == null) return false;
-			check.Right = _options[rightIndex];
-			return true;
-		}
 	}
 
 	public void CycleRight(PlayerCycling player)
@@ -66,6 +68,15 @@ public class CyclicalOptions : MonoBehaviour
 		int end = Array.IndexOf(_options, player.Right);
 		_playerPositions[end] = player;
 
+		// Case where there's only one loose option
+		if (_freeSlots == 1)
+		{
+			DirectAllTo(_options[start]);
+			return;
+		}
+
+		_target = _options[start];
+
 		// Step 1: (open, start) -> start
 		CycleWhile(WrapLeft, SetRight, start, true);
 
@@ -74,22 +85,6 @@ public class CyclicalOptions : MonoBehaviour
 
 		// Step 3: (start, end] -> open
 		CycleWhile(WrapLeft, SetRightUnlessStart, end, false);
-
-		bool SetLeft(int i)
-		{
-			PlayerCycling check = _playerPositions[i];
-			if (check == null) return false;
-			check.Left = _options[start];
-			return true;
-		}
-
-		bool SetRight(int i)
-		{
-			PlayerCycling check = _playerPositions[i];
-			if (check == null) return false;
-			check.Right = _options[start];
-			return true;
-		}
 
 		bool SetRightUnlessStart(int i)
 		{
@@ -110,6 +105,15 @@ public class CyclicalOptions : MonoBehaviour
 		int end = Array.IndexOf(_options, player.Left);
 		_playerPositions[end] = player;
 
+		// Case where there's only one loose option
+		if (_freeSlots == 1)
+		{
+			DirectAllTo(_options[start]);
+			return;
+		}
+
+		_target = _options[start];
+
 		// Step 1: start <- (start, open)
 		CycleWhile(WrapRight, SetLeft, start, true);
 
@@ -119,22 +123,6 @@ public class CyclicalOptions : MonoBehaviour
 		// Step 3: (start, end] -> open | open <- [end, start)
 		CycleWhile(WrapRight, SetLeftUnlessStart, end, false);
 
-		bool SetLeft(int i)
-		{
-			PlayerCycling check = _playerPositions[i];
-			if (check == null) return false;
-			check.Left = _options[start];
-			return true;
-		}
-
-		bool SetRight(int i)
-		{
-			PlayerCycling check = _playerPositions[i];
-			if (check == null) return false;
-			check.Right = _options[start];
-			return true;
-		}
-
 		bool SetLeftUnlessStart(int i)
 		{
 			if (i == start) return false;
@@ -143,11 +131,40 @@ public class CyclicalOptions : MonoBehaviour
 		}
 	}
 
+	private void DirectAllTo(Color target)
+	{
+		foreach (PlayerCycling p in _playerPositions)
+		{
+			if (p == null)
+			{
+				continue;
+			}
+			p.Left = target;
+			p.Right = target;
+		}
+	}
+
+	private bool SetLeft(int i)
+	{
+		PlayerCycling check = _playerPositions[i];
+		if (check == null) return false;
+		check.Left = _target;
+		return true;
+	}
+
+	private bool SetRight(int i)
+	{
+		PlayerCycling check = _playerPositions[i];
+		if (check == null) return false;
+		check.Right = _target;
+		return true;
+	}
+
 	private int CycleWhile(Func<int, IEnumerator<int>> wrapFunction, Predicate<int> condition, int start, bool excludeStart)
 	{
 		using IEnumerator<int> iterator = wrapFunction(start);
 		if (excludeStart) iterator.MoveNext();
-		while (iterator.MoveNext() && condition(iterator.Current));
+		while (iterator.MoveNext() && condition(iterator.Current)) ;
 		return iterator.Current;
 	}
 
