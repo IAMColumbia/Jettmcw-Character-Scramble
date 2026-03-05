@@ -30,38 +30,29 @@ public class CyclicalOptions : MonoBehaviour
 		_playerPositions[insertionIndex] = player;
 
 		// Step 1: Find R-Open
-		var iterator = WrapRight(insertionIndex);
-		iterator.MoveNext();
-		while (iterator.MoveNext() && _playerPositions[iterator.Current] != null);
-		int rightIndex = iterator.Current;
-		iterator.Dispose();
+		int rightIndex = CycleWhile(WrapRight, i => _playerPositions[i] != null, insertionIndex, true);
 
 		// Step 2: (L-Open, start] -> R-Open
-		iterator = WrapLeft(insertionIndex);
-		while (iterator.MoveNext())
-		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			if (check == null)
-			{
-				break;
-			}
-			check.Right = _options[rightIndex];
-		}
-		int leftIndex = iterator.Current;
-		iterator.Dispose();
+		int leftIndex = CycleWhile(WrapLeft, SetRight, insertionIndex, false);
 
 		// Step 3: L-Open <- [Start, R-Open)
-		iterator = WrapRight(insertionIndex);
-		while (iterator.MoveNext())
+		CycleWhile(WrapRight, SetLeft, insertionIndex, false);
+
+		bool SetLeft(int i)
 		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			if (check == null)
-			{
-				break;
-			}
+			PlayerCycling check = _playerPositions[i];
+			if (check == null) return false;
 			check.Left = _options[leftIndex];
+			return true;
 		}
-		iterator.Dispose();
+
+		bool SetRight(int i)
+		{
+			PlayerCycling check = _playerPositions[i];
+			if (check == null) return false;
+			check.Right = _options[rightIndex];
+			return true;
+		}
 	}
 
 	public void CycleRight(PlayerCycling player)
@@ -76,43 +67,38 @@ public class CyclicalOptions : MonoBehaviour
 		_playerPositions[end] = player;
 
 		// Step 1: (open, start) -> start
-		var iterator = WrapLeft(start);
-		iterator.MoveNext();
-		while (iterator.MoveNext())
-		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			if (check == null)
-			{
-				break;
-			}
-			check.Right = _options[start];
-		}
-		iterator.Dispose();
+		CycleWhile(WrapLeft, SetRight, start, true);
 
 		// Step 2: start <- (start, open)
-		iterator = WrapRight(start);
-		iterator.MoveNext();
-		while (iterator.MoveNext())
-		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			if (check == null)
-			{
-				break;
-			}
-			check.Left = _options[start];
-		}
-		int openToRight = iterator.Current;
-		iterator.Dispose();
+		int openToRight = CycleWhile(WrapRight, SetLeft, start, true);
 
 		// Step 3: (start, end] -> open
-		iterator = WrapLeft(end);
-		while (iterator.MoveNext() && iterator.Current != start)
+		CycleWhile(WrapLeft, SetRightUnlessStart, end, false);
+
+		bool SetLeft(int i)
 		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			check.Right = _options[openToRight];
+			PlayerCycling check = _playerPositions[i];
+			if (check == null) return false;
+			check.Left = _options[start];
+			return true;
 		}
-		iterator.Dispose();
+
+		bool SetRight(int i)
+		{
+			PlayerCycling check = _playerPositions[i];
+			if (check == null) return false;
+			check.Right = _options[start];
+			return true;
+		}
+
+		bool SetRightUnlessStart(int i)
+		{
+			if (i == start) return false;
+			_playerPositions[i].Right = _options[openToRight];
+			return true;
+		}
 	}
+
 	public void CycleLeft(PlayerCycling player)
 	{
 		// Mark the player's previous spot as empty
@@ -125,42 +111,44 @@ public class CyclicalOptions : MonoBehaviour
 		_playerPositions[end] = player;
 
 		// Step 1: start <- (start, open)
-		var iterator = WrapRight(start);
-		iterator.MoveNext();
-		while (iterator.MoveNext())
-		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			if (check == null)
-			{
-				break;
-			}
-			check.Left = _options[start];
-		}
-		iterator.Dispose();
+		CycleWhile(WrapRight, SetLeft, start, true);
 
 		// Step 2: (open, start) -> start
-		iterator = WrapLeft(start);
-		iterator.MoveNext();
-		while (iterator.MoveNext())
-		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			if (check == null)
-			{
-				break;
-			}
-			check.Right = _options[start];
-		}
-		int openToLeft = iterator.Current;
-		iterator.Dispose();
+		int openToLeft = CycleWhile(WrapLeft, SetRight, start, true);
 
 		// Step 3: (start, end] -> open | open <- [end, start)
-		iterator = WrapRight(end);
-		while (iterator.MoveNext() && iterator.Current != start)
+		CycleWhile(WrapRight, SetLeftUnlessStart, end, false);
+
+		bool SetLeft(int i)
 		{
-			PlayerCycling check = _playerPositions[iterator.Current];
-			check.Left = _options[openToLeft];
+			PlayerCycling check = _playerPositions[i];
+			if (check == null) return false;
+			check.Left = _options[start];
+			return true;
 		}
-		iterator.Dispose();
+
+		bool SetRight(int i)
+		{
+			PlayerCycling check = _playerPositions[i];
+			if (check == null) return false;
+			check.Right = _options[start];
+			return true;
+		}
+
+		bool SetLeftUnlessStart(int i)
+		{
+			if (i == start) return false;
+			_playerPositions[i].Left = _options[openToLeft];
+			return true;
+		}
+	}
+
+	private int CycleWhile(Func<int, IEnumerator<int>> wrapFunction, Predicate<int> condition, int start, bool excludeStart)
+	{
+		using IEnumerator<int> iterator = wrapFunction(start);
+		if (excludeStart) iterator.MoveNext();
+		while (iterator.MoveNext() && condition(iterator.Current));
+		return iterator.Current;
 	}
 
 	private IEnumerator<int> WrapLeft(int start)
