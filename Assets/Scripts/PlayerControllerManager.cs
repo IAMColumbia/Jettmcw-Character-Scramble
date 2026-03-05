@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,7 +35,7 @@ public class PlayerControllerManager : MonoBehaviour
 
 		foreach (PlayerInput player in Players)
 		{
-			SetBindings(player);
+			SetBindings(player.actions);
 		}
 	}
 
@@ -48,13 +49,20 @@ public class PlayerControllerManager : MonoBehaviour
 	public void OnPlayerAdded(PlayerInput player)
     {
         Players.Add(player);
-		SetBindings(player);
+		SetBindings(player.actions);
+		player.DeactivateInput();
+		StartCoroutine(EnableNextFrame());
+
+		IEnumerator EnableNextFrame()
+		{
+			yield return null;
+			player.ActivateInput();
+		}
 	}
-	private void SetBindings(PlayerInput player)
+	private void SetBindings(InputActionAsset actions)
 	{
-		InputActionAsset actions = player.actions;
-		ControlSchemeOverrider.ApplySlotFilter(actions.FindAction("Move"), MoveBindingSlot);
-		ControlSchemeOverrider.ApplySlotFilter(actions.FindAction("Confirm"), ConfirmBindingSlot);
-		ControlSchemeOverrider.ApplySlotFilter(actions.FindAction("Cancel"), CancelBindingSlot);
+		DynamicControls.ApplyFilter(actions.FindAction("Move"), MoveBindingSlot);
+		DynamicControls.ApplyFilter(actions.FindAction("Confirm"), ConfirmBindingSlot);
+		DynamicControls.ApplyFilter(actions.FindAction("Cancel"), CancelBindingSlot);
 	}
 }

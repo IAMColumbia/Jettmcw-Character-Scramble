@@ -920,7 +920,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Join
       m_Type: 0
@@ -970,6 +970,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 654267569}
   Players: []
+  MoveBindingSlot: 
+  ConfirmBindingSlot: 
+  CancelBindingSlot: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
