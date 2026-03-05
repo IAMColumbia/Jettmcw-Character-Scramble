@@ -67,6 +67,13 @@ public class PlayerCycling : MonoBehaviour
 
 	public void Awake()
 	{
+		PlayerControllerManager pcm = PlayerControllerManager.Instance;
+		Transform parent = transform.parent;
+
+		parent.SetParent(pcm.Canvas.GetChild(pcm.Players.Count - 1));
+		parent.localScale = Vector3.one * 250;
+		parent.localPosition = Vector3.zero;
+
 		currentCircle = CyclicalOptions.Instance;
 		currentCircle.Register(this);
 	}
