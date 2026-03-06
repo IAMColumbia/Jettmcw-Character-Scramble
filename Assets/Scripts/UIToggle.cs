@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class UIToggle : MonoBehaviour
 {
-	[SerializeField] private SpriteRenderer[] _elements;
 	private bool _enabled = true;
 
 	public void DisableUI()
@@ -13,9 +12,9 @@ public class UIToggle : MonoBehaviour
 		}
 		_enabled = false;
 
-		foreach (SpriteRenderer element in _elements)
+		foreach (Transform child in transform)
 		{
-			element.enabled = false;
+			child.gameObject.SetActive(false);
 		}
 	}
 
@@ -27,9 +26,9 @@ public class UIToggle : MonoBehaviour
 		}
 		_enabled = true;
 
-		foreach (SpriteRenderer element in _elements)
+		foreach (Transform child in transform)
 		{
-			element.enabled = true;
+			child.gameObject.SetActive(true);
 		}
 	}
 }
