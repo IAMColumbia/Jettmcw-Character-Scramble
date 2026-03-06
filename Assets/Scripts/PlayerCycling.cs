@@ -91,12 +91,12 @@ public class PlayerCycling : MonoBehaviour
 
 		if (CycleAnimation.isAlive) CycleAnimation.Complete();
 
+		_hidden.color = right ? Left : Right;
+		currentCircle.Cycle(this, right);
+
 		if (right)
 		{
-			_hidden.color = Left;
 			_hidden.transform.position = _leftAnchor.position;
-
-			currentCircle.CycleRight(this);
 
 			CycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _rightAnchor.position, _middleAnchor.position, time, Ease.InBack))
@@ -109,10 +109,7 @@ public class PlayerCycling : MonoBehaviour
 		}
 		else
 		{
-			_hidden.color = Right;
 			_hidden.transform.position = _rightAnchor.position;
-
-			currentCircle.CycleLeft(this);
 
 			CycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _leftAnchor.position, _middleAnchor.position, time, Ease.InBack))

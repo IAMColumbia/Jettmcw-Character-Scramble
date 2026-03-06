@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CyclicalOptions : MonoBehaviour
@@ -13,7 +14,8 @@ public class CyclicalOptions : MonoBehaviour
 	public int FirstFreeIndex;
 	public bool IsFull;
 
-	private Color _target;
+	private Color _openedColor;
+	private PlayerCycling _processedPlayer;
 
 	private void Awake()
 	{
@@ -29,62 +31,51 @@ public class CyclicalOptions : MonoBehaviour
 	{
 		// Insert player at first open index from the left
 		int insertionIndex = FirstFreeIndex;
-
 		player.Current = _options[insertionIndex];
 		_playerPositions[insertionIndex] = player;
 
 		// Track remaining free slots
 		_freeSlots--;
-
 		if (_freeSlots == 0)
 		{
 			IsFull = true;
 			return;
 		}
 
+		// Recalculate the next open index
 		do
 		{
 			FirstFreeIndex++;
 		}
-		while (_playerPositions[FirstFreeIndex] != null);
-
+		while (IsIndexOccupied(FirstFreeIndex));
 
 		// Case where there's only one loose option
 		if (_freeSlots == 1)
 		{
-			int emptyCheck = insertionIndex + 1;
-			while (_playerPositions[emptyCheck] != null)
-			{
-				emptyCheck++;
-			}
-
-			DirectAllTo(_options[emptyCheck]);
+			DirectAllTo(_options[FirstFreeIndex]);
 			return;
 		}
 
-		// Step 1: Find R-Open
-		int rightIndex = CycleWhile(WrapRight, i => _playerPositions[i] != null, insertionIndex, true);
-		_target = _options[rightIndex];
+		_openedColor = _options[FirstFreeIndex];
 
-		// Step 2: (L-Open, start] -> R-Open
-		int leftIndex = CycleWhile(WrapLeft, SetRight, insertionIndex, false);
-		_target = _options[leftIndex];
-
-		// Step 3: L-Open <- [Start, R-Open)
-		CycleWhile(WrapRight, SetLeft, insertionIndex, false);
+		_openedColor = IterateOverNeighbors(LeftNeighbors(insertionIndex), SetRight, 0);
+		IterateOverNeighbors(RightNeighbors(insertionIndex), SetLeft, 0);
 	}
 
-	public void CycleRight(PlayerCycling player)
+	public void Cycle(PlayerCycling player, bool right)
 	{
-		// Mark the player's previous spot as empty
+		// Empty the player's original space
 		int start = Array.IndexOf(_playerPositions, player);
 		_playerPositions[start] = null;
+		_openedColor = player.Current;
 
-		// Mark the player's new spot as full
-		player.Current = player.Right;
-		int end = Array.IndexOf(_options, player.Right);
+		// Set the player's new color & position
+		Color newColor = right ? player.Right : player.Left;
+		player.Current = newColor;
+		int end = Array.IndexOf(_options, newColor);
 		_playerPositions[end] = player;
 
+		// Determine the new first open index
 		if (start < FirstFreeIndex)
 		{
 			FirstFreeIndex = start;
@@ -95,143 +86,69 @@ public class CyclicalOptions : MonoBehaviour
 			{
 				FirstFreeIndex++;
 			}
-			while (_playerPositions[FirstFreeIndex] != null);
+			while (IsIndexOccupied(FirstFreeIndex));
 		}
 
-		// Case where there's only one loose option
+		// If there's only one open spot, redirect all players accordingly
 		if (_freeSlots == 1)
 		{
-			DirectAllTo(_options[start]);
+			DirectAllTo(_openedColor);
 			return;
 		}
 
-		_target = _options[start];
+		// Tell Self + previous neighbors to point to the newly-opened space
+		Color leftOpenColor = IterateOverNeighbors(LeftNeighbors(start), SetRight, 1);
+		Color rightOpenColor = IterateOverNeighbors(RightNeighbors(start), SetLeft, 1);
 
-		// Step 1: (open, start) -> start
-		CycleWhile(WrapLeft, SetRight, start, true);
-
-		// Step 2: start <- (start, open)
-		int openToRight = CycleWhile(WrapRight, SetLeft, start, true);
-
-		// Step 3: (start, end] -> open
-		CycleWhile(WrapLeft, SetRightUnlessStart, end, false);
-
-		bool SetRightUnlessStart(int i)
+		// Tell Self + jumped-over neighbors to find new space in direction of movement
+		_openedColor = right ? rightOpenColor : leftOpenColor;
+		Func<int, IEnumerable<int>> directionToPassedNeighbors = right ? LeftNeighbors : RightNeighbors;
+		IEnumerable<int> passedNeighbors = directionToPassedNeighbors(end).TakeWhile(i => i != start);
+		Action setOpening = right ? SetRight : SetLeft;
+		foreach (int i in passedNeighbors)
 		{
-			if (i == start) return false;
-			_playerPositions[i].Right = _options[openToRight];
-			return true;
+			_processedPlayer = _playerPositions[i];
+			setOpening();
 		}
 	}
 
-	public void CycleLeft(PlayerCycling player)
-	{
-		// Mark the player's previous spot as empty
-		int start = Array.IndexOf(_playerPositions, player);
-		_playerPositions[start] = null;
-
-		// Mark the player's new spot as full
-		player.Current = player.Left;
-		int end = Array.IndexOf(_options, player.Left);
-		_playerPositions[end] = player;
-
-		if (start < FirstFreeIndex)
-		{
-			FirstFreeIndex = start;
-		}
-		else if (FirstFreeIndex == end)
-		{
-			do
-			{
-				FirstFreeIndex++;
-			}
-			while (_playerPositions[FirstFreeIndex] != null);
-		}
-
-		// Case where there's only one loose option
-		if (_freeSlots == 1)
-		{
-			DirectAllTo(_options[start]);
-			return;
-		}
-
-		_target = _options[start];
-
-		// Step 1: start <- (start, open)
-		CycleWhile(WrapRight, SetLeft, start, true);
-
-		// Step 2: (open, start) -> start
-		int openToLeft = CycleWhile(WrapLeft, SetRight, start, true);
-
-		// Step 3: (start, end] -> open | open <- [end, start)
-		CycleWhile(WrapRight, SetLeftUnlessStart, end, false);
-
-		bool SetLeftUnlessStart(int i)
-		{
-			if (i == start) return false;
-			_playerPositions[i].Left = _options[openToLeft];
-			return true;
-		}
-	}
+	private bool IsIndexOccupied(int index) => _processedPlayer = _playerPositions[index];
 
 	private void DirectAllTo(Color target)
 	{
-		foreach (PlayerCycling p in _playerPositions)
+		foreach (PlayerCycling player in _playerPositions)
 		{
-			if (p == null)
+			if (player)
 			{
-				continue;
+				player.Left = target;
+				player.Right = target;
 			}
-			p.Left = target;
-			p.Right = target;
 		}
 	}
 
-	private bool SetLeft(int i)
+	private void SetLeft()
 	{
-		PlayerCycling check = _playerPositions[i];
-		if (check == null) return false;
-		check.Left = _target;
-		return true;
+		_processedPlayer.Left = _openedColor;
 	}
 
-	private bool SetRight(int i)
+	private void SetRight()
 	{
-		PlayerCycling check = _playerPositions[i];
-		if (check == null) return false;
-		check.Right = _target;
-		return true;
+		_processedPlayer.Right = _openedColor;
 	}
 
-	private int CycleWhile(Func<int, IEnumerator<int>> wrapFunction, Predicate<int> condition, int start, bool excludeStart)
+	private Color IterateOverNeighbors(IEnumerable<int> enumerable, Action action, int skip)
 	{
-		using IEnumerator<int> iterator = wrapFunction(start);
-		if (excludeStart) iterator.MoveNext();
-		while (iterator.MoveNext() && condition(iterator.Current)) ;
-		return iterator.Current;
-	}
-
-	private IEnumerator<int> WrapLeft(int start)
-	{
-		for (int i = start; i >= 0; i--)
+		foreach (int i in enumerable.Skip(skip))
 		{
-			yield return i;
+			if (!IsIndexOccupied(i))
+			{
+				return _options[i];
+			}
+			action();
 		}
-		for (int i = _options.Length - 1; i > start; i--)
-		{
-			yield return i;
-		}
+		throw new InvalidOperationException();
 	}
 
-	private IEnumerator<int> WrapRight(int start)
-	{
-		for (int i = start; i < _options.Length; i++)
-		{
-			yield return i;
-		}
-		for (int i = 0; i < start; i++)
-		{
-			yield return i;
-		}
-	}
+	private IEnumerable<int> LeftNeighbors(int start) => RightNeighbors(start + 1).Reverse();
+	private IEnumerable<int> RightNeighbors(int start) => Enumerable.Range(start, _options.Length - start).Concat(Enumerable.Range(0, start));
 }
