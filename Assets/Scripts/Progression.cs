@@ -23,15 +23,9 @@ public class Progression : MonoBehaviour
 			Transform area = PlayerAreas.GetArea(_playerInput);
 			area.GetChild(0).gameObject.SetActive(true);
 			_rows[0].Release();
-			StartCoroutine(AllowRejoin());
+			_playerInput.SwitchCurrentActionMap("Rejoin");
 			return;
 		}
-	}
-
-	private IEnumerator AllowRejoin()
-	{
-		yield return null;
-		_playerInput.actionEvents[3].AddListener(Rejoin);
 	}
 
 	public void Rejoin(InputAction.CallbackContext context)
@@ -41,11 +35,11 @@ public class Progression : MonoBehaviour
 			return;
 		}
 
-		_playerInput.actionEvents[3].RemoveListener(Rejoin);
 		_rowIndex = 0;
 		Transform area = PlayerAreas.GetArea(_playerInput);
 		area.GetChild(0).gameObject.SetActive(false);
 		_rows[0].Register();
+		_playerInput.SwitchCurrentActionMap("Player Controls");
 	}
 
 	public void GoForward()
