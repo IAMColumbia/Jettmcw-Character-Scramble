@@ -58,6 +58,15 @@ public class Progression : MonoBehaviour
 	{
 		_rows[_rowIndex].BeMovedAway();
 		_rowIndex++;
+		
+		if (_rowIndex == _rows.Length)
+		{
+			Debug.Log("Finished!");
+			_uiToggle.DisableUI();
+			_playerInput.SwitchCurrentActionMap("Movement");
+			return;
+		}
+
 		_rows[_rowIndex].Register();
 		_rows[_rowIndex].Show(true);
 		_selectedColors.Add(_rows[_rowIndex].Current);
