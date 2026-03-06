@@ -64,9 +64,11 @@ public class PlayerCycling : MonoBehaviour
 		}
 
 		float time = 0.25f;
-		float small = 0.6f;
 
 		CycleAnimation.Complete();
+
+		Vector3 fullScale = _current.transform.localScale;
+		Vector3 smallScale = fullScale * 0.6f;
 
 		_hidden.color = right ? Left : Right;
 		_optionRow.Cycle(this, right);
@@ -77,11 +79,11 @@ public class PlayerCycling : MonoBehaviour
 
 			CycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _rightAnchor.position, _middleAnchor.position, time, Ease.InBack))
-				.Group(Tween.Scale(_current.transform, small, 1f, time, Ease.InSine))
+				.Group(Tween.Scale(_current.transform, smallScale, fullScale, time, Ease.InSine))
 				.Group(Tween.Position(_left.transform, _middleAnchor.position, _leftAnchor.position, time, Ease.OutBack))
-				.Group(Tween.Scale(_left.transform, 1f, small, time, Ease.OutSine))
-				.Group(Tween.Scale(_hidden.transform, small, 0f, time, Ease.InSine))
-				.Group(Tween.Scale(_right.transform, 0f, small, time, Ease.OutSine))
+				.Group(Tween.Scale(_left.transform, fullScale, smallScale, time, Ease.OutSine))
+				.Group(Tween.Scale(_hidden.transform, smallScale, Vector3.zero, time, Ease.InSine))
+				.Group(Tween.Scale(_right.transform, Vector3.zero, smallScale, time, Ease.OutSine))
 			;
 		}
 		else
@@ -90,11 +92,11 @@ public class PlayerCycling : MonoBehaviour
 
 			CycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _leftAnchor.position, _middleAnchor.position, time, Ease.InBack))
-				.Group(Tween.Scale(_current.transform, small, 1f, time, Ease.InSine))
+				.Group(Tween.Scale(_current.transform, smallScale, fullScale, time, Ease.InSine))
 				.Group(Tween.Position(_right.transform, _middleAnchor.position, _rightAnchor.position, time, Ease.OutBack))
-				.Group(Tween.Scale(_right.transform, 1f, small, time, Ease.OutSine))
-				.Group(Tween.Scale(_hidden.transform, small, 0f, time, Ease.InSine))
-				.Group(Tween.Scale(_left.transform, 0f, small, time, Ease.OutSine))
+				.Group(Tween.Scale(_right.transform, fullScale, smallScale, time, Ease.OutSine))
+				.Group(Tween.Scale(_hidden.transform, smallScale, Vector3.zero, time, Ease.InSine))
+				.Group(Tween.Scale(_left.transform, Vector3.zero, smallScale, time, Ease.OutSine))
 			;
 		}
 	}

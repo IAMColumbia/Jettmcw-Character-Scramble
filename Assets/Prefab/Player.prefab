@@ -292,25 +292,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8019512756814499525
-RectTransform:
+--- !u!4 &8019512756814499525
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2224820756215112842}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.75, y: -0.75, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 137366254406453520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.75}
-  m_SizeDelta: {x: 128, y: 128}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7705134938647584964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -662,6 +658,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 533fda2d-1c1e-4323-ae56-b756ee7b499d
     m_ActionName: 'Rejoin/Rejoin[/Keyboard/anyKey,/Mouse/press,/SwitchProControllerHID/buttonEast,/SwitchProControllerHID1/buttonEast,/SwitchProControllerHID/buttonSouth,/SwitchProControllerHID1/buttonSouth,/SwitchProControllerHID/buttonNorth,/SwitchProControllerHID1/buttonNorth,/SwitchProControllerHID/buttonWest,/SwitchProControllerHID1/buttonWest,/SwitchProControllerHID/rightShoulder,/SwitchProControllerHID1/rightShoulder,/SwitchProControllerHID/rightTrigger,/SwitchProControllerHID1/rightTrigger,/SwitchProControllerHID/leftShoulder,/SwitchProControllerHID1/leftShoulder,/SwitchProControllerHID/leftTrigger,/SwitchProControllerHID1/leftTrigger,/SwitchProControllerHID/start,/SwitchProControllerHID1/start,/SwitchProControllerHID/select,/SwitchProControllerHID1/select,/SwitchProControllerHID/dpad/right,/SwitchProControllerHID1/dpad/right,/SwitchProControllerHID/dpad/up,/SwitchProControllerHID1/dpad/up,/SwitchProControllerHID/dpad/left,/SwitchProControllerHID1/dpad/left,/SwitchProControllerHID/dpad/down,/SwitchProControllerHID1/dpad/down,/SwitchProControllerHID/leftStickPress,/SwitchProControllerHID1/leftStickPress,/SwitchProControllerHID/rightStickPress,/SwitchProControllerHID1/rightStickPress]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e3adbeb-32a2-4525-aa4b-9b914b5638ec
+    m_ActionName: Movement/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls
@@ -836,15 +836,15 @@ RectTransform:
   m_GameObject: {fileID: 3195629713791764227}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 0.33333334, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7758453168357485075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &15251532269018380
 SpriteRenderer:
@@ -1235,15 +1235,15 @@ RectTransform:
   m_GameObject: {fileID: 6279667475861626950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.6, y: 0.2, z: 0.6}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7758453168357485075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7612524837731048995
 SpriteRenderer:
@@ -1319,25 +1319,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4748721782665753354
-RectTransform:
+--- !u!4 &4748721782665753354
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6420930476709575827}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.75, y: -0.75, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 137366254406453520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.75, y: -0.75}
-  m_SizeDelta: {x: 128, y: 128}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &3764232387091856153
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1548,15 +1544,15 @@ RectTransform:
   m_GameObject: {fileID: 6520964462369371117}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.6, y: 0.2, z: 0.6}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7758453168357485075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6465347741519044805
 SpriteRenderer:
@@ -1772,7 +1768,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7545730705055258810
 SpriteRenderer:
