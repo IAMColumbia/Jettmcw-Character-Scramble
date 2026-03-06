@@ -24,7 +24,7 @@ public class ControlRandomizer : MonoBehaviour
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			int filterIdx = Random.Range(0, s_bindingCounts.Length);
+			int filterIdx = Random.Range(0, s_bindingCounts[i]);
 
 			FilterIdxs[i] = filterIdx;
 		}
