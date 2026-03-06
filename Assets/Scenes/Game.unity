@@ -1494,6 +1494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rows:
   - {fileID: 876532803}
+  - {fileID: 58470445}
 --- !u!4 &1192497840
 Transform:
   m_ObjectHideFlags: 0

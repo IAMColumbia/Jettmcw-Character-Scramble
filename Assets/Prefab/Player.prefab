@@ -772,6 +772,7 @@ MonoBehaviour:
   _selectedColors: []
   _rows:
   - {fileID: 48055221314817654}
+  - {fileID: 1092565078819550380}
   _rowIndex: 0
 --- !u!1 &3195629713791764227
 GameObject:
@@ -942,7 +943,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3546436714884414946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

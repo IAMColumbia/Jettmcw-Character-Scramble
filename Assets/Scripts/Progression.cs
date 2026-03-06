@@ -54,12 +54,11 @@ public class Progression : MonoBehaviour
 
 	public void GoForward()
 	{
-		if (_rowIndex == -1)
-		{
-			return;
-		}
-
-		Debug.Log("No!");
+		_rows[_rowIndex].Show(false);
+		_rowIndex++;
+		_rows[_rowIndex].Register();
+		_rows[_rowIndex].Show(true);
+		_selectedColors.Add(_rows[_rowIndex].Current);
 	}
 
 	public void Cycle(bool right)
