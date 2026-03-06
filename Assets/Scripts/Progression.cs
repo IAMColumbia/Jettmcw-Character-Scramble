@@ -31,22 +31,30 @@ public class Progression : MonoBehaviour
 	private IEnumerator AllowRejoin()
 	{
 		yield return null;
-		_playerInput.actionEvents[3].AddListener(TryRejoin);
+		_playerInput.actionEvents[3].AddListener(Rejoin);
 	}
 
-	public void TryRejoin(InputAction.CallbackContext rejoin)
+	public void Rejoin(InputAction.CallbackContext context)
 	{
-		Debug.Log("Rejoin!");
-		_playerInput.actionEvents[3].RemoveListener(TryRejoin);
+		if (!context.started)
+		{
+			return;
+		}
+
+		_playerInput.actionEvents[3].RemoveListener(Rejoin);
 		_rowIndex = 0;
 		Transform area = PlayerAreas.GetArea(_playerInput);
 		area.GetChild(0).gameObject.SetActive(false);
 		_rows[0].Register();
-		return;
 	}
 
 	public void GoForward()
 	{
+		if (_rowIndex == -1)
+		{
+			return;
+		}
+
 		Debug.Log("No!");
 	}
 }
