@@ -45,7 +45,7 @@ public class PlayerCycling : MonoBehaviour
 		}
 	}
 
-	public void Awake()
+	public void Register()
 	{
 		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
 		_optionRow.Register(this);
@@ -53,6 +53,7 @@ public class PlayerCycling : MonoBehaviour
 
 	public void Cycle(bool right)
 	{
+		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
 		if (_optionRow.IsFull)
 		{
 			return;
@@ -92,5 +93,11 @@ public class PlayerCycling : MonoBehaviour
 				.Group(Tween.Scale(_left.transform, 0f, small, time, Ease.OutSine))
 			;
 		}
+	}
+
+	public void Release()
+	{
+		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		_optionRow.Remove(this);
 	}
 }
