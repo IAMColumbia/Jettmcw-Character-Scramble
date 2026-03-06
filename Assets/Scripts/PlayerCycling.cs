@@ -7,6 +7,8 @@ public class PlayerCycling : MonoBehaviour
 	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor, _endAnchor;
 	[SerializeField] private int _rowIndex;
 
+	public Transform Selection => _current.transform;
+
 	private OptionRow _optionRow;
 
 	private Sequence CycleAnimation;

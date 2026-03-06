@@ -11,6 +11,8 @@ public class Progression : MonoBehaviour
 	[SerializeField] private PlayerCycling[] _rows;
 	[SerializeField] private int _rowIndex = 0;
 
+	[SerializeField] private Transform _finalCharacter;
+
 	private void Awake()
 	{
 		_rows[0].Register();
@@ -64,6 +66,7 @@ public class Progression : MonoBehaviour
 			Debug.Log("Finished!");
 			_uiToggle.DisableUI();
 			_playerInput.SwitchCurrentActionMap("Movement");
+			ConstructCharacter();
 			return;
 		}
 
@@ -77,5 +80,14 @@ public class Progression : MonoBehaviour
 		PlayerCycling row = _rows[_rowIndex];
 		row.Cycle(right);
 		_selectedColors[_rowIndex] = row.Current;
+	}
+
+	public void ConstructCharacter()
+	{
+		foreach (var row in _rows)
+		{
+			row.Selection.SetParent(_finalCharacter, true);
+		}
+		_finalCharacter.gameObject.SetActive(true);
 	}
 }
