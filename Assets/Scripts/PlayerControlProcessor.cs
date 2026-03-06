@@ -21,9 +21,9 @@ public class PlayerControlProcessor : MonoBehaviour
 	public UnityEvent<bool> MoveVertical;
 	public UnityEvent Confirm;
 
-	[SerializeField] private IconSwap _leftIcon;
-	[SerializeField] private IconSwap _rightIcon;
-	[SerializeField] private IconSwap _confirmIcon;
+	[SerializeField] private IconTexture _leftIcon;
+	[SerializeField] private IconTexture _rightIcon;
+	[SerializeField] private IconTexture _confirmIcon;
 
 	public void OnDirectionalInput(InputAction.CallbackContext context)
 	{
@@ -95,6 +95,7 @@ public class PlayerControlProcessor : MonoBehaviour
 
 		if ((data & HoldData.Starting) != 0)
 		{
+			Debug.Log(holdingPositive);
 			moveEvent.Invoke(holdingPositive);
 			repeatWait = firstRepeatDelay;
 			data &= ~HoldData.Starting;

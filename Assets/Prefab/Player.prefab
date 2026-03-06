@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 8019512756814499525}
   - component: {fileID: 7705134938647584964}
   - component: {fileID: 6152338097399393414}
+  - component: {fileID: 3087205513972756777}
   m_Layer: 5
   m_Name: Confirm Icon
   m_TagString: Untagged
@@ -333,7 +334,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 841ff78d3001de94dac4e42feec74eec, type: 3}
   - {fileID: 21300000, guid: 302f8aa44b1a0d3498b5bce7b9550c14, type: 3}
   - {fileID: 21300000, guid: ada129703bff0d247a63ad85e78e9fdb, type: 3}
-  RequirePositive: 0
+--- !u!114 &3087205513972756777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2224820756215112842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb1eac8cb9e2424baef2d6ee68ad5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requirePositive: 0
 --- !u!1 &2348622859069133483
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +358,7 @@ GameObject:
   - component: {fileID: 6147114519400204316}
   - component: {fileID: 3825279003916790335}
   - component: {fileID: 3869354384519822899}
+  - component: {fileID: 4550318244215798457}
   m_Layer: 0
   m_Name: Left Input Icon
   m_TagString: Untagged
@@ -445,7 +459,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c8b92325b57854f4dad6658d56eab5be, type: 3}
   - {fileID: 21300000, guid: 87660f953a8c1c5419fa747e55855a6f, type: 3}
   - {fileID: 21300000, guid: 1d83fe1da69fae84f8b58138f81907e0, type: 3}
-  RequirePositive: 0
+--- !u!114 &4550318244215798457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348622859069133483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb1eac8cb9e2424baef2d6ee68ad5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requirePositive: 0
 --- !u!1 &2643675306919594915
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,8 +612,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3869354384519822899}
-        m_TargetAssemblyTypeName: IconSwap, Assembly-CSharp
+      - m_Target: {fileID: 4550318244215798457}
+        m_TargetAssemblyTypeName: IconInputResponse, Assembly-CSharp
         m_MethodName: DoPressAnimationIf
         m_Mode: 0
         m_Arguments:
@@ -598,8 +624,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4223345035628862879}
-        m_TargetAssemblyTypeName: IconSwap, Assembly-CSharp
+      - m_Target: {fileID: 6833711644652655720}
+        m_TargetAssemblyTypeName: IconInputResponse, Assembly-CSharp
         m_MethodName: DoPressAnimationIf
         m_Mode: 0
         m_Arguments:
@@ -616,8 +642,8 @@ MonoBehaviour:
   Confirm:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6152338097399393414}
-        m_TargetAssemblyTypeName: IconSwap, Assembly-CSharp
+      - m_Target: {fileID: 3087205513972756777}
+        m_TargetAssemblyTypeName: IconInputResponse, Assembly-CSharp
         m_MethodName: DoPressAnimation
         m_Mode: 1
         m_Arguments:
@@ -1339,6 +1365,7 @@ GameObject:
   - component: {fileID: 1953084216711757280}
   - component: {fileID: 7210633490524241896}
   - component: {fileID: 4223345035628862879}
+  - component: {fileID: 6833711644652655720}
   m_Layer: 0
   m_Name: Right Input Icon
   m_TagString: Untagged
@@ -1439,7 +1466,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: acf179ba2293ec44d8d014280c2b2640, type: 3}
   - {fileID: 21300000, guid: b8c0b124fdf649b4c9694a0dfa7cbc08, type: 3}
   - {fileID: 21300000, guid: a817ce79e4dc69642b6163beca091fe9, type: 3}
-  RequirePositive: 1
+--- !u!114 &6833711644652655720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7046319749271598387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb1eac8cb9e2424baef2d6ee68ad5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requirePositive: 1
 --- !u!1 &7251097071394700890
 GameObject:
   m_ObjectHideFlags: 0
