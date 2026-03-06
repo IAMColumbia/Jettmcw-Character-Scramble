@@ -63,7 +63,6 @@ public class Progression : MonoBehaviour
 		
 		if (_rowIndex == _rows.Length)
 		{
-			Debug.Log("Finished!");
 			_uiToggle.DisableUI();
 			_playerInput.SwitchCurrentActionMap("Movement");
 			ConstructCharacter();
