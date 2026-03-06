@@ -5,6 +5,7 @@ public class PlayerCycling : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer _left, _current, _right, _hidden;
 	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor;
+	[SerializeField] private int _rowIndex;
 
 	private OptionRow _optionRow;
 
@@ -46,7 +47,7 @@ public class PlayerCycling : MonoBehaviour
 
 	public void Awake()
 	{
-		_optionRow = CycleOptionsManager.Instance.Rows[0];
+		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
 		_optionRow.Register(this);
 	}
 
