@@ -87,6 +87,8 @@ public class Progression : MonoBehaviour
 		{
 			row.Selection.SetParent(_finalCharacter, true);
 		}
+		float randomAngle = Random.Range(-30f, 30f);
 		_finalCharacter.gameObject.SetActive(true);
+		_finalCharacter.GetComponent<Rigidbody2D>().angularVelocity = randomAngle;
 	}
 }
