@@ -6,11 +6,12 @@ using UnityEngine;
 public class OptionRow : MonoBehaviour
 {
 	[SerializeField] private Color[] _options;
-	[SerializeField] private PlayerCycling[] _playerPositions;
+	private PlayerCycling[] _playerPositions;
 
-	private int _freeSlots;
 	public int FirstFreeIndex = 0;
 	public bool IsFull = false;
+
+	private int _freeSlots;
 
 	private Color _directionTarget;
 	private PlayerCycling _playerToDirect;

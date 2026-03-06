@@ -4,26 +4,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerControlProcessor : MonoBehaviour
 {
-	public PlayerInput PlayerInput;
-
-	private HoldData _horizontalData;
-	private HoldData _verticalData;
-
+	[SerializeField] private float threshold = 0.5f;
 	[SerializeField] private float firstRepeatDelay = 0.5f;
 	[SerializeField] private float repeatRate = 0.25f;
 
-	private float horizontalRepeatWait;
-	private float verticalRepeatWait;
+	private HoldData _horizontalData, _verticalData;
+	private float _horizontalRepeatWait, _verticalRepeatWait;
 
-	[SerializeField] private float threshold = 0.5f;
-
-	public UnityEvent<bool> MoveHorizontal;
-	public UnityEvent<bool> MoveVertical;
-	public UnityEvent Confirm;
-
-	[SerializeField] private IconTexture _leftIcon;
-	[SerializeField] private IconTexture _rightIcon;
-	[SerializeField] private IconTexture _confirmIcon;
+	public UnityEvent<bool> MoveHorizontal, MoveVertical;
+	public UnityEvent Confirm, Cancel;
 
 	public void OnDirectionalInput(InputAction.CallbackContext context)
 	{
@@ -80,8 +69,8 @@ public class PlayerControlProcessor : MonoBehaviour
 
 	private void Update()
 	{
-		MovementUpdate(MoveHorizontal, ref _horizontalData, ref horizontalRepeatWait);
-		MovementUpdate(MoveVertical, ref _verticalData, ref verticalRepeatWait);
+		MovementUpdate(MoveHorizontal, ref _horizontalData, ref _horizontalRepeatWait);
+		MovementUpdate(MoveVertical, ref _verticalData, ref _verticalRepeatWait);
 	}
 
 	private void MovementUpdate(UnityEvent<bool> moveEvent, ref HoldData data, ref float repeatWait)
@@ -95,7 +84,6 @@ public class PlayerControlProcessor : MonoBehaviour
 
 		if ((data & HoldData.Starting) != 0)
 		{
-			Debug.Log(holdingPositive);
 			moveEvent.Invoke(holdingPositive);
 			repeatWait = firstRepeatDelay;
 			data &= ~HoldData.Starting;
@@ -119,8 +107,15 @@ public class PlayerControlProcessor : MonoBehaviour
 		}
 
 		Confirm.Invoke();
+	}
+	public void OnCancel(InputAction.CallbackContext context)
+	{
+		if (!context.started)
+		{
+			return;
+		}
 
-		PlayerInput.DeactivateInput();
+		Cancel.Invoke();
 	}
 
 	private enum HoldData : byte

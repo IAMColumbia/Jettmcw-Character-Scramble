@@ -593,10 +593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c184c8eba85b95044adc2939d74c683f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerInput: {fileID: 537861048992387703}
+  threshold: 0.5
   firstRepeatDelay: 0.5
   repeatRate: 0.25
-  threshold: 0.5
   MoveHorizontal:
     m_PersistentCalls:
       m_Calls:
@@ -666,9 +665,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _leftIcon: {fileID: 3869354384519822899}
-  _rightIcon: {fileID: 4223345035628862879}
-  _confirmIcon: {fileID: 6152338097399393414}
+  Cancel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4922842801752262416
 MonoBehaviour:
   m_ObjectHideFlags: 0
