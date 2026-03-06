@@ -22,17 +22,19 @@ public class Progression : MonoBehaviour
 	{
 		_selectedColors.RemoveAt(_rowIndex);
 		_rows[_rowIndex].Show(false);
-		if (_rowIndex == 0)
+		_rows[_rowIndex].Release();
+		_rowIndex--;
+
+		if (_rowIndex == -1)
 		{
-			Debug.Log("Back!");
-			_rowIndex = -1;
 			Transform area = PlayerAreas.GetArea(_playerInput);
 			area.GetChild(0).gameObject.SetActive(true);
-			_rows[0].Release();
 			_playerInput.SwitchCurrentActionMap("Rejoin");
 			_uiToggle.DisableUI();
 			return;
 		}
+
+		_rows[_rowIndex].Show(true);
 	}
 
 	public void Rejoin(InputAction.CallbackContext context)
