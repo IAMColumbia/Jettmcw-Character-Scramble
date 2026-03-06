@@ -4,7 +4,7 @@ using PrimeTween;
 public class PlayerCycling : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer _left, _current, _right, _hidden;
-	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor;
+	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor, _endAnchor;
 	[SerializeField] private int _rowIndex;
 
 	private OptionRow _optionRow;
@@ -97,6 +97,22 @@ public class PlayerCycling : MonoBehaviour
 				.Group(Tween.Scale(_left.transform, 0f, small, time, Ease.OutSine))
 			;
 		}
+	}
+
+	public void BeMovedAway()
+	{
+		_left.enabled = false;
+		_right.enabled = false;
+		_hidden.enabled = false;
+		_current.transform.position = _endAnchor.position;
+	}
+
+	public void BeMovedBack()
+	{
+		_left.enabled = true;
+		_right.enabled = true;
+		_hidden.enabled = true;
+		_current.transform.position = _middleAnchor.position;
 	}
 
 	public void Show(bool show)

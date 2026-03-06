@@ -34,7 +34,7 @@ public class Progression : MonoBehaviour
 			return;
 		}
 
-		_rows[_rowIndex].Show(true);
+		_rows[_rowIndex].BeMovedBack();
 	}
 
 	public void Rejoin(InputAction.CallbackContext context)
@@ -56,7 +56,7 @@ public class Progression : MonoBehaviour
 
 	public void GoForward()
 	{
-		_rows[_rowIndex].Show(false);
+		_rows[_rowIndex].BeMovedAway();
 		_rowIndex++;
 		_rows[_rowIndex].Register();
 		_rows[_rowIndex].Show(true);
