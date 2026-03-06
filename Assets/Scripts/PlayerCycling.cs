@@ -108,6 +108,7 @@ public class PlayerCycling : MonoBehaviour
 		_right.enabled = false;
 		_hidden.enabled = false;
 		_current.transform.position = _endAnchor.position;
+		_current.transform.localScale *= 0.5f;
 	}
 
 	public void BeMovedBack()
@@ -116,6 +117,7 @@ public class PlayerCycling : MonoBehaviour
 		_right.enabled = true;
 		_hidden.enabled = true;
 		_current.transform.position = _middleAnchor.position;
+		_current.transform.localScale *= 2f;
 	}
 
 	public void Show(bool show)
