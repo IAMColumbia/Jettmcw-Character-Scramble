@@ -28,7 +28,6 @@ public class PlayerCycling : MonoBehaviour
 		get => _trueLeftColor;
 		set
 		{
-			if (_trueLeftColor == value) return;
 			_trueLeftColor = value;
 			_left.color = value;
 		}
@@ -39,7 +38,6 @@ public class PlayerCycling : MonoBehaviour
 		get => _trueRightColor;
 		set
 		{
-			if (_trueRightColor == value) return;
 			_trueRightColor = value;
 			_right.color = value;
 		}

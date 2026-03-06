@@ -35,6 +35,8 @@ public class OptionRow : MonoBehaviour
 		if (_freeSlots == 0)
 		{
 			IsFull = true;
+			_directionTarget = Color.clear;
+			DirectAll();
 			return;
 		}
 
