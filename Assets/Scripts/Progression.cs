@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class Progression : MonoBehaviour
 {
 	[SerializeField] private PlayerInput _playerInput;
+	[SerializeField] private UIToggle _uiToggle;
 
 	[SerializeField] private List<Color> _selectedColors;
 	[SerializeField] private PlayerCycling[] _rows;
@@ -27,6 +28,7 @@ public class Progression : MonoBehaviour
 			area.GetChild(0).gameObject.SetActive(true);
 			_rows[0].Release();
 			_playerInput.SwitchCurrentActionMap("Rejoin");
+			_uiToggle.DisableUI();
 			return;
 		}
 	}
@@ -38,6 +40,7 @@ public class Progression : MonoBehaviour
 			return;
 		}
 
+		_uiToggle.EnableUI();
 		_rowIndex = 0;
 		Transform area = PlayerAreas.GetArea(_playerInput);
 		area.GetChild(0).gameObject.SetActive(false);

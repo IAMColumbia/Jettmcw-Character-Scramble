@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137366254406453520}
+  - component: {fileID: 340460475030414408}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -36,6 +37,24 @@ Transform:
   - {fileID: 4748721782665753354}
   m_Father: {fileID: 6225030628115122351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340460475030414408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99977554117384796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4733e188f2865004fbc6561327af1ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elements:
+  - {fileID: 8738620674470223525}
+  - {fileID: 3825279003916790335}
+  - {fileID: 7210633490524241896}
+  - {fileID: 7705134938647584964}
+  - {fileID: 3764232387091856153}
 --- !u!1 &746870862272978258
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 537861048992387703}
+  _uiToggle: {fileID: 340460475030414408}
   _selectedColors: []
   _rows:
   - {fileID: 48055221314817654}
