@@ -1,0 +1,14 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerSetup : MonoBehaviour
+{
+	[SerializeField] private PlayerInput _player;
+
+	private void Awake()
+	{
+		Transform area = PlayerAreas.GetArea(_player);
+		transform.SetParent(area, true);
+		transform.localPosition = Vector3.zero;
+	}
+}

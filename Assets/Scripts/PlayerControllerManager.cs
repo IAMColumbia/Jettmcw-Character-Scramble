@@ -15,7 +15,6 @@ public class PlayerControllerManager : MonoBehaviour
 	private static readonly string[] CancelSlots = new string[] { SlotA, SlotB, SlotC, SlotD };
 
 	public static PlayerControllerManager Instance;
-    public Transform Canvas;
     public List<PlayerInput> Players;
 	public UnityEvent ControlSchemeChanged;
 

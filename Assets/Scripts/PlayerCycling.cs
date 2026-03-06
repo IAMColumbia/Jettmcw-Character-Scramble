@@ -3,29 +3,20 @@ using PrimeTween;
 
 public class PlayerCycling : MonoBehaviour
 {
-	[SerializeField] private SpriteRenderer _left;
-	[SerializeField] private SpriteRenderer _current;
-	[SerializeField] private SpriteRenderer _right;
-	[SerializeField] private SpriteRenderer _hidden;
+	[SerializeField] private SpriteRenderer _left, _current, _right, _hidden;
+	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor;
+
+	private OptionRow _optionRow;
 
 	private Sequence CycleAnimation;
-
-	private OptionRow currentCircle;
-
 	private Color _trueCurrentColor, _trueLeftColor, _trueRightColor;
-	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor;
 
 	public Color Current
 	{
-		get
-		{
-			return _trueCurrentColor;
-		}
-
+		get => _trueCurrentColor;
 		set
 		{
 			if (_trueCurrentColor == value) return;
-
 			_trueCurrentColor = value;
 			_current.color = value;
 		}
@@ -33,15 +24,10 @@ public class PlayerCycling : MonoBehaviour
 
 	public Color Left
 	{
-		get
-		{
-			return _trueLeftColor;
-		}
-
+		get => _trueLeftColor;
 		set
 		{
 			if (_trueLeftColor == value) return;
-
 			_trueLeftColor = value;
 			_left.color = value;
 		}
@@ -49,37 +35,24 @@ public class PlayerCycling : MonoBehaviour
 
 	public Color Right
 	{
-		get
-		{
-			return _trueRightColor;
-		}
-
+		get => _trueRightColor;
 		set
 		{
 			if (_trueRightColor == value) return;
 			_trueRightColor = value;
-
-
 			_right.color = value;
 		}
 	}
 
 	public void Awake()
 	{
-		PlayerControllerManager pcm = PlayerControllerManager.Instance;
-		Transform parent = transform.parent;
-
-		parent.SetParent(pcm.Canvas.GetChild(pcm.Players.Count - 1), true);
-		//parent.localScale = Vector3.one * 250;
-		parent.localPosition = Vector3.zero;
-
-		currentCircle = CycleOptionsManager.Instance.Rows[0];
-		currentCircle.Register(this);
+		_optionRow = CycleOptionsManager.Instance.Rows[0];
+		_optionRow.Register(this);
 	}
 
 	public void Cycle(bool right)
 	{
-		if (currentCircle.IsFull)
+		if (_optionRow.IsFull)
 		{
 			return;
 		}
@@ -90,7 +63,7 @@ public class PlayerCycling : MonoBehaviour
 		if (CycleAnimation.isAlive) CycleAnimation.Complete();
 
 		_hidden.color = right ? Left : Right;
-		currentCircle.Cycle(this, right);
+		_optionRow.Cycle(this, right);
 
 		if (right)
 		{
