@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CyclicalOptions : MonoBehaviour
+public class OptionRow : MonoBehaviour
 {
-	public static CyclicalOptions Instance { get; private set; }
-
 	[SerializeField] private Color[] _options;
 	[SerializeField] private PlayerCycling[] _playerPositions;
 	private int _freeSlots;
@@ -19,7 +17,6 @@ public class CyclicalOptions : MonoBehaviour
 
 	private void Awake()
 	{
-		Instance = this;
 		Utility.Shuffle(_options);
 		_freeSlots = _options.Length;
 		FirstFreeIndex = 0;
@@ -57,7 +54,6 @@ public class CyclicalOptions : MonoBehaviour
 		}
 
 		_openedColor = _options[FirstFreeIndex];
-
 		_openedColor = IterateOverNeighbors(LeftNeighbors(insertionIndex), SetRight, 0);
 		IterateOverNeighbors(RightNeighbors(insertionIndex), SetLeft, 0);
 	}
@@ -110,6 +106,29 @@ public class CyclicalOptions : MonoBehaviour
 			_processedPlayer = _playerPositions[i];
 			setOpening();
 		}
+	}
+
+	public void Remove(PlayerCycling player)
+	{
+		int removalIndex = Array.IndexOf(_playerPositions, player);
+		_playerPositions[removalIndex] = null;
+		_openedColor = _options[removalIndex];
+
+		if (removalIndex < FirstFreeIndex)
+		{
+			FirstFreeIndex = removalIndex;
+		}
+
+		_freeSlots++;
+		if (_freeSlots == 1)
+		{
+			IsFull = false;
+			DirectAllTo(_openedColor);
+			return;
+		}
+
+		IterateOverNeighbors(LeftNeighbors(removalIndex), SetRight, 1);
+		IterateOverNeighbors(RightNeighbors(removalIndex), SetLeft, 1);
 	}
 
 	private bool IsIndexOccupied(int index) => _processedPlayer = _playerPositions[index];

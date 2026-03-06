@@ -4,7 +4,7 @@ public class CycleOptionsManager : MonoBehaviour
 {
 	public static CycleOptionsManager Instance { get; private set; }
 
-	public CyclicalOptions[] Rows;
+	public OptionRow[] Rows;
 
 	public void Awake()
 	{

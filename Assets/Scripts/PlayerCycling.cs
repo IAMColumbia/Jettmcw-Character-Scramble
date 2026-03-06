@@ -10,11 +10,9 @@ public class PlayerCycling : MonoBehaviour
 
 	private Sequence CycleAnimation;
 
-	private CyclicalOptions currentCircle;
+	private OptionRow currentCircle;
 
-	private Color _trueCurrentColor;
-	private Color _trueLeftColor;
-	private Color _trueRightColor;
+	private Color _trueCurrentColor, _trueLeftColor, _trueRightColor;
 	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor;
 
 	public Color Current

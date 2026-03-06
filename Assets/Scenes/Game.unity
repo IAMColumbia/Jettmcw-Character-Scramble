@@ -239,14 +239,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 58470443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2dc71e7bd5d684d9fab449accbabf7, type: 3}
+  m_Script: {fileID: 11500000, guid: dc79d365d36ab154b9117ed97b0d5c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _options:
-  - {r: 0.051308773, g: 0.6415094, b: 0, a: 1}
-  - {r: 0.8301887, g: 0, b: 0.012620962, a: 1}
-  - {r: 0, g: 0.055719543, b: 0.61635214, a: 1}
-  - {r: 0.8616352, g: 0.6904205, b: 0, a: 1}
+  - {r: 0.050980393, g: 0.6431373, b: 0, a: 1}
+  - {r: 0.83137256, g: 0, b: 0.011764706, a: 1}
+  - {r: 0, g: 0.05490196, b: 0.6156863, a: 1}
+  - {r: 0.8627451, g: 0.6901961, b: 0, a: 1}
   _playerPositions: []
   FirstFreeIndex: 0
   IsFull: 0
@@ -498,16 +498,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 615089378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2dc71e7bd5d684d9fab449accbabf7, type: 3}
+  m_Script: {fileID: 11500000, guid: dc79d365d36ab154b9117ed97b0d5c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _options:
-  - {r: 0.051308773, g: 0.6415094, b: 0, a: 1}
-  - {r: 0.8301887, g: 0, b: 0.012620962, a: 1}
-  - {r: 0, g: 0.055719543, b: 0.61635214, a: 1}
-  - {r: 0.8616352, g: 0.6904205, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.9043126, a: 1}
-  - {r: 0, g: 0.88220555, b: 0.9308176, a: 1}
+  - {r: 0.050980393, g: 0.6431373, b: 0, a: 1}
+  - {r: 0.83137256, g: 0, b: 0.011764706, a: 1}
+  - {r: 0, g: 0.05490196, b: 0.6156863, a: 1}
+  - {r: 0.8627451, g: 0.6901961, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.90588236, a: 1}
+  - {r: 0, g: 0.88235295, b: 0.92941177, a: 1}
   _playerPositions: []
   FirstFreeIndex: 0
   IsFull: 0
@@ -829,15 +829,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 876532802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2dc71e7bd5d684d9fab449accbabf7, type: 3}
+  m_Script: {fileID: 11500000, guid: dc79d365d36ab154b9117ed97b0d5c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _options:
-  - {r: 0.051308773, g: 0.6415094, b: 0, a: 1}
-  - {r: 0.8301887, g: 0, b: 0.012620962, a: 1}
-  - {r: 0, g: 0.055719543, b: 0.61635214, a: 1}
-  - {r: 0.8616352, g: 0.6904205, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.9043126, a: 1}
+  - {r: 0.050980393, g: 0.6431373, b: 0, a: 1}
+  - {r: 0.83137256, g: 0, b: 0.011764706, a: 1}
+  - {r: 0, g: 0.05490196, b: 0.6156863, a: 1}
+  - {r: 0.8627451, g: 0.6901961, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.90588236, a: 1}
   _playerPositions: []
   FirstFreeIndex: 0
   IsFull: 0
