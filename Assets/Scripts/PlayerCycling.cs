@@ -66,7 +66,7 @@ public class PlayerCycling : MonoBehaviour
 		float time = 0.25f;
 		float small = 0.6f;
 
-		if (CycleAnimation.isAlive) CycleAnimation.Complete();
+		CycleAnimation.Complete();
 
 		_hidden.color = right ? Left : Right;
 		_optionRow.Cycle(this, right);
@@ -101,6 +101,7 @@ public class PlayerCycling : MonoBehaviour
 
 	public void BeMovedAway()
 	{
+		CycleAnimation.Complete();
 		_left.enabled = false;
 		_right.enabled = false;
 		_hidden.enabled = false;
