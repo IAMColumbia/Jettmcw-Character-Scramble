@@ -591,6 +591,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6908feb6-2b76-4fd3-bde5-faaa87d15c74
     m_ActionName: 'Player Controls/Cancel[/Keyboard/backspace,/SwitchProControllerHID/buttonSouth,/SwitchProControllerHID1/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0cf456c4-b4d7-45bb-b468-15f5da1dcf35
+    m_ActionName: 'Player Controls/Rejoin[/Keyboard/anyKey,/Mouse/press]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls
@@ -668,9 +672,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 537861048992387703}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: DeactivateInput
+      - m_Target: {fileID: 3490192583549287113}
+        m_TargetAssemblyTypeName: Progression, Assembly-CSharp
+        m_MethodName: GoForward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

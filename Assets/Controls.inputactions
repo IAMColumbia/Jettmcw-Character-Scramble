@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Rejoin",
+                    "type": "Button",
+                    "id": "0cf456c4-b4d7-45bb-b468-15f5da1dcf35",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -406,6 +415,39 @@
                     "processors": "",
                     "groups": ";Gamepad;Slot D",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "181f5a57-dce0-4053-8fbd-7dcac5c23b37",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Rejoin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9bf906e-84af-4685-8e56-dadee6ba314a",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Rejoin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d72db602-81cb-45bc-91f7-9f8a04b3d657",
+                    "path": "<Gamepad>/anyButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Rejoin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
