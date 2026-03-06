@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 1192497840}
   - component: {fileID: 1192497839}
   m_Layer: 0
-  m_Name: Cycle Options Manager
+  m_Name: Row Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,20 +7,18 @@ public class OptionRow : MonoBehaviour
 {
 	[SerializeField] private Color[] _options;
 	[SerializeField] private PlayerCycling[] _playerPositions;
+
 	private int _freeSlots;
+	public int FirstFreeIndex = 0;
+	public bool IsFull = false;
 
-	public int FirstFreeIndex;
-	public bool IsFull;
-
-	private Color _openedColor;
-	private PlayerCycling _processedPlayer;
+	private Color _directionTarget;
+	private PlayerCycling _playerToDirect;
 
 	private void Awake()
 	{
 		Utility.Shuffle(_options);
 		_freeSlots = _options.Length;
-		FirstFreeIndex = 0;
-		IsFull = false;
 		_playerPositions = new PlayerCycling[_freeSlots];
 	}
 
@@ -40,30 +38,24 @@ public class OptionRow : MonoBehaviour
 		}
 
 		// Recalculate the next open index
-		do
-		{
-			FirstFreeIndex++;
-		}
-		while (IsIndexOccupied(FirstFreeIndex));
+		FindOpenIndex();
+		_directionTarget = _options[FirstFreeIndex];
 
 		// Case where there's only one loose option
 		if (_freeSlots == 1)
 		{
-			DirectAllTo(_options[FirstFreeIndex]);
+			DirectAll();
 			return;
 		}
 
-		_openedColor = _options[FirstFreeIndex];
-		_openedColor = IterateOverNeighbors(LeftNeighbors(insertionIndex), SetRight, 0);
-		IterateOverNeighbors(RightNeighbors(insertionIndex), SetLeft, 0);
+		_directionTarget = IterateOverNeighbors(LeftNeighbors(insertionIndex), DirectRight, 0);
+		IterateOverNeighbors(RightNeighbors(insertionIndex), DirectLeft, 0);
 	}
 
 	public void Cycle(PlayerCycling player, bool right)
 	{
 		// Empty the player's original space
-		int start = Array.IndexOf(_playerPositions, player);
-		_playerPositions[start] = null;
-		_openedColor = player.Current;
+		int start = ClearPlayerSpace(player);
 
 		// Set the player's new color & position
 		Color newColor = right ? player.Right : player.Left;
@@ -78,41 +70,43 @@ public class OptionRow : MonoBehaviour
 		}
 		else if (FirstFreeIndex == end)
 		{
-			do
-			{
-				FirstFreeIndex++;
-			}
-			while (IsIndexOccupied(FirstFreeIndex));
+			FindOpenIndex();
 		}
 
 		// If there's only one open spot, redirect all players accordingly
 		if (_freeSlots == 1)
 		{
-			DirectAllTo(_openedColor);
+			DirectAll();
 			return;
 		}
 
 		// Tell Self + previous neighbors to point to the newly-opened space
-		Color leftOpenColor = IterateOverNeighbors(LeftNeighbors(start), SetRight, 1);
-		Color rightOpenColor = IterateOverNeighbors(RightNeighbors(start), SetLeft, 1);
+		Color leftOpenColor = IterateOverNeighbors(LeftNeighbors(start), DirectRight, 1);
+		Color rightOpenColor = IterateOverNeighbors(RightNeighbors(start), DirectLeft, 1);
 
 		// Tell Self + jumped-over neighbors to find new space in direction of movement
-		_openedColor = right ? rightOpenColor : leftOpenColor;
+		_directionTarget = right ? rightOpenColor : leftOpenColor;
 		Func<int, IEnumerable<int>> directionToPassedNeighbors = right ? LeftNeighbors : RightNeighbors;
 		IEnumerable<int> passedNeighbors = directionToPassedNeighbors(end).TakeWhile(i => i != start);
-		Action setOpening = right ? SetRight : SetLeft;
+		Action setOpening = right ? DirectRight : DirectLeft;
 		foreach (int i in passedNeighbors)
 		{
-			_processedPlayer = _playerPositions[i];
-			setOpening();
+			_playerToDirect = _playerPositions[i];
+			setOpening.Invoke();
 		}
+	}
+
+	private int ClearPlayerSpace(PlayerCycling player)
+	{
+		int removalIndex = Array.IndexOf(_playerPositions, player);
+		_playerPositions[removalIndex] = null;
+		_directionTarget = _options[removalIndex];
+		return removalIndex;
 	}
 
 	public void Remove(PlayerCycling player)
 	{
-		int removalIndex = Array.IndexOf(_playerPositions, player);
-		_playerPositions[removalIndex] = null;
-		_openedColor = _options[removalIndex];
+		int removalIndex = ClearPlayerSpace(player);
 
 		if (removalIndex < FirstFreeIndex)
 		{
@@ -123,47 +117,55 @@ public class OptionRow : MonoBehaviour
 		if (_freeSlots == 1)
 		{
 			IsFull = false;
-			DirectAllTo(_openedColor);
+			DirectAll();
 			return;
 		}
 
-		IterateOverNeighbors(LeftNeighbors(removalIndex), SetRight, 1);
-		IterateOverNeighbors(RightNeighbors(removalIndex), SetLeft, 1);
+		IterateOverNeighbors(LeftNeighbors(removalIndex), DirectRight, 1);
+		IterateOverNeighbors(RightNeighbors(removalIndex), DirectLeft, 1);
 	}
 
-	private bool IsIndexOccupied(int index) => _processedPlayer = _playerPositions[index];
+	private void FindOpenIndex()
+	{
+		do
+		{
+			FirstFreeIndex++;
+		}
+		while (_playerPositions[FirstFreeIndex]);
+	}
 
-	private void DirectAllTo(Color target)
+	private void DirectAll()
 	{
 		foreach (PlayerCycling player in _playerPositions)
 		{
 			if (player)
 			{
-				player.Left = target;
-				player.Right = target;
+				player.Left = _directionTarget;
+				player.Right = _directionTarget;
 			}
 		}
 	}
 
-	private void SetLeft()
+	private void DirectLeft()
 	{
-		_processedPlayer.Left = _openedColor;
+		_playerToDirect.Left = _directionTarget;
 	}
 
-	private void SetRight()
+	private void DirectRight()
 	{
-		_processedPlayer.Right = _openedColor;
+		_playerToDirect.Right = _directionTarget;
 	}
 
 	private Color IterateOverNeighbors(IEnumerable<int> enumerable, Action action, int skip)
 	{
 		foreach (int i in enumerable.Skip(skip))
 		{
-			if (!IsIndexOccupied(i))
+			_playerToDirect = _playerPositions[i];
+			if (!_playerToDirect)
 			{
 				return _options[i];
 			}
-			action();
+			action.Invoke();
 		}
 		throw new InvalidOperationException();
 	}

@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerManager : MonoBehaviour
 {
-	public static PlayerControllerManager Instance;
+	public static PlayerControllerManager Instance { get; private set; }
+
     public List<PlayerInput> Players;
 
 	private void Awake()
