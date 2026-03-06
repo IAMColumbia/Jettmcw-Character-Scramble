@@ -320,6 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0533d59a4ddd77741ae671611f449000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 537861048992387703}
+  _actionIndex: 1
   _renderer: {fileID: 7705134938647584964}
   _keyboardTextures:
   - {fileID: 21300000, guid: 5e4b5cd2ef1976d4480cc8ff10a22247, type: 3}
@@ -432,6 +434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0533d59a4ddd77741ae671611f449000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 537861048992387703}
+  _actionIndex: 0
   _renderer: {fileID: 3825279003916790335}
   _keyboardTextures:
   - {fileID: 21300000, guid: 681cc10679532654985521f6dbfc1aa9, type: 3}
@@ -1424,6 +1428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0533d59a4ddd77741ae671611f449000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 537861048992387703}
+  _actionIndex: 0
   _renderer: {fileID: 7210633490524241896}
   _keyboardTextures:
   - {fileID: 21300000, guid: be26bc94609eaa64c9e8b8e091ed7adb, type: 3}

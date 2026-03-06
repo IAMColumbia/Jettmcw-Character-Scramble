@@ -4,19 +4,29 @@ using UnityEngine.InputSystem;
 
 public class IconSwap : MonoBehaviour
 {
-	[SerializeField] private SpriteRenderer _renderer;
+	[SerializeField] private PlayerInput _playerInput;
+	[SerializeField] private int _actionIndex;
 
-	[SerializeField] private Sprite[] _keyboardTextures;
-	[SerializeField] private Sprite[] _gamepadTextures;
+	[SerializeField] private SpriteRenderer _renderer;
+	[SerializeField] private Sprite[] _keyboardTextures, _gamepadTextures;
 
 	private Sequence _pressAnimation;
 
 	[SerializeField] private bool RequirePositive;
 
-	public void ChangeTexture(PlayerInput player, int textureIndex)
+	private void OnEnable()
 	{
-		string controlScheme = player.currentControlScheme;
+		ControlRandomizer.Instance.ControlSchemeChanged.AddListener(ChangeTexture);
+		ChangeTexture();
+	}
+	private void OnDisable()
+	{
+		ControlRandomizer.Instance.ControlSchemeChanged.RemoveListener(ChangeTexture);
+	}
 
+	public void ChangeTexture()
+	{
+		string controlScheme = _playerInput.currentControlScheme;
 		Sprite[] textures = controlScheme switch
 		{
 			"Keyboard" => _keyboardTextures,
@@ -24,7 +34,10 @@ public class IconSwap : MonoBehaviour
 			_ => throw new System.InvalidOperationException()
 		};
 
+		int textureIndex = ControlRandomizer.Instance.FilterIdxs[_actionIndex];
+
 		Sprite texture = textures[textureIndex];
+
 		_renderer.sprite = texture;
 	}
 

@@ -25,24 +25,6 @@ public class PlayerControlProcessor : MonoBehaviour
 	[SerializeField] private IconSwap _rightIcon;
 	[SerializeField] private IconSwap _confirmIcon;
 
-	private void OnEnable()
-	{
-		UpdateControlIcons();
-		PlayerControllerManager.Instance.ControlSchemeChanged.AddListener(UpdateControlIcons);
-	}
-
-	private void OnDisable()
-	{
-		PlayerControllerManager.Instance.ControlSchemeChanged.RemoveListener(UpdateControlIcons);
-	}
-
-	private void UpdateControlIcons()
-	{
-		_leftIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.MoveBindingIdx);
-		_rightIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.MoveBindingIdx);
-		_confirmIcon.ChangeTexture(PlayerInput, PlayerControllerManager.Instance.ConfirmBindingIdx);
-	}
-
 	public void OnDirectionalInput(InputAction.CallbackContext context)
 	{
 		// Only respond to "performed" phase, as to avoid duplicate signals at "started"
