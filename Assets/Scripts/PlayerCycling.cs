@@ -47,6 +47,10 @@ public class PlayerCycling : MonoBehaviour
 
 	public void Register()
 	{
+		_left.enabled = true;
+		_current.enabled = true;
+		_right.enabled = true;
+		_hidden.enabled = true;
 		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
 		_optionRow.Register(this);
 	}
@@ -93,6 +97,14 @@ public class PlayerCycling : MonoBehaviour
 				.Group(Tween.Scale(_left.transform, 0f, small, time, Ease.OutSine))
 			;
 		}
+	}
+
+	public void Show(bool show)
+	{
+		_left.enabled = show;
+		_current.enabled = show;
+		_right.enabled = show;
+		_hidden.enabled = show;
 	}
 
 	public void Release()

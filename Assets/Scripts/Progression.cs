@@ -14,12 +14,14 @@ public class Progression : MonoBehaviour
 	private void Awake()
 	{
 		_rows[0].Register();
+		_rows[0].Show(true);
 		_selectedColors.Add(_rows[0].Current);
 	}
 
 	public void GoBack()
 	{
 		_selectedColors.RemoveAt(_rowIndex);
+		_rows[_rowIndex].Show(false);
 		if (_rowIndex == 0)
 		{
 			Debug.Log("Back!");
@@ -45,6 +47,7 @@ public class Progression : MonoBehaviour
 		Transform area = PlayerAreas.GetArea(_playerInput);
 		area.GetChild(0).gameObject.SetActive(false);
 		_rows[0].Register();
+		_rows[0].Show(true);
 		_selectedColors.Add(_rows[0].Current);
 		_playerInput.SwitchCurrentActionMap("Player Controls");
 	}
