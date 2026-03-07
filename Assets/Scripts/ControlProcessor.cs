@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerControlProcessor : MonoBehaviour
+public class ControlProcessor : MonoBehaviour
 {
 	[SerializeField] private float threshold = 0.5f;
 	[SerializeField] private float firstRepeatDelay = 0.5f;
@@ -12,7 +12,6 @@ public class PlayerControlProcessor : MonoBehaviour
 	private float _horizontalRepeatWait;
 
 	public UnityEvent<bool> MoveHorizontal;
-	public UnityEvent Confirm, Cancel;
 
 	public void OnDirectionalInput(InputAction.CallbackContext context)
 	{
@@ -95,26 +94,6 @@ public class PlayerControlProcessor : MonoBehaviour
 			moveEvent.Invoke(holdingPositive);
 			repeatWait = repeatRate;
 		}
-	}
-
-	public void OnConfirm(InputAction.CallbackContext context)
-	{
-		if (!context.started)
-		{
-			return;
-		}
-
-		Confirm.Invoke();
-	}
-
-	public void OnCancel(InputAction.CallbackContext context)
-	{
-		if (!context.started)
-		{
-			return;
-		}
-
-		Cancel.Invoke();
 	}
 
 	private enum HoldData : byte

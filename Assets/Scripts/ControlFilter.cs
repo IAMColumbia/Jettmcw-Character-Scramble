@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class ControlFilterer : MonoBehaviour
+public class ControlFilter : MonoBehaviour
 {
 	[Header("Cycle Action")]
 	[SerializeField] private string[] _cycleActionNames;
@@ -45,11 +45,13 @@ public class ControlFilterer : MonoBehaviour
 
 	public void FilterSelectAction(InputAction.CallbackContext context)
 	{
+		if (!context.started) return;
 		FilterAction(context, _selectActionNames, SelectActionIndex, CorrectSelectInput, IncorrectSelectInput);
 	}
 
 	public void FilterBackAction(InputAction.CallbackContext context)
 	{
+		if (!context.started) return;
 		FilterAction(context, _backActionNames, BackActionIndex, CorrectBackInput, IncorrectBackInput);
 	}
 
@@ -63,7 +65,6 @@ public class ControlFilterer : MonoBehaviour
 		string action = context.action.name;
 		string correct = actions[index];
 		bool wasCorrect = action == correct;
-		Debug.Log(wasCorrect);
 		var eventToInvoke = wasCorrect ? correctEvent : incorrectEvent;
 		eventToInvoke.Invoke(context);
 	}

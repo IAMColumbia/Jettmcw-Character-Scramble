@@ -720,18 +720,6 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1bef42f4-2b9b-4fe3-998d-6e5952dac295
-    m_ActionName: 'Player Controls/Move[/Keyboard/w,/Keyboard/a,/Keyboard/s,/Keyboard/d,/SwitchProControllerHID/leftStick]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7ba3f5b4-e111-4785-92c6-1ce2923bad36
-    m_ActionName: 'Player Controls/Confirm[/Keyboard/enter,/SwitchProControllerHID/buttonEast]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6908feb6-2b76-4fd3-bde5-faaa87d15c74
-    m_ActionName: 'Player Controls/Cancel[/Keyboard/backspace,/SwitchProControllerHID/buttonSouth,/SwitchProControllerHID1/buttonSouth]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3490192583549287113}
         m_TargetAssemblyTypeName: Progression, Assembly-CSharp
@@ -1118,10 +1106,22 @@ MonoBehaviour:
   CorrectSelectInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2577648118585837985}
-        m_TargetAssemblyTypeName: PlayerControlProcessor, Assembly-CSharp
-        m_MethodName: OnConfirm
-        m_Mode: 0
+      - m_Target: {fileID: 3087205513972756777}
+        m_TargetAssemblyTypeName: IconPress, Assembly-CSharp
+        m_MethodName: DoPressAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3490192583549287113}
+        m_TargetAssemblyTypeName: Progression, Assembly-CSharp
+        m_MethodName: GoForward
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1142,10 +1142,22 @@ MonoBehaviour:
   CorrectBackInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2577648118585837985}
-        m_TargetAssemblyTypeName: PlayerControlProcessor, Assembly-CSharp
-        m_MethodName: OnCancel
-        m_Mode: 0
+      - m_Target: {fileID: 808335917886018288}
+        m_TargetAssemblyTypeName: IconPress, Assembly-CSharp
+        m_MethodName: DoPressAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3490192583549287113}
+        m_TargetAssemblyTypeName: Progression, Assembly-CSharp
+        m_MethodName: GoBack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

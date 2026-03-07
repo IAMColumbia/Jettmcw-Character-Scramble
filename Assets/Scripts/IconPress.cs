@@ -1,7 +1,7 @@
 using PrimeTween;
 using UnityEngine;
 
-public class IconInputResponse : MonoBehaviour
+public class IconPress : MonoBehaviour
 {
 	[SerializeField] private bool _requirePositive;
 
