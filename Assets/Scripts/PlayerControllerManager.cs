@@ -17,8 +17,6 @@ public class PlayerControllerManager : MonoBehaviour
 	public void OnPlayerAdded(PlayerInput player)
     {
         Players.Add(player);
-
-		ControlRandomizer.Instance.SetToCommonBindings(player);
 		
 		player.DeactivateInput();
 		StartCoroutine(EnableNextFrame());
