@@ -27,3 +27,26 @@ I intend to undergo an additional playtesting session on the 6th. This is what I
    - While a player waits for the other players to finish, they should be able to move their character around.
 
 3. Implement a system where the player can see what the options are to the left and right.
+
+## 3/6/2026
+
+Since the last update, I've:
+- Implemented the system where players must sequentially select multiple (three) components
+- Made it so players cannot select the same components as each other, and will skip over each other when selecting through components
+- Made it so players can see the components to the left and right (accounting for what is available)
+- Added a tweening animation for cycling across components
+- Added icons that indicate the controls for all of the players, which do a tweened "press" animation upon being executed
+- Added control randomization to further contribute to the whole "scrambling" aspect of choosing a character
+
+### Next Iteration
+
+Plenty of the feedback I received related to the randomized controls, and how they could be communicated better to the player.
+
+1. I'll work on making the control changes more clear to the player.
+   - Make it so the control icons flash red when the WRONG input is used for an action
+   - Do a general animation or pop up to indicate that the controls have changed.
+2. I still need to make this selection system into a game.
+   - Implementing multiple rounds, instead of forcing the players to restart the game.
+   - Adding a scoring system that rewards certain combinations + speed
+   - Telegraphing the winner
+   - Showing the player how to get more points
