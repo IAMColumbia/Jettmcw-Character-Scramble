@@ -8,10 +8,10 @@ public class PlayerControlProcessor : MonoBehaviour
 	[SerializeField] private float firstRepeatDelay = 0.5f;
 	[SerializeField] private float repeatRate = 0.25f;
 
-	private HoldData _horizontalData, _verticalData;
-	private float _horizontalRepeatWait, _verticalRepeatWait;
+	private HoldData _horizontalData;
+	private float _horizontalRepeatWait;
 
-	public UnityEvent<bool> MoveHorizontal, MoveVertical;
+	public UnityEvent<bool> MoveHorizontal;
 	public UnityEvent Confirm, Cancel;
 
 	public void OnDirectionalInput(InputAction.CallbackContext context)
@@ -21,7 +21,7 @@ public class PlayerControlProcessor : MonoBehaviour
 		{
 			// If input is cancelled that means the player is no longer holding
 			case InputActionPhase.Canceled:
-				_horizontalData = _verticalData = HoldData.None;
+				_horizontalData = HoldData.None;
 				return;
 			case InputActionPhase.Performed:
 				break;
@@ -29,10 +29,9 @@ public class PlayerControlProcessor : MonoBehaviour
 				return;
 		}
 
-		Vector2 input = context.ReadValue<Vector2>();
+		float input = context.ReadValue<float>();
 
-		AdjustHoldData(input.x, ref _horizontalData);
-		AdjustHoldData(input.y, ref _verticalData);
+		AdjustHoldData(input, ref _horizontalData);
 	}
 
 	private void AdjustHoldData(float input, ref HoldData data)
@@ -70,7 +69,6 @@ public class PlayerControlProcessor : MonoBehaviour
 	private void Update()
 	{
 		MovementUpdate(MoveHorizontal, ref _horizontalData, ref _horizontalRepeatWait);
-		MovementUpdate(MoveVertical, ref _verticalData, ref _verticalRepeatWait);
 	}
 
 	private void MovementUpdate(UnityEvent<bool> moveEvent, ref HoldData data, ref float repeatWait)
@@ -108,6 +106,7 @@ public class PlayerControlProcessor : MonoBehaviour
 
 		Confirm.Invoke();
 	}
+
 	public void OnCancel(InputAction.CallbackContext context)
 	{
 		if (!context.started)

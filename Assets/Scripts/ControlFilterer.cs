@@ -6,17 +6,17 @@ public class ControlFilterer : MonoBehaviour
 {
 	[Header("Cycle Action")]
 	[SerializeField] private string[] _cycleActionNames;
-	public int CycleActionIndex;
+	[HideInInspector] public int CycleActionIndex;
 	public UnityEvent<InputAction.CallbackContext> CorrectCycleInput, IncorrectCycleInput;
 
 	[Header("Select Action")]
 	[SerializeField] private string[] _selectActionNames;
-	public int SelectActionIndex;
+	[HideInInspector] public int SelectActionIndex;
 	public UnityEvent<InputAction.CallbackContext> CorrectSelectInput, IncorrectSelectInput;
 
 	[Header("Back Action")]
 	[SerializeField] private string[] _backActionNames;
-	public int BackActionIndex;
+	[HideInInspector] public int BackActionIndex;
 	public UnityEvent<InputAction.CallbackContext> CorrectBackInput, IncorrectBackInput;
 
 	private void OnEnable()
