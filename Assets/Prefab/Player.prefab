@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 2577648118585837985}
   - component: {fileID: 4922842801752262416}
   - component: {fileID: 3490192583549287113}
+  - component: {fileID: 6316818112167544041}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -786,6 +787,182 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8e3adbeb-32a2-4525-aa4b-9b914b5638ec
     m_ActionName: Movement/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterCycleAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f4507bb9-7f38-43a6-9210-8f7ba0294ccd
+    m_ActionName: 'Player Controls/Cycle 1[/Keyboard/a,/Keyboard/d,/SwitchProControllerHID/leftStick/x,/SwitchProControllerHID1/leftStick/x]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterCycleAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b29c218d-f311-4686-a594-77e6dbd606f1
+    m_ActionName: 'Player Controls/Cycle 2[/Keyboard/leftArrow,/Keyboard/rightArrow,/SwitchProControllerHID/rightStick/x,/SwitchProControllerHID1/rightStick/x]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterCycleAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 371cc601-0077-4126-bf22-65d6b7788cdf
+    m_ActionName: 'Player Controls/Cycle 3[/Keyboard/j,/Keyboard/l,/SwitchProControllerHID/dpad/x,/SwitchProControllerHID1/dpad/x]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 51da5bda-18af-4534-856e-9608fd28cff7
+    m_ActionName: 'Player Controls/Select 1[/Keyboard/space,/SwitchProControllerHID/buttonEast,/SwitchProControllerHID1/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ed15485e-9870-42d4-b4c5-8dd7f8f0aba6
+    m_ActionName: 'Player Controls/Select 2[/Mouse/leftButton,/SwitchProControllerHID/rightShoulder,/SwitchProControllerHID1/rightShoulder]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ea8ab425-60ae-4672-8238-3e676b3ebe2e
+    m_ActionName: 'Player Controls/Select 3[/Keyboard/enter,/SwitchProControllerHID/start,/SwitchProControllerHID1/start]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3c15c6b2-78c4-43d5-a88f-cf82336c66ac
+    m_ActionName: 'Player Controls/Select 4[/Keyboard/e,/SwitchProControllerHID/buttonNorth,/SwitchProControllerHID1/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterBackAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9657496e-af57-499f-a5b8-de2488c3cd8c
+    m_ActionName: 'Player Controls/Back 1[/Keyboard/backspace,/SwitchProControllerHID/buttonSouth,/SwitchProControllerHID1/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterBackAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 138e4856-4c7e-4597-8e3c-ec9be73cd973
+    m_ActionName: 'Player Controls/Back 2[/Mouse/rightButton,/SwitchProControllerHID/leftShoulder,/SwitchProControllerHID1/leftShoulder]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterBackAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5984767b-801d-44cf-a24b-7f93b1ff586d
+    m_ActionName: 'Player Controls/Back 3[/Keyboard/delete,/SwitchProControllerHID/select,/SwitchProControllerHID1/select]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6316818112167544041}
+        m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
+        m_MethodName: FilterBackAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d6475887-51e8-449e-876d-225e6ad94f8f
+    m_ActionName: 'Player Controls/Back 4[/Keyboard/x,/SwitchProControllerHID/buttonWest,/SwitchProControllerHID1/buttonWest]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls
@@ -936,6 +1113,53 @@ MonoBehaviour:
   - {fileID: 9180268604975545501}
   _rowIndex: 0
   _finalCharacter: {fileID: 6219576664410125682}
+--- !u!114 &6316818112167544041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643675306919594915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbbb2bfb8e08e3419af62505e7e2916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cycleActionNames:
+  - Cycle 1
+  - Cycle 2
+  - Cycle 3
+  CycleActionIndex: 0
+  CorrectCycleInput:
+    m_PersistentCalls:
+      m_Calls: []
+  IncorrectCycleInput:
+    m_PersistentCalls:
+      m_Calls: []
+  _selectActionNames:
+  - Select 1
+  - Select 2
+  - Select 3
+  - Select 4
+  SelectActionIndex: 0
+  CorrectSelectInput:
+    m_PersistentCalls:
+      m_Calls: []
+  IncorrectSelectInput:
+    m_PersistentCalls:
+      m_Calls: []
+  _backActionNames:
+  - Back 1
+  - Back 2
+  - Back 3
+  - Back 4
+  BackActionIndex: 0
+  CorrectBackInput:
+    m_PersistentCalls:
+      m_Calls: []
+  IncorrectBackInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3047004547880175291
 GameObject:
   m_ObjectHideFlags: 0
