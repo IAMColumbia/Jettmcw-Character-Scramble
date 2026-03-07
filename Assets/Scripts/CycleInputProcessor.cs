@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class ControlProcessor : MonoBehaviour
+public class CycleInputProcessor : MonoBehaviour
 {
 	[SerializeField] private float threshold = 0.5f;
 	[SerializeField] private float firstRepeatDelay = 0.5f;

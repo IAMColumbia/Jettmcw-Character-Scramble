@@ -17,7 +17,7 @@ public class IconPress : MonoBehaviour
 
 	public void DoPressAnimation()
 	{
-		if (_pressAnimation.isAlive) _pressAnimation.Complete();
+		_pressAnimation.Complete();
 
 		_pressAnimation = Sequence.Create()
 			.Group(Tween.Scale(transform, 0.45f, 0.35f, 0.1f, Ease.OutSine, 2, CycleMode.Rewind));

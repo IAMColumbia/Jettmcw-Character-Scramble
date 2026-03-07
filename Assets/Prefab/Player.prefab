@@ -500,7 +500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0cd381541030d468d756a635702b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requirePositive: 0
   _renderer: {fileID: 7705134938647584964}
 --- !u!1 &2330957070612243764
 GameObject:
@@ -549,6 +548,7 @@ GameObject:
   - component: {fileID: 3825279003916790335}
   - component: {fileID: 3869354384519822899}
   - component: {fileID: 4550318244215798457}
+  - component: {fileID: 1892956450537298804}
   m_Layer: 0
   m_Name: Left Input Icon
   m_TagString: Untagged
@@ -662,6 +662,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _requirePositive: 0
+--- !u!114 &1892956450537298804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348622859069133483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0cd381541030d468d756a635702b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 3825279003916790335}
 --- !u!1 &2643675306919594915
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +689,7 @@ GameObject:
   - component: {fileID: 4922842801752262416}
   - component: {fileID: 3490192583549287113}
   - component: {fileID: 6316818112167544041}
+  - component: {fileID: 7540012824600869778}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1057,7 +1071,19 @@ MonoBehaviour:
         m_CallState: 2
   IncorrectCycleInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7540012824600869778}
+        m_TargetAssemblyTypeName: WrongCycleProcessor, Assembly-CSharp
+        m_MethodName: OnDirectionalInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _selectActionNames:
   - Select 1
   - Select 2
@@ -1143,6 +1169,49 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1869057057783712384}
+        m_TargetAssemblyTypeName: IconWrong, Assembly-CSharp
+        m_MethodName: DoWrongAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7540012824600869778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643675306919594915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1698fcad30a5f140b3fa0520f5f41d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _threshold: 0.5
+  WrongLeft:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1892956450537298804}
+        m_TargetAssemblyTypeName: IconWrong, Assembly-CSharp
+        m_MethodName: DoWrongAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  WrongRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1927721012660563861}
         m_TargetAssemblyTypeName: IconWrong, Assembly-CSharp
         m_MethodName: DoWrongAnimation
         m_Mode: 1
@@ -2275,7 +2344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0cd381541030d468d756a635702b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requirePositive: 0
   _renderer: {fileID: 3764232387091856153}
 --- !u!1 &6454154065362016157
 GameObject:
@@ -2581,6 +2649,7 @@ GameObject:
   - component: {fileID: 7210633490524241896}
   - component: {fileID: 4223345035628862879}
   - component: {fileID: 6833711644652655720}
+  - component: {fileID: 1927721012660563861}
   m_Layer: 0
   m_Name: Right Input Icon
   m_TagString: Untagged
@@ -2694,6 +2763,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _requirePositive: 1
+--- !u!114 &1927721012660563861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7046319749271598387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0cd381541030d468d756a635702b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 7210633490524241896}
 --- !u!1 &7251097071394700890
 GameObject:
   m_ObjectHideFlags: 0
