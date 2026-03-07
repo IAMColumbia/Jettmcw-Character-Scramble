@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 7705134938647584964}
   - component: {fileID: 6152338097399393414}
   - component: {fileID: 3087205513972756777}
+  - component: {fileID: 8749567258486163228}
   m_Layer: 5
   m_Name: Confirm Icon
   m_TagString: Untagged
@@ -487,6 +488,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _requirePositive: 0
+--- !u!114 &8749567258486163228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2224820756215112842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0cd381541030d468d756a635702b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requirePositive: 0
+  _renderer: {fileID: 7705134938647584964}
 --- !u!1 &2330957070612243764
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,60 +989,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Confirm:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3087205513972756777}
-        m_TargetAssemblyTypeName: IconInputResponse, Assembly-CSharp
-        m_MethodName: DoPressAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3490192583549287113}
-        m_TargetAssemblyTypeName: Progression, Assembly-CSharp
-        m_MethodName: GoForward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Cancel:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 808335917886018288}
-        m_TargetAssemblyTypeName: IconInputResponse, Assembly-CSharp
-        m_MethodName: DoPressAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3490192583549287113}
-        m_TargetAssemblyTypeName: Progression, Assembly-CSharp
-        m_MethodName: GoBack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4922842801752262416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,7 +1093,19 @@ MonoBehaviour:
         m_CallState: 2
   IncorrectSelectInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8749567258486163228}
+        m_TargetAssemblyTypeName: IconWrong, Assembly-CSharp
+        m_MethodName: DoWrongAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _backActionNames:
   - Back 1
   - Back 2
@@ -1168,7 +1141,19 @@ MonoBehaviour:
         m_CallState: 2
   IncorrectBackInput:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1869057057783712384}
+        m_TargetAssemblyTypeName: IconWrong, Assembly-CSharp
+        m_MethodName: DoWrongAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3047004547880175291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2147,7 @@ GameObject:
   - component: {fileID: 3764232387091856153}
   - component: {fileID: 8933724876992962791}
   - component: {fileID: 808335917886018288}
+  - component: {fileID: 1869057057783712384}
   m_Layer: 5
   m_Name: Cancel Icon
   m_TagString: Untagged
@@ -2277,6 +2263,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _requirePositive: 0
+--- !u!114 &1869057057783712384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420930476709575827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0cd381541030d468d756a635702b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requirePositive: 0
+  _renderer: {fileID: 3764232387091856153}
 --- !u!1 &6454154065362016157
 GameObject:
   m_ObjectHideFlags: 0
