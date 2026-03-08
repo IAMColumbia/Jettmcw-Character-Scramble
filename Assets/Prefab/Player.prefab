@@ -658,8 +658,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7715134458d1b604aa7e1fc3f17c3647, type: 3}
   _gamepadTextures:
   - {fileID: 21300000, guid: c8b92325b57854f4dad6658d56eab5be, type: 3}
-  - {fileID: 21300000, guid: 87660f953a8c1c5419fa747e55855a6f, type: 3}
   - {fileID: 21300000, guid: 1d83fe1da69fae84f8b58138f81907e0, type: 3}
+  - {fileID: 21300000, guid: 87660f953a8c1c5419fa747e55855a6f, type: 3}
 --- !u!114 &4550318244215798457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2771,8 +2771,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3330c02b6bba44244879763ed402fcb1, type: 3}
   _gamepadTextures:
   - {fileID: 21300000, guid: acf179ba2293ec44d8d014280c2b2640, type: 3}
-  - {fileID: 21300000, guid: b8c0b124fdf649b4c9694a0dfa7cbc08, type: 3}
   - {fileID: 21300000, guid: a817ce79e4dc69642b6163beca091fe9, type: 3}
+  - {fileID: 21300000, guid: b8c0b124fdf649b4c9694a0dfa7cbc08, type: 3}
 --- !u!114 &6833711644652655720
 MonoBehaviour:
   m_ObjectHideFlags: 0

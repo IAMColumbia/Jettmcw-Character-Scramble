@@ -186,8 +186,8 @@
                 },
                 {
                     "name": "",
-                    "id": "cc6ad486-31df-400e-b136-efe47e45d642",
-                    "path": "<Gamepad>/rightStick/x",
+                    "id": "88efd8b7-09cb-497f-a653-faf3982d24cf",
+                    "path": "<Gamepad>/dpad/x",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -230,8 +230,8 @@
                 },
                 {
                     "name": "",
-                    "id": "88efd8b7-09cb-497f-a653-faf3982d24cf",
-                    "path": "<Gamepad>/dpad/x",
+                    "id": "cc6ad486-31df-400e-b136-efe47e45d642",
+                    "path": "<Gamepad>/rightStick/x",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
