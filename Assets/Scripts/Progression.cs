@@ -1,4 +1,3 @@
-using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,13 +32,18 @@ public class Progression : MonoBehaviour
 			Transform area = PlayerAreas.GetArea(_playerInput);
 			area.GetChild(0).gameObject.SetActive(true);
 			_rows[0].Show(false);
+			_rows[1].ShowCurrent(false);
 			_playerInput.SwitchCurrentActionMap("Rejoin");
 			_uiToggle.DisableUI();
 			return;
 		}
 
 		_rows[_rowIndex].ReturnToPosition();
-		_rows[_rowIndex + 1].ReturnToBefore();
+		_rows[_rowIndex + 1].ReturnToPreview();
+		if (_rowIndex != _rows.Length - 2)
+		{
+			_rows[_rowIndex + 2].HidePreview();
+		}
 	}
 
 	public void Rejoin(InputAction.CallbackContext context)
@@ -55,6 +59,7 @@ public class Progression : MonoBehaviour
 		area.GetChild(0).gameObject.SetActive(false);
 		_rows[0].Register();
 		_rows[0].Show(true);
+		_rows[1].ShowCurrent(true);
 		_selectedColors.Add(_rows[0].Current);
 		_playerInput.SwitchCurrentActionMap("Player Controls");
 	}
@@ -75,6 +80,11 @@ public class Progression : MonoBehaviour
 		_rows[_rowIndex].Register();
 		_rows[_rowIndex].SendToPosition();
 		_selectedColors.Add(_rows[_rowIndex].Current);
+
+		if (_rowIndex != _rows.Length - 1)
+		{
+			_rows[_rowIndex + 1].ShowPreview();
+		}
 	}
 
 	public void Cycle(bool right)
