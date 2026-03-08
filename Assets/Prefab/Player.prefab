@@ -361,6 +361,9 @@ MonoBehaviour:
   _endAnchor: {fileID: 6794450069866062260}
   _leftDisappear: {fileID: 363737088388971899}
   _rightDisappear: {fileID: 2544454563191754486}
+  _leftNext: {fileID: 4164061355535278617}
+  _middleNext: {fileID: 3622792946909632268}
+  _rightNext: {fileID: 3805970447122562427}
   _rowIndex: 1
   _fullScale: {x: 1, y: 0.33333334, z: 1}
   _sideFactor: 0.6
@@ -1922,7 +1925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -0.45}
+  m_AnchoredPosition: {x: -0.9, y: -0.85}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5542815617287742440
@@ -3008,11 +3011,11 @@ Transform:
   m_Children:
   - {fileID: 9061695190092214917}
   - {fileID: 363737088388971899}
+  - {fileID: 4164061355535278617}
   - {fileID: 7872840374190956534}
+  - {fileID: 3622792946909632268}
   - {fileID: 3743380774379699156}
   - {fileID: 2544454563191754486}
-  - {fileID: 4164061355535278617}
-  - {fileID: 3622792946909632268}
   - {fileID: 3805970447122562427}
   - {fileID: 765011993840122068}
   - {fileID: 6794450069866062260}
@@ -3051,7 +3054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: -0.45}
+  m_AnchoredPosition: {x: 0.9, y: -0.85}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7569513872399187602
@@ -3203,6 +3206,9 @@ MonoBehaviour:
   _endAnchor: {fileID: 765011993840122068}
   _leftDisappear: {fileID: 363737088388971899}
   _rightDisappear: {fileID: 2544454563191754486}
+  _leftNext: {fileID: 4164061355535278617}
+  _middleNext: {fileID: 3622792946909632268}
+  _rightNext: {fileID: 3805970447122562427}
   _rowIndex: 0
   _fullScale: {x: 1, y: 0.33333334, z: 1}
   _sideFactor: 0.6
@@ -3265,6 +3271,9 @@ MonoBehaviour:
   _endAnchor: {fileID: 8528811278185777347}
   _leftDisappear: {fileID: 363737088388971899}
   _rightDisappear: {fileID: 2544454563191754486}
+  _leftNext: {fileID: 4164061355535278617}
+  _middleNext: {fileID: 3622792946909632268}
+  _rightNext: {fileID: 3805970447122562427}
   _rowIndex: 2
   _fullScale: {x: 1, y: 0.33333334, z: 1}
   _sideFactor: 0.6
@@ -3427,6 +3436,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.45}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

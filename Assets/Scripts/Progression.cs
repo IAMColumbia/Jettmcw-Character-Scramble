@@ -25,7 +25,6 @@ public class Progression : MonoBehaviour
 	public void GoBack()
 	{
 		_selectedColors.RemoveAt(_rowIndex);
-		_rows[_rowIndex].Show(false);
 		_rows[_rowIndex].Release();
 		_rowIndex--;
 
@@ -33,12 +32,14 @@ public class Progression : MonoBehaviour
 		{
 			Transform area = PlayerAreas.GetArea(_playerInput);
 			area.GetChild(0).gameObject.SetActive(true);
+			_rows[0].Show(false);
 			_playerInput.SwitchCurrentActionMap("Rejoin");
 			_uiToggle.DisableUI();
 			return;
 		}
 
 		_rows[_rowIndex].ReturnToPosition();
+		_rows[_rowIndex + 1].ReturnToBefore();
 	}
 
 	public void Rejoin(InputAction.CallbackContext context)
@@ -72,7 +73,7 @@ public class Progression : MonoBehaviour
 		}
 
 		_rows[_rowIndex].Register();
-		_rows[_rowIndex].Show(true);
+		_rows[_rowIndex].SendToPosition();
 		_selectedColors.Add(_rows[_rowIndex].Current);
 	}
 
