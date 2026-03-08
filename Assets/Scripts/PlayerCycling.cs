@@ -4,7 +4,7 @@ using PrimeTween;
 public class PlayerCycling : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer _left, _current, _right, _hidden;
-	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor, _endAnchor;
+	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor, _endAnchor, _leftDisappear, _rightDisappear;
 	[SerializeField] private int _rowIndex;
 
 	public Transform Selection => _current.transform;
@@ -105,40 +105,47 @@ public class PlayerCycling : MonoBehaviour
 		}
 	}
 
-	public void BeMovedAway()
+	public void SendToEnd()
 	{
 		CycleAnimation.Complete();
 		ProgressAnimation.Complete();
 
-		_left.enabled = false;
-		_right.enabled = false;
 		_hidden.enabled = false;
 
-		float time = 0.25f;
+		float time = 0.15f;
 
-		Vector3 finalScale = _fullScale * 0.5f;
+		Vector3 finalScale = _fullScale * _endFactor;
+		Vector3 sideScale = _fullScale * _sideFactor;
 
 		ProgressAnimation = Sequence.Create()
 			.Group(Tween.Position(_current.transform, _middleAnchor.position, _endAnchor.position, time, Ease.InOutCubic))
 			.Group(Tween.Scale(_current.transform, _fullScale, finalScale, time, Ease.OutCirc))
+			.Group(Tween.Position(_left.transform, _leftAnchor.position, _leftDisappear.position, time, Ease.OutCirc))
+			.Group(Tween.Scale(_left.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
+			.Group(Tween.Position(_right.transform, _rightAnchor.position, _rightDisappear.position, time, Ease.OutCirc))
+			.Group(Tween.Scale(_right.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
 		;
 	}
 
-	public void BeMovedBack()
+	public void ReturnToPosition()
 	{
 		ProgressAnimation.Complete();
 
-		_left.enabled = true;
 		_right.enabled = true;
 		_hidden.enabled = true;
 
-		float time = 0.25f;
+		float time = 0.15f;
 
-		Vector3 finalScale = _fullScale * 0.5f;
+		Vector3 finalScale = _fullScale * _endFactor;
+		Vector3 sideScale = _fullScale * _sideFactor;
 
 		ProgressAnimation = Sequence.Create()
-			.Group(Tween.Position(_current.transform, _endAnchor.position, _middleAnchor.position, time, Ease.InBack))
-			.Group(Tween.Scale(_current.transform, finalScale, _fullScale, time, Ease.InBack))
+			.Group(Tween.Position(_current.transform, _endAnchor.position, _middleAnchor.position, time, Ease.InOutCubic))
+			.Group(Tween.Scale(_current.transform, finalScale, _fullScale, time, Ease.InCirc))
+			.Group(Tween.Position(_left.transform, _leftDisappear.position, _leftAnchor.position, time, Ease.InOutCubic))
+			.Group(Tween.Scale(_left.transform, Vector3.zero, sideScale, time, Ease.OutCirc))
+			.Group(Tween.Position(_right.transform, _rightDisappear.position, _rightAnchor.position, time, Ease.OutCirc))
+			.Group(Tween.Scale(_right.transform, Vector3.zero, sideScale, time, Ease.OutCirc))
 		;
 	}
 

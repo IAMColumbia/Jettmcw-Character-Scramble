@@ -38,7 +38,7 @@ public class Progression : MonoBehaviour
 			return;
 		}
 
-		_rows[_rowIndex].BeMovedBack();
+		_rows[_rowIndex].ReturnToPosition();
 	}
 
 	public void Rejoin(InputAction.CallbackContext context)
@@ -60,7 +60,7 @@ public class Progression : MonoBehaviour
 
 	public void GoForward()
 	{
-		_rows[_rowIndex].BeMovedAway();
+		_rows[_rowIndex].SendToEnd();
 		_rowIndex++;
 		
 		if (_rowIndex == _rows.Length)
@@ -92,7 +92,7 @@ public class Progression : MonoBehaviour
 		}
 		_finalCharacter.gameObject.SetActive(true);
 		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
-		yield return Tween.LocalPositionY(_finalCharacter, 1.05f, 0.1f, Ease.OutQuad).ToYieldInstruction();
+		//yield return Tween.LocalPositionY(_finalCharacter, 1.1f, 0.1f, Ease.OutCirc).ToYieldInstruction();
 		float randomAngle = Random.Range(-30f, 30f);
 		rb.simulated = true;
 		rb.angularVelocity = randomAngle;
