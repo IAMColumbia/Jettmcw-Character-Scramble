@@ -10,7 +10,7 @@ public class PlayerCycling : MonoBehaviour
 
 	public Transform Selection => _current.transform;
 
-	private OptionRow _optionRow;
+	public OptionRow OptionRow { get; private set; }
 
 	[SerializeField] private PlayerInput _playerInput;
 	public int PlayerNumber { get; private set; }
@@ -64,26 +64,26 @@ public class PlayerCycling : MonoBehaviour
 		_current.enabled = true;
 		_right.enabled = true;
 		_hidden.enabled = true;
-		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
-		_optionRow.Register(this);
+		OptionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		OptionRow.Register(this);
 	}
 
 	public void Preview()
 	{
-		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
-		_optionRow.AddPreviewer(this);
+		OptionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		OptionRow.AddPreviewer(this);
 	}
 
 	public void StopPreview()
 	{
-		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
-		_optionRow.RemovePreviewer(this);
+		OptionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		OptionRow.RemovePreviewer(this);
 	}
 
 	public void Cycle(bool right)
 	{
-		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
-		if (_optionRow.IsFull)
+		OptionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		if (OptionRow.IsFull)
 		{
 			return;
 		}
@@ -96,7 +96,7 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 smallScale = _fullScale * _sideFactor;
 
 		_hidden.color = right ? Left : Right;
-		_optionRow.Cycle(this, right);
+		OptionRow.Cycle(this, right);
 
 		if (right)
 		{
@@ -251,7 +251,7 @@ public class PlayerCycling : MonoBehaviour
 
 	public void Release()
 	{
-		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
-		_optionRow.Remove(this);
+		OptionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		OptionRow.Remove(this);
 	}
 }

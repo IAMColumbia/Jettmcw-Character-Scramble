@@ -101,6 +101,10 @@ public class Progression : MonoBehaviour
 
 	public IEnumerator ConstructCharacter()
 	{
+		foreach (var row in _rows)
+		{
+			row.OptionRow.HidePlayer(row);
+		}
 		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();
 		foreach (var row in _rows)
 		{

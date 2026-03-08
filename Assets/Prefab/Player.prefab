@@ -3364,7 +3364,7 @@ GameObject:
   - component: {fileID: 6831792574371082884}
   - component: {fileID: 8341413744633155389}
   m_Layer: 5
-  m_Name: Background Circle (1)
+  m_Name: Preview Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3434,7 +3434,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0.4}
+  m_Color: {r: 0.071792975, g: 0.11023217, b: 0.13836467, a: 0.77254903}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

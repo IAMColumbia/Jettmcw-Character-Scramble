@@ -17,8 +17,8 @@ public class CycleOptionsManager : MonoBehaviour
 
 	public void SetColors()
 	{
-		Rows[0].ReceiveColors(Utility.Choose(_colors).Take(5));
+		Rows[0].ReceiveColors(Utility.Choose(_colors).Take(6));
 		Rows[1].ReceiveColors(Utility.Choose(_colors).Take(4));
-		Rows[2].ReceiveColors(Utility.Choose(_colors).Take(6));
+		Rows[2].ReceiveColors(Utility.Choose(_colors).Take(5));
 	}
 }

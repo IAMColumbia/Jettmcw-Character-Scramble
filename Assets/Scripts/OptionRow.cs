@@ -198,8 +198,14 @@ public class OptionRow : MonoBehaviour
 	private void SetNumber(int index, PlayerCycling player)
 	{
 		_playerNumbers[index].enabled = true;
-		Debug.Log(player.PlayerNumber);
 		_playerNumbers[index].text = player.PlayerNumber.ToString();
+	}
+
+	public void HidePlayer(PlayerCycling player)
+	{
+		int idx = Array.IndexOf(_playerPositions, player);
+		_sprites[idx].gameObject.SetActive(false);
+		LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutGroup);
 	}
 
 	private void DirectAll()
