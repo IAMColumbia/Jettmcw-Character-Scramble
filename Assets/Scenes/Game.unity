@@ -423,6 +423,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178119089}
   m_CullTransparentMesh: 1
+--- !u!114 &179232718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Rejoin/Rejoin
+  m_EditorClassIdentifier: 
+  m_Asset: {fileID: -944628639613478452, guid: b612d24fe014a164ca7820fd0b0579ac, type: 3}
+  m_ActionId: 533fda2d-1c1e-4323-ae56-b756ee7b499d
 --- !u!1 &426165125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,7 +2869,7 @@ MonoBehaviour:
   m_NotificationBehavior: 2
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -2885,7 +2899,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 179232718}
   m_PlayerPrefab: {fileID: 2643675306919594915, guid: fb80c698ae1591142b7ab6fe1d85359a, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
