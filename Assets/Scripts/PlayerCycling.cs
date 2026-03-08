@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerCycling : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer _left, _current, _right, _hidden;
-	[SerializeField] private Transform _leftAnchor, _middleAnchor, _rightAnchor, _endAnchor, _leftDisappear, _rightDisappear, _leftNext, _middleNext, _rightNext;
+	[SerializeField] private PlayerAnchors _anchors;
 	[SerializeField] private int _rowIndex;
 
 	public Transform Selection => _current.transform;
@@ -100,12 +100,12 @@ public class PlayerCycling : MonoBehaviour
 
 		if (right)
 		{
-			_hidden.transform.position = _leftAnchor.position;
+			_hidden.transform.position = _anchors.LeftChoice.position;
 
 			CycleAnimation = Sequence.Create()
-				.Group(Tween.Position(_current.transform, _rightAnchor.position, _middleAnchor.position, time, Ease.InBack))
+				.Group(Tween.Position(_current.transform, _anchors.RightChoice.position, _anchors.Selection.position, time, Ease.InBack))
 				.Group(Tween.Scale(_current.transform, smallScale, _fullScale, time, Ease.InSine))
-				.Group(Tween.Position(_left.transform, _middleAnchor.position, _leftAnchor.position, time, Ease.OutBack))
+				.Group(Tween.Position(_left.transform, _anchors.Selection.position, _anchors.LeftChoice.position, time, Ease.OutBack))
 				.Group(Tween.Scale(_left.transform, _fullScale, smallScale, time, Ease.OutSine))
 				.Group(Tween.Scale(_hidden.transform, smallScale, Vector3.zero, time, Ease.InSine))
 				.Group(Tween.Scale(_right.transform, Vector3.zero, smallScale, time, Ease.OutSine))
@@ -113,12 +113,12 @@ public class PlayerCycling : MonoBehaviour
 		}
 		else
 		{
-			_hidden.transform.position = _rightAnchor.position;
+			_hidden.transform.position = _anchors.RightChoice.position;
 
 			CycleAnimation = Sequence.Create()
-				.Group(Tween.Position(_current.transform, _leftAnchor.position, _middleAnchor.position, time, Ease.InBack))
+				.Group(Tween.Position(_current.transform, _anchors.LeftChoice.position, _anchors.Selection.position, time, Ease.InBack))
 				.Group(Tween.Scale(_current.transform, smallScale, _fullScale, time, Ease.InSine))
-				.Group(Tween.Position(_right.transform, _middleAnchor.position, _rightAnchor.position, time, Ease.OutBack))
+				.Group(Tween.Position(_right.transform, _anchors.Selection.position, _anchors.RightChoice.position, time, Ease.OutBack))
 				.Group(Tween.Scale(_right.transform, _fullScale, smallScale, time, Ease.OutSine))
 				.Group(Tween.Scale(_hidden.transform, smallScale, Vector3.zero, time, Ease.InSine))
 				.Group(Tween.Scale(_left.transform, Vector3.zero, smallScale, time, Ease.OutSine))
@@ -139,11 +139,11 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 sideScale = _fullScale * _sideFactor;
 
 		ProgressAnimation = Sequence.Create()
-			.Group(Tween.Position(_current.transform, _middleAnchor.position, _endAnchor.position, time, Ease.InOutCubic))
+			.Group(Tween.Position(_current.transform, _anchors.Selection.position, _anchors.Finished[_rowIndex].position, time, Ease.InOutCubic))
 			.Group(Tween.Scale(_current.transform, _fullScale, finalScale, time, Ease.OutCirc))
-			.Group(Tween.Position(_left.transform, _leftAnchor.position, _leftDisappear.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_left.transform, _anchors.LeftChoice.position, _anchors.LeftUpwards.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_left.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
-			.Group(Tween.Position(_right.transform, _rightAnchor.position, _rightDisappear.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_right.transform, _anchors.RightChoice.position, _anchors.RightUpwards.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_right.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
 		;
 	}
@@ -160,11 +160,11 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 sideScale = _fullScale * _sideFactor;
 
 		ProgressAnimation = Sequence.Create()
-			.Group(Tween.Position(_current.transform, _endAnchor.position, _middleAnchor.position, time, Ease.InOutCubic))
+			.Group(Tween.Position(_current.transform, _anchors.Finished[_rowIndex].position, _anchors.Selection.position, time, Ease.InOutCubic))
 			.Group(Tween.Scale(_current.transform, finalScale, _fullScale, time, Ease.InCirc))
-			.Group(Tween.Position(_left.transform, _leftDisappear.position, _leftAnchor.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_left.transform, _anchors.LeftUpwards.position, _anchors.LeftChoice.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_left.transform, Vector3.zero, sideScale, time, Ease.OutSine))
-			.Group(Tween.Position(_right.transform, _rightDisappear.position, _rightAnchor.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_right.transform, _anchors.RightUpwards.position, _anchors.RightChoice.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_right.transform, Vector3.zero, sideScale, time, Ease.OutSine))
 		;
 	}
@@ -180,11 +180,11 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 previewScale = _fullScale * _previewFactor;
 
 		ProgressAnimation = Sequence.Create()
-			.Group(Tween.Position(_current.transform, _middleNext.position, _middleAnchor.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_current.transform, _anchors.Preview.position, _anchors.Selection.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_current.transform, previewScale, _fullScale, time, Ease.OutSine))
-			.Group(Tween.Position(_left.transform, _leftNext.position, _leftAnchor.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_left.transform, _anchors.LeftDownwards.position, _anchors.LeftChoice.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_left.transform, Vector3.zero, sideScale, time, Ease.OutSine))
-			.Group(Tween.Position(_right.transform, _rightNext.position, _rightAnchor.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_right.transform, _anchors.RightDownwards.position, _anchors.RightChoice.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_right.transform, Vector3.zero, sideScale, time, Ease.OutSine))
 		;
 	}
@@ -200,11 +200,11 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 previewScale = _fullScale * _previewFactor;
 
 		ProgressAnimation = Sequence.Create()
-			.Group(Tween.Position(_current.transform, _middleAnchor.position, _middleNext.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_current.transform, _anchors.Selection.position, _anchors.Preview.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_current.transform, _fullScale, previewScale, time, Ease.OutSine))
-			.Group(Tween.Position(_left.transform, _leftAnchor.position, _leftNext.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_left.transform, _anchors.LeftChoice.position, _anchors.LeftDownwards.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_left.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
-			.Group(Tween.Position(_right.transform, _rightAnchor.position, _rightNext.position, time, Ease.OutCirc))
+			.Group(Tween.Position(_right.transform, _anchors.RightChoice.position, _anchors.RightDownwards.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_right.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
 		;
 	}

@@ -106,15 +106,9 @@ public class Progression : MonoBehaviour
 			row.OptionRow.HidePlayer(row);
 		}
 		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();
-		foreach (var row in _rows)
-		{
-			row.Selection.SetParent(_finalCharacter, true);
-		}
-		_finalCharacter.gameObject.SetActive(true);
 		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
-		//yield return Tween.LocalPositionY(_finalCharacter, 1.1f, 0.1f, Ease.OutCirc).ToYieldInstruction();
-		float randomAngle = Random.Range(-30f, 30f);
 		rb.simulated = true;
+		float randomAngle = Random.Range(-30f, 30f);
 		rb.angularVelocity = randomAngle;
 	}
 }
