@@ -27,4 +27,6 @@ public class PlayerControllerManager : MonoBehaviour
 			player.ActivateInput();
 		}
 	}
+
+	public int GetPlayerNumber(PlayerInput player) => Players.IndexOf(player);
 }

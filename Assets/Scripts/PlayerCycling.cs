@@ -1,5 +1,6 @@
 using UnityEngine;
 using PrimeTween;
+using UnityEngine.InputSystem;
 
 public class PlayerCycling : MonoBehaviour
 {
@@ -11,12 +12,20 @@ public class PlayerCycling : MonoBehaviour
 
 	private OptionRow _optionRow;
 
+	[SerializeField] private PlayerInput _playerInput;
+	public int PlayerNumber { get; private set; }
+
 	public Sequence CycleAnimation, ProgressAnimation;
 
 	private Color _trueCurrentColor, _trueLeftColor, _trueRightColor;
 
 	[SerializeField] private Vector3 _fullScale;
 	[SerializeField] private float _sideFactor, _endFactor, _previewFactor;
+
+	private void Awake()
+	{
+		PlayerNumber = PlayerControllerManager.Instance.GetPlayerNumber(_playerInput) + 1;
+	}
 
 	public Color Current
 	{

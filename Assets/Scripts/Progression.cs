@@ -10,11 +10,11 @@ public class Progression : MonoBehaviour
 
 	[SerializeField] private List<Color> _selectedColors;
 	[SerializeField] private PlayerCycling[] _rows;
-	[SerializeField] private int _rowIndex = 0;
+	private int _rowIndex = 0;
 
 	[SerializeField] private Transform _finalCharacter;
 
-	private void Awake()
+	private void Start()
 	{
 		_rows[0].Register();
 		_rows[0].Show(true);

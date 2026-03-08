@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +14,7 @@ public class OptionRow : MonoBehaviour
 
 	[SerializeField] private RectTransform _layoutGroup;
 	[SerializeField] private SpriteRenderer[] _sprites;
+	private TextMeshProUGUI[] _playerNumbers;
 
 	public int FirstFreeIndex { get; private set; } = 0;
 	public bool IsFull { get; private set; } = false;
@@ -20,6 +23,15 @@ public class OptionRow : MonoBehaviour
 
 	private Color _directionTarget;
 	private PlayerCycling _playerToDirect;
+
+	private void Awake()
+	{
+		_playerNumbers = new TextMeshProUGUI[_sprites.Length];
+		for (int i = 0; i < _sprites.Length; i++)
+		{
+			_playerNumbers[i] = _sprites[i].GetComponent<TextMeshProUGUI>();
+		}
+	}
 
 	public void ReceiveColors(IEnumerable<Color> colors)
 	{
@@ -45,6 +57,7 @@ public class OptionRow : MonoBehaviour
 		int insertionIndex = FirstFreeIndex;
 		player.Current = _options[insertionIndex];
 		_playerPositions[insertionIndex] = player;
+		SetNumber(insertionIndex, player);
 
 		// Track remaining free slots
 		_freeSlots--;
@@ -81,6 +94,7 @@ public class OptionRow : MonoBehaviour
 		player.Current = newColor;
 		int end = _options.IndexOf(newColor);
 		_playerPositions[end] = player;
+		SetNumber(end, player);
 
 		// Determine the new first open index
 		if (start < FirstFreeIndex)
@@ -121,6 +135,7 @@ public class OptionRow : MonoBehaviour
 		int removalIndex = Array.IndexOf(_playerPositions, player);
 		_playerPositions[removalIndex] = null;
 		_directionTarget = _options[removalIndex];
+		EmptyNumber(removalIndex);
 		return removalIndex;
 	}
 
@@ -173,6 +188,18 @@ public class OptionRow : MonoBehaviour
 	public void RemovePreviewer(PlayerCycling watcher)
 	{
 		_watchers.Remove(watcher);
+	}
+
+	private void EmptyNumber(int index)
+	{
+		_playerNumbers[index].enabled = false;
+	}
+
+	private void SetNumber(int index, PlayerCycling player)
+	{
+		_playerNumbers[index].enabled = true;
+		Debug.Log(player.PlayerNumber);
+		_playerNumbers[index].text = player.PlayerNumber.ToString();
 	}
 
 	private void DirectAll()
