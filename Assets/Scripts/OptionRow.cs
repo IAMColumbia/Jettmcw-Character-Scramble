@@ -2,15 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionRow : MonoBehaviour
 {
-	[SerializeField] private List<Color> _options;
+	private readonly List<Color> _options = new();
 	private PlayerCycling[] _playerPositions;
 	private readonly List<PlayerCycling> _watchers = new();
 
-	public int FirstFreeIndex = 0;
-	public bool IsFull = false;
+	[SerializeField] private RectTransform _layoutGroup;
+	[SerializeField] private SpriteRenderer[] _sprites;
+
+	public int FirstFreeIndex { get; private set; } = 0;
+	public bool IsFull { get; private set; } = false;
 
 	private int _freeSlots;
 
@@ -22,7 +26,17 @@ public class OptionRow : MonoBehaviour
 		_options.Clear();
 		_options.AddRange(colors);
 		_freeSlots = _options.Count;
+		for (int i = 0; i < _freeSlots; i++)
+		{
+			_sprites[i].gameObject.SetActive(true);
+			_sprites[i].color = _options[i];
+		}
+		for (int i = _freeSlots; i < _sprites.Length; i++)
+		{
+			_sprites[i].gameObject.SetActive(false);
+		}
 		_playerPositions = new PlayerCycling[_freeSlots];
+		LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutGroup);
 	}
 
 	public void Register(PlayerCycling player)
