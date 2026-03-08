@@ -11,8 +11,12 @@ public class PlayerCycling : MonoBehaviour
 
 	private OptionRow _optionRow;
 
-	private Sequence CycleAnimation;
+	public Sequence CycleAnimation, ProgressAnimation;
+
 	private Color _trueCurrentColor, _trueLeftColor, _trueRightColor;
+
+	[SerializeField] private Vector3 _fullScale;
+	[SerializeField] private float _sideFactor, _endFactor;
 
 	public Color Current
 	{
@@ -66,9 +70,9 @@ public class PlayerCycling : MonoBehaviour
 		float time = 0.25f;
 
 		CycleAnimation.Complete();
+		ProgressAnimation.Complete();
 
-		Vector3 fullScale = _current.transform.localScale;
-		Vector3 smallScale = fullScale * 0.6f;
+		Vector3 smallScale = _fullScale * 0.6f;
 
 		_hidden.color = right ? Left : Right;
 		_optionRow.Cycle(this, right);
@@ -79,9 +83,9 @@ public class PlayerCycling : MonoBehaviour
 
 			CycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _rightAnchor.position, _middleAnchor.position, time, Ease.InBack))
-				.Group(Tween.Scale(_current.transform, smallScale, fullScale, time, Ease.InSine))
+				.Group(Tween.Scale(_current.transform, smallScale, _fullScale, time, Ease.InSine))
 				.Group(Tween.Position(_left.transform, _middleAnchor.position, _leftAnchor.position, time, Ease.OutBack))
-				.Group(Tween.Scale(_left.transform, fullScale, smallScale, time, Ease.OutSine))
+				.Group(Tween.Scale(_left.transform, _fullScale, smallScale, time, Ease.OutSine))
 				.Group(Tween.Scale(_hidden.transform, smallScale, Vector3.zero, time, Ease.InSine))
 				.Group(Tween.Scale(_right.transform, Vector3.zero, smallScale, time, Ease.OutSine))
 			;
@@ -92,9 +96,9 @@ public class PlayerCycling : MonoBehaviour
 
 			CycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _leftAnchor.position, _middleAnchor.position, time, Ease.InBack))
-				.Group(Tween.Scale(_current.transform, smallScale, fullScale, time, Ease.InSine))
+				.Group(Tween.Scale(_current.transform, smallScale, _fullScale, time, Ease.InSine))
 				.Group(Tween.Position(_right.transform, _middleAnchor.position, _rightAnchor.position, time, Ease.OutBack))
-				.Group(Tween.Scale(_right.transform, fullScale, smallScale, time, Ease.OutSine))
+				.Group(Tween.Scale(_right.transform, _fullScale, smallScale, time, Ease.OutSine))
 				.Group(Tween.Scale(_hidden.transform, smallScale, Vector3.zero, time, Ease.InSine))
 				.Group(Tween.Scale(_left.transform, Vector3.zero, smallScale, time, Ease.OutSine))
 			;
@@ -104,20 +108,38 @@ public class PlayerCycling : MonoBehaviour
 	public void BeMovedAway()
 	{
 		CycleAnimation.Complete();
+		ProgressAnimation.Complete();
+
 		_left.enabled = false;
 		_right.enabled = false;
 		_hidden.enabled = false;
-		_current.transform.position = _endAnchor.position;
-		_current.transform.localScale *= 0.5f;
+
+		float time = 0.25f;
+
+		Vector3 finalScale = _fullScale * 0.5f;
+
+		ProgressAnimation = Sequence.Create()
+			.Group(Tween.Position(_current.transform, _middleAnchor.position, _endAnchor.position, time, Ease.InOutCubic))
+			.Group(Tween.Scale(_current.transform, _fullScale, finalScale, time, Ease.OutCirc))
+		;
 	}
 
 	public void BeMovedBack()
 	{
+		ProgressAnimation.Complete();
+
 		_left.enabled = true;
 		_right.enabled = true;
 		_hidden.enabled = true;
-		_current.transform.position = _middleAnchor.position;
-		_current.transform.localScale *= 2f;
+
+		float time = 0.25f;
+
+		Vector3 finalScale = _fullScale * 0.5f;
+
+		ProgressAnimation = Sequence.Create()
+			.Group(Tween.Position(_current.transform, _endAnchor.position, _middleAnchor.position, time, Ease.InBack))
+			.Group(Tween.Scale(_current.transform, finalScale, _fullScale, time, Ease.InBack))
+		;
 	}
 
 	public void Show(bool show)

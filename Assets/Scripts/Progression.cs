@@ -1,3 +1,5 @@
+using PrimeTween;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -65,7 +67,7 @@ public class Progression : MonoBehaviour
 		{
 			_uiToggle.DisableUI();
 			_playerInput.SwitchCurrentActionMap("Movement");
-			ConstructCharacter();
+			StartCoroutine(ConstructCharacter());
 			return;
 		}
 
@@ -81,14 +83,18 @@ public class Progression : MonoBehaviour
 		_selectedColors[_rowIndex] = row.Current;
 	}
 
-	public void ConstructCharacter()
+	public IEnumerator ConstructCharacter()
 	{
+		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();
 		foreach (var row in _rows)
 		{
 			row.Selection.SetParent(_finalCharacter, true);
 		}
-		float randomAngle = Random.Range(-30f, 30f);
 		_finalCharacter.gameObject.SetActive(true);
-		_finalCharacter.GetComponent<Rigidbody2D>().angularVelocity = randomAngle;
+		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
+		yield return Tween.LocalPositionY(_finalCharacter, 1.05f, 0.1f, Ease.OutQuad).ToYieldInstruction();
+		float randomAngle = Random.Range(-30f, 30f);
+		rb.simulated = true;
+		rb.angularVelocity = randomAngle;
 	}
 }

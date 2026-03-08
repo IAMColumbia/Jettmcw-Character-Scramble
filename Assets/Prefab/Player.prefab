@@ -360,6 +360,9 @@ MonoBehaviour:
   _rightAnchor: {fileID: 3743380774379699156}
   _endAnchor: {fileID: 6794450069866062260}
   _rowIndex: 1
+  _fullScale: {x: 1, y: 0.33333334, z: 1}
+  _sideFactor: 0.6
+  _endFactor: 0.5
 --- !u!1 &2224820756215112842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,7 +2657,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6815112081226161569}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -3125,6 +3128,9 @@ MonoBehaviour:
   _rightAnchor: {fileID: 3743380774379699156}
   _endAnchor: {fileID: 765011993840122068}
   _rowIndex: 0
+  _fullScale: {x: 1, y: 0.33333334, z: 1}
+  _sideFactor: 0.6
+  _endFactor: 0.5
 --- !u!1 &7733566298582945140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,6 +3188,9 @@ MonoBehaviour:
   _rightAnchor: {fileID: 3743380774379699156}
   _endAnchor: {fileID: 8528811278185777347}
   _rowIndex: 2
+  _fullScale: {x: 1, y: 0.33333334, z: 1}
+  _sideFactor: 0.6
+  _endFactor: 0.5
 --- !u!1 &7962575499682578711
 GameObject:
   m_ObjectHideFlags: 0
