@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OptionRow : MonoBehaviour
 {
-	[SerializeField] private Color[] _options;
+	[SerializeField] private List<Color> _options;
 	private PlayerCycling[] _playerPositions;
 	private readonly List<PlayerCycling> _watchers = new();
 
@@ -17,10 +17,11 @@ public class OptionRow : MonoBehaviour
 	private Color _directionTarget;
 	private PlayerCycling _playerToDirect;
 
-	private void Awake()
+	public void ReceiveColors(IEnumerable<Color> colors)
 	{
-		Utility.Shuffle(_options);
-		_freeSlots = _options.Length;
+		_options.Clear();
+		_options.AddRange(colors);
+		_freeSlots = _options.Count;
 		_playerPositions = new PlayerCycling[_freeSlots];
 	}
 
@@ -64,7 +65,7 @@ public class OptionRow : MonoBehaviour
 		// Set the player's new color & position
 		Color newColor = right ? player.Right : player.Left;
 		player.Current = newColor;
-		int end = Array.IndexOf(_options, newColor);
+		int end = _options.IndexOf(newColor);
 		_playerPositions[end] = player;
 
 		// Determine the new first open index
@@ -197,5 +198,5 @@ public class OptionRow : MonoBehaviour
 	}
 
 	private IEnumerable<int> LeftNeighbors(int start) => RightNeighbors(start + 1).Reverse();
-	private IEnumerable<int> RightNeighbors(int start) => Enumerable.Range(start, _options.Length - start).Concat(Enumerable.Range(0, start));
+	private IEnumerable<int> RightNeighbors(int start) => Enumerable.Range(start, _options.Count - start).Concat(Enumerable.Range(0, start));
 }
