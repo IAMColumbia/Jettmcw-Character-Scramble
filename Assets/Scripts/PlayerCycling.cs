@@ -177,12 +177,12 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 sideScale = _fullScale * _sideFactor;
 
 		ProgressAnimation = Sequence.Create()
-			.Group(Tween.Position(_current.transform, _middleAnchor.position, _middleNext.position, time, Ease.InCirc))
-			.Group(Tween.Scale(_current.transform, _fullScale, Vector3.zero, time, Ease.InSine))
-			.Group(Tween.Position(_left.transform, _leftAnchor.position, _leftNext.position, time, Ease.InCirc))
-			.Group(Tween.Scale(_left.transform, sideScale, Vector3.zero, time, Ease.InSine))
-			.Group(Tween.Position(_right.transform, _rightAnchor.position, _rightNext.position, time, Ease.InCirc))
-			.Group(Tween.Scale(_right.transform, sideScale, Vector3.zero, time, Ease.InSine))
+			.Group(Tween.Position(_current.transform, _middleAnchor.position, _middleNext.position, time, Ease.OutCirc))
+			.Group(Tween.Scale(_current.transform, _fullScale, Vector3.zero, 0.25f, Ease.InOutSine))
+			.Group(Tween.Position(_left.transform, _leftAnchor.position, _leftNext.position, time, Ease.OutCirc))
+			.Group(Tween.Scale(_left.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
+			.Group(Tween.Position(_right.transform, _rightAnchor.position, _rightNext.position, time, Ease.OutCirc))
+			.Group(Tween.Scale(_right.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
 		;
 	}
 
