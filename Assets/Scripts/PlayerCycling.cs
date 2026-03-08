@@ -59,6 +59,18 @@ public class PlayerCycling : MonoBehaviour
 		_optionRow.Register(this);
 	}
 
+	public void Preview()
+	{
+		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		_optionRow.AddPreviewer(this);
+	}
+
+	public void StopPreview()
+	{
+		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
+		_optionRow.RemovePreviewer(this);
+	}
+
 	public void Cycle(bool right)
 	{
 		_optionRow = CycleOptionsManager.Instance.Rows[_rowIndex];

@@ -7,6 +7,7 @@ public class OptionRow : MonoBehaviour
 {
 	[SerializeField] private Color[] _options;
 	private PlayerCycling[] _playerPositions;
+	private readonly List<PlayerCycling> _watchers = new();
 
 	public int FirstFreeIndex = 0;
 	public bool IsFull = false;
@@ -70,6 +71,7 @@ public class OptionRow : MonoBehaviour
 		if (start < FirstFreeIndex)
 		{
 			FirstFreeIndex = start;
+			NotifyPreviews();
 		}
 		else if (FirstFreeIndex == end)
 		{
@@ -114,6 +116,7 @@ public class OptionRow : MonoBehaviour
 		if (removalIndex < FirstFreeIndex)
 		{
 			FirstFreeIndex = removalIndex;
+			NotifyPreviews();
 		}
 
 		_freeSlots++;
@@ -135,6 +138,26 @@ public class OptionRow : MonoBehaviour
 			FirstFreeIndex++;
 		}
 		while (_playerPositions[FirstFreeIndex]);
+		NotifyPreviews();
+	}
+
+	private void NotifyPreviews()
+	{
+		foreach (PlayerCycling watcher in _watchers)
+		{
+			watcher.Current = _options[FirstFreeIndex];
+		}
+	}
+
+	public void AddPreviewer(PlayerCycling watcher)
+	{
+		_watchers.Add(watcher);
+		watcher.Current = _options[FirstFreeIndex];
+	}
+
+	public void RemovePreviewer(PlayerCycling watcher)
+	{
+		_watchers.Remove(watcher);
 	}
 
 	private void DirectAll()

@@ -18,6 +18,7 @@ public class Progression : MonoBehaviour
 	{
 		_rows[0].Register();
 		_rows[0].Show(true);
+		_rows[1].Preview();
 		_selectedColors.Add(_rows[0].Current);
 	}
 
@@ -40,9 +41,11 @@ public class Progression : MonoBehaviour
 
 		_rows[_rowIndex].ReturnToPosition();
 		_rows[_rowIndex + 1].ReturnToPreview();
+		_rows[_rowIndex + 1].Preview();
 		if (_rowIndex != _rows.Length - 2)
 		{
 			_rows[_rowIndex + 2].HidePreview();
+			_rows[_rowIndex + 2].StopPreview();
 		}
 	}
 
@@ -77,12 +80,14 @@ public class Progression : MonoBehaviour
 			return;
 		}
 
+		_rows[_rowIndex].StopPreview();
 		_rows[_rowIndex].Register();
 		_rows[_rowIndex].SendToPosition();
 		_selectedColors.Add(_rows[_rowIndex].Current);
 
 		if (_rowIndex != _rows.Length - 1)
 		{
+			_rows[_rowIndex + 1].Preview();
 			_rows[_rowIndex + 1].ShowPreview();
 		}
 	}
