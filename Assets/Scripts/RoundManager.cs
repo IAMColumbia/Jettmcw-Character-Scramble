@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager Instance { get; private set; }
-    [SerializeField] private CycleOptionsManager _rowManager;
-    public Color[] PrimeSpecimenColors { get; } = new Color[3];
+	public Color[] PrimeSpecimenColors { get; } = new Color[3];
+
+	[SerializeField] private CycleOptionsManager _rowManager;
     [SerializeField] private SpriteRenderer[] _primeSpecimenSprites = new SpriteRenderer[3];
 
 	void Awake()
