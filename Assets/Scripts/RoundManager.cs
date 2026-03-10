@@ -5,14 +5,15 @@ using UnityEngine.InputSystem;
 
 public class RoundManager : MonoBehaviour
 {
+    public static RoundManager Instance { get; private set; }
     [SerializeField] private CycleOptionsManager _rowManager;
-    public Color[] PrimeSpecimenColors = new Color[3];
+    public Color[] PrimeSpecimenColors { get; } = new Color[3];
     [SerializeField] private SpriteRenderer[] _primeSpecimenSprites = new SpriteRenderer[3];
 
 	void Awake()
     {
         StartNewRound();
-        Invoke(nameof(NextRound), 5f);
+        Instance = this;
 	}
 
     public void StartNewRound()
