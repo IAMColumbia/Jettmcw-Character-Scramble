@@ -252,4 +252,28 @@ public class PlayerCycling : MonoBehaviour
 		OptionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
 		OptionRow.Remove(this);
 	}
+
+	public void SetPositionsToInitialForTop()
+	{
+		_current.transform.position = _anchors.Selection.position;
+		_current.transform.localScale = _fullScale;
+
+		_left.transform.position = _anchors.LeftChoice.position;
+		_left.transform.localScale = _fullScale * _sideFactor;
+
+		_right.transform.position = _anchors.RightChoice.position;
+		_right.transform.localScale = _fullScale * _sideFactor;
+	}
+
+	public void SetPreviewAtPosition()
+	{
+		_current.transform.position = _anchors.Preview.position;
+		_current.transform.localScale = _fullScale * _previewFactor;
+	}
+
+	public void StopAnimations()
+	{
+		ProgressAnimation.Complete();
+		_cycleAnimation.Complete();
+	}
 }

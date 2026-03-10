@@ -351,13 +351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc0baf4b50bb26498096d75b0f7550c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 537861048992387703}
   _left: {fileID: 4795838491683426000}
   _current: {fileID: 4580083211624887865}
   _right: {fileID: 2199973160564274465}
   _hidden: {fileID: 5079604566569192707}
   _anchors: {fileID: 7595930772867231748}
   _rowIndex: 1
-  _playerInput: {fileID: 537861048992387703}
   _fullScale: {x: 1, y: 0.33333334, z: 1}
   _sideFactor: 0.6
   _endFactor: 0.5
@@ -1036,6 +1036,7 @@ MonoBehaviour:
   - {fileID: 48055221314817654}
   - {fileID: 1092565078819550380}
   - {fileID: 9180268604975545501}
+  _anchors: {fileID: 7595930772867231748}
   _finalCharacter: {fileID: 6219576664410125682}
 --- !u!114 &6316818112167544041
 MonoBehaviour:
@@ -3120,13 +3121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc0baf4b50bb26498096d75b0f7550c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 537861048992387703}
   _left: {fileID: 6465347741519044805}
   _current: {fileID: 15251532269018380}
   _right: {fileID: 7612524837731048995}
   _hidden: {fileID: 7545730705055258810}
   _anchors: {fileID: 7595930772867231748}
   _rowIndex: 0
-  _playerInput: {fileID: 537861048992387703}
   _fullScale: {x: 1, y: 0.33333334, z: 1}
   _sideFactor: 0.6
   _endFactor: 0.5
@@ -3178,13 +3179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc0baf4b50bb26498096d75b0f7550c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInput: {fileID: 537861048992387703}
   _left: {fileID: 5471108121955479562}
   _current: {fileID: 471328907246259273}
   _right: {fileID: 6651874268481234287}
   _hidden: {fileID: 7633782396127785126}
   _anchors: {fileID: 7595930772867231748}
   _rowIndex: 2
-  _playerInput: {fileID: 537861048992387703}
   _fullScale: {x: 1, y: 0.33333334, z: 1}
   _sideFactor: 0.6
   _endFactor: 0.5

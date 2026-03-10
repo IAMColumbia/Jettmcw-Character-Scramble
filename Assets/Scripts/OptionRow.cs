@@ -41,6 +41,7 @@ public class OptionRow : MonoBehaviour
 		{
 			_sprites[i].gameObject.SetActive(true);
 			_sprites[i].color = Options[i];
+			_sprites[i].GetComponent<TextMeshProUGUI>().enabled = false;
 		}
 		for (int i = _freeSlots; i < _sprites.Length; i++)
 		{

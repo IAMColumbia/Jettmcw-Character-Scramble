@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RoundManager : MonoBehaviour
 {
@@ -10,19 +12,30 @@ public class RoundManager : MonoBehaviour
 	void Awake()
     {
         StartNewRound();
+        Invoke(nameof(NextRound), 5f);
 	}
 
     public void StartNewRound()
     {
         _rowManager.SetColors();
         
+        // Update Prime Specimen UI
         for (int i = 0; i < 3; i++)
         {
 			PrimeSpecimenColors[i] = Utility.Choose(_rowManager.Rows[i].Options).First(c => !PrimeSpecimenColors.Take(i).Contains(c));
             _primeSpecimenSprites[i].color = PrimeSpecimenColors[i];
-
 		}
+	}
 
+    public void NextRound()
+    {
+        StartNewRound();
 
+        List<PlayerInput> players = PlayerControllerManager.Instance.Players;
+        foreach (PlayerInput player in players)
+        {
+            Progression playerProgression = player.GetComponent<Progression>();
+            playerProgression.RestartProgression();
+        }
 	}
 }

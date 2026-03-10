@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,9 +11,11 @@ public class Progression : MonoBehaviour
 
 	[SerializeField] private List<Color> _selectedColors;
 	[SerializeField] private PlayerCycling[] _rows;
+	[SerializeField] private PlayerAnchors _anchors;
 	private int _rowIndex = 0;
 
 	[SerializeField] private Transform _finalCharacter;
+	private Coroutine _construction;
 
 	private void Start()
 	{
@@ -20,6 +23,47 @@ public class Progression : MonoBehaviour
 		_rows[0].Show(true);
 		_rows[1].Preview();
 		_selectedColors.Add(_rows[0].Current);
+	}
+
+	public void RestartProgression()
+	{
+		_rowIndex = -1;
+		_playerInput.SwitchCurrentActionMap("Rejoin");
+
+		// Reset UI
+		_uiToggle.DisableUI();
+		Transform area = PlayerAreas.GetArea(_playerInput);
+		area.GetChild(0).gameObject.SetActive(true);
+
+		// Stop animations & hide rows
+		if (_construction != null)
+		{
+			StopCoroutine(_construction);
+		}
+		foreach (var row in _rows)
+		{
+			row.StopAnimations();
+			row.Show(false);
+		}
+
+		// Return character to starting position
+		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
+		Debug.Log($"[Restart] Position at restart: {_finalCharacter.position}");
+		Debug.Log($"[Restart] Velocity at restart: {rb.linearVelocity}");
+		Debug.Log($"[Restart] Simulated at restart: {rb.simulated}");
+		_finalCharacter.SetPositionAndRotation(_anchors.Finished[1].position, Quaternion.identity);
+		rb.bodyType = RigidbodyType2D.Kinematic;
+		rb.linearVelocity = Vector2.zero;
+		rb.angularVelocity = 0f;
+		rb.bodyType = RigidbodyType2D.Dynamic;
+		rb.simulated = false;
+
+		// Put things in their correct positions
+		_rows[0].SetPositionsToInitialForTop();
+		foreach (var row in _rows.Skip(1))
+		{
+			row.SetPreviewAtPosition();
+		}
 	}
 
 	public void GoBack()
@@ -76,7 +120,7 @@ public class Progression : MonoBehaviour
 		{
 			_uiToggle.DisableUI();
 			_playerInput.SwitchCurrentActionMap("Movement");
-			StartCoroutine(ConstructCharacter());
+			_construction = StartCoroutine(ConstructCharacter());
 			return;
 		}
 
@@ -106,9 +150,17 @@ public class Progression : MonoBehaviour
 			row.OptionRow.HidePlayer(row);
 		}
 		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();
+
 		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
+
 		rb.simulated = true;
+
+		// Log state AFTER enabling
+
 		float randomAngle = Random.Range(-30f, 30f);
 		rb.angularVelocity = randomAngle;
+
+		// Log one frame later
+		yield return null;
 	}
 }
