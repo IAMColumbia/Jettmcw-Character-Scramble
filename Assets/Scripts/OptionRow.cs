@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionRow : MonoBehaviour
 {
-	private readonly List<Color> _options = new();
+	public List<Color> Options { get; set; } = new();
 	private PlayerCycling[] _playerPositions;
 	private readonly List<PlayerCycling> _watchers = new();
 
@@ -35,13 +34,13 @@ public class OptionRow : MonoBehaviour
 
 	public void ReceiveColors(IEnumerable<Color> colors)
 	{
-		_options.Clear();
-		_options.AddRange(colors);
-		_freeSlots = _options.Count;
+		Options.Clear();
+		Options.AddRange(colors);
+		_freeSlots = Options.Count;
 		for (int i = 0; i < _freeSlots; i++)
 		{
 			_sprites[i].gameObject.SetActive(true);
-			_sprites[i].color = _options[i];
+			_sprites[i].color = Options[i];
 		}
 		for (int i = _freeSlots; i < _sprites.Length; i++)
 		{
@@ -55,7 +54,7 @@ public class OptionRow : MonoBehaviour
 	{
 		// Insert player at first open index from the left
 		int insertionIndex = FirstFreeIndex;
-		player.Current = _options[insertionIndex];
+		player.Current = Options[insertionIndex];
 		_playerPositions[insertionIndex] = player;
 		SetNumber(insertionIndex, player);
 
@@ -71,7 +70,7 @@ public class OptionRow : MonoBehaviour
 
 		// Recalculate the next open index
 		FindOpenIndex();
-		_directionTarget = _options[FirstFreeIndex];
+		_directionTarget = Options[FirstFreeIndex];
 
 		// Case where there's only one loose option
 		if (_freeSlots == 1)
@@ -92,7 +91,7 @@ public class OptionRow : MonoBehaviour
 		// Set the player's new color & position
 		Color newColor = right ? player.Right : player.Left;
 		player.Current = newColor;
-		int end = _options.IndexOf(newColor);
+		int end = Options.IndexOf(newColor);
 		_playerPositions[end] = player;
 		SetNumber(end, player);
 
@@ -134,7 +133,7 @@ public class OptionRow : MonoBehaviour
 	{
 		int removalIndex = Array.IndexOf(_playerPositions, player);
 		_playerPositions[removalIndex] = null;
-		_directionTarget = _options[removalIndex];
+		_directionTarget = Options[removalIndex];
 		EmptyNumber(removalIndex);
 		return removalIndex;
 	}
@@ -175,14 +174,14 @@ public class OptionRow : MonoBehaviour
 	{
 		foreach (PlayerCycling watcher in _watchers)
 		{
-			watcher.Current = _options[FirstFreeIndex];
+			watcher.Current = Options[FirstFreeIndex];
 		}
 	}
 
 	public void AddPreviewer(PlayerCycling watcher)
 	{
 		_watchers.Add(watcher);
-		watcher.Current = _options[FirstFreeIndex];
+		watcher.Current = Options[FirstFreeIndex];
 	}
 
 	public void RemovePreviewer(PlayerCycling watcher)
@@ -198,14 +197,20 @@ public class OptionRow : MonoBehaviour
 	private void SetNumber(int index, PlayerCycling player)
 	{
 		_playerNumbers[index].enabled = true;
+		_playerNumbers[index].color = Color.black;
 		_playerNumbers[index].text = player.PlayerNumber.ToString();
 	}
 
 	public void HidePlayer(PlayerCycling player)
 	{
 		int idx = Array.IndexOf(_playerPositions, player);
-		_sprites[idx].gameObject.SetActive(false);
-		LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutGroup);
+		//_sprites[idx].gameObject.SetActive(false);
+		//LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutGroup);
+		// EmptyNumber(idx);
+		Color color = _sprites[idx].color;
+		color.a = 0.3f;
+		_sprites[idx].color = color;
+		_playerNumbers[idx].color = new Color(0f, 0f, 0f, 0.3f);
 	}
 
 	private void DirectAll()
@@ -237,7 +242,7 @@ public class OptionRow : MonoBehaviour
 			_playerToDirect = _playerPositions[i];
 			if (!_playerToDirect)
 			{
-				return _options[i];
+				return Options[i];
 			}
 			action.Invoke();
 		}
@@ -245,5 +250,5 @@ public class OptionRow : MonoBehaviour
 	}
 
 	private IEnumerable<int> LeftNeighbors(int start) => RightNeighbors(start + 1).Reverse();
-	private IEnumerable<int> RightNeighbors(int start) => Enumerable.Range(start, _options.Count - start).Concat(Enumerable.Range(0, start));
+	private IEnumerable<int> RightNeighbors(int start) => Enumerable.Range(start, Options.Count - start).Concat(Enumerable.Range(0, start));
 }

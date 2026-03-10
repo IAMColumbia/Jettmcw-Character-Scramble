@@ -4,23 +4,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerCycling : MonoBehaviour
 {
+	[SerializeField] private PlayerInput _playerInput;
 	[SerializeField] private SpriteRenderer _left, _current, _right, _hidden;
 	[SerializeField] private PlayerAnchors _anchors;
 	[SerializeField] private int _rowIndex;
-
-	public Transform Selection => _current.transform;
+	[SerializeField] private Vector3 _fullScale;
+	[SerializeField] private float _sideFactor, _endFactor, _previewFactor;
 
 	public OptionRow OptionRow { get; private set; }
-
-	[SerializeField] private PlayerInput _playerInput;
 	public int PlayerNumber { get; private set; }
+	public Sequence ProgressAnimation { get; private set; }
 
-	public Sequence CycleAnimation, ProgressAnimation;
+	private Sequence _cycleAnimation;
 
 	private Color _trueCurrentColor, _trueLeftColor, _trueRightColor;
 
-	[SerializeField] private Vector3 _fullScale;
-	[SerializeField] private float _sideFactor, _endFactor, _previewFactor;
 
 	private void Awake()
 	{
@@ -90,7 +88,7 @@ public class PlayerCycling : MonoBehaviour
 
 		float time = 0.25f;
 
-		CycleAnimation.Complete();
+		_cycleAnimation.Complete();
 		ProgressAnimation.Complete();
 
 		Vector3 smallScale = _fullScale * _sideFactor;
@@ -102,7 +100,7 @@ public class PlayerCycling : MonoBehaviour
 		{
 			_hidden.transform.position = _anchors.LeftChoice.position;
 
-			CycleAnimation = Sequence.Create()
+			_cycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _anchors.RightChoice.position, _anchors.Selection.position, time, Ease.InBack))
 				.Group(Tween.Scale(_current.transform, smallScale, _fullScale, time, Ease.InSine))
 				.Group(Tween.Position(_left.transform, _anchors.Selection.position, _anchors.LeftChoice.position, time, Ease.OutBack))
@@ -115,7 +113,7 @@ public class PlayerCycling : MonoBehaviour
 		{
 			_hidden.transform.position = _anchors.RightChoice.position;
 
-			CycleAnimation = Sequence.Create()
+			_cycleAnimation = Sequence.Create()
 				.Group(Tween.Position(_current.transform, _anchors.LeftChoice.position, _anchors.Selection.position, time, Ease.InBack))
 				.Group(Tween.Scale(_current.transform, smallScale, _fullScale, time, Ease.InSine))
 				.Group(Tween.Position(_right.transform, _anchors.Selection.position, _anchors.RightChoice.position, time, Ease.OutBack))
@@ -128,7 +126,7 @@ public class PlayerCycling : MonoBehaviour
 
 	public void SendToEnd()
 	{
-		CycleAnimation.Complete();
+		_cycleAnimation.Complete();
 		ProgressAnimation.Complete();
 
 		_hidden.enabled = false;
@@ -191,7 +189,7 @@ public class PlayerCycling : MonoBehaviour
 
 	public void ReturnToPreview()
 	{
-		CycleAnimation.Complete();
+		_cycleAnimation.Complete();
 		ProgressAnimation.Complete();
 
 		float time = 0.2f;

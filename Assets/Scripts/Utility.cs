@@ -25,4 +25,10 @@ public static class Utility
 			pool.RemoveAtSwapBack(index);
 		}
 	}
+
+	public static T GetRandom<T>(IList<T> list)
+	{
+		int index = Random.Range(0, list.Count);
+		return list[index];
+	}
 }

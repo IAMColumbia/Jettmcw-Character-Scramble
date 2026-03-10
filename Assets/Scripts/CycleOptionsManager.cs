@@ -12,7 +12,6 @@ public class CycleOptionsManager : MonoBehaviour
 	public void Awake()
 	{
 		Instance = this;
-		SetColors();
 	}
 
 	public void SetColors()
