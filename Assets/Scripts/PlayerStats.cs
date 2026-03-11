@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
 	[SerializeField] private Color _color;
 	private int _scoreNum = 0;
 
+	private Sequence _scoreBounce;
+
 	public void Activate()
 	{
 		Tween.Color(_playerNumber, _color, 0.2f);
@@ -27,6 +29,10 @@ public class PlayerStats : MonoBehaviour
 			_score.text = value.ToString();
 			_scoreNum = value;
 			ScoreManager.Instance.UpdatePlacements();
+			_scoreBounce.Complete();
+			_scoreBounce = Sequence.Create().
+				Group(Tween.ShakeLocalPosition(_score.transform, new Vector3(0f, 25f, 0f), 0.3f))
+			;
 		}
 	}
 
