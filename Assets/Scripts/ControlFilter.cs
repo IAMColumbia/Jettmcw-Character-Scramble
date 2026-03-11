@@ -65,6 +65,7 @@ public class ControlFilter : MonoBehaviour
 		string action = context.action.name;
 		string correct = actions[index];
 		bool wasCorrect = action == correct;
+		Debug.Log(wasCorrect);
 		var eventToInvoke = wasCorrect ? correctEvent : incorrectEvent;
 		eventToInvoke.Invoke(context);
 	}

@@ -1256,10 +1256,6 @@ MonoBehaviour:
     m_ActionId: 533fda2d-1c1e-4323-ae56-b756ee7b499d
     m_ActionName: 'Rejoin/Rejoin[/Keyboard/anyKey,/Mouse/press,/SwitchProControllerHID/buttonEast,/SwitchProControllerHID1/buttonEast,/SwitchProControllerHID/buttonSouth,/SwitchProControllerHID1/buttonSouth,/SwitchProControllerHID/buttonNorth,/SwitchProControllerHID1/buttonNorth,/SwitchProControllerHID/buttonWest,/SwitchProControllerHID1/buttonWest,/SwitchProControllerHID/rightShoulder,/SwitchProControllerHID1/rightShoulder,/SwitchProControllerHID/rightTrigger,/SwitchProControllerHID1/rightTrigger,/SwitchProControllerHID/leftShoulder,/SwitchProControllerHID1/leftShoulder,/SwitchProControllerHID/leftTrigger,/SwitchProControllerHID1/leftTrigger,/SwitchProControllerHID/start,/SwitchProControllerHID1/start,/SwitchProControllerHID/select,/SwitchProControllerHID1/select,/SwitchProControllerHID/dpad/right,/SwitchProControllerHID1/dpad/right,/SwitchProControllerHID/dpad/up,/SwitchProControllerHID1/dpad/up,/SwitchProControllerHID/dpad/left,/SwitchProControllerHID1/dpad/left,/SwitchProControllerHID/dpad/down,/SwitchProControllerHID1/dpad/down,/SwitchProControllerHID/leftStickPress,/SwitchProControllerHID1/leftStickPress,/SwitchProControllerHID/rightStickPress,/SwitchProControllerHID1/rightStickPress]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8e3adbeb-32a2-4525-aa4b-9b914b5638ec
-    m_ActionName: Movement/New action
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6316818112167544041}
         m_TargetAssemblyTypeName: ControlFilterer, Assembly-CSharp
@@ -1435,6 +1431,118 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d6475887-51e8-449e-876d-225e6ad94f8f
     m_ActionName: 'Player Controls/Back 4[/Keyboard/x,/SwitchProControllerHID/buttonWest,/SwitchProControllerHID1/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3600435831807900161}
+        m_TargetAssemblyTypeName: ControlFilter, Assembly-CSharp
+        m_MethodName: FilterCycleAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 86d57cd7-77fc-4239-b76e-74d4a802cc5a
+    m_ActionName: 'Movement/Movement 1[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/SwitchProControllerHID/leftStick,/SwitchProControllerHID1/leftStick]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3600435831807900161}
+        m_TargetAssemblyTypeName: ControlFilter, Assembly-CSharp
+        m_MethodName: FilterCycleAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8a6a3f1e-14bc-49ae-a200-b96217ed2aa6
+    m_ActionName: 'Movement/Movement 2[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/SwitchProControllerHID/dpad,/SwitchProControllerHID1/dpad]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3600435831807900161}
+        m_TargetAssemblyTypeName: ControlFilter, Assembly-CSharp
+        m_MethodName: FilterCycleAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9b377248-f302-49b9-90e2-fa255da88a73
+    m_ActionName: 'Movement/Movement 3[/Keyboard/i,/Keyboard/k,/Keyboard/j,/Keyboard/l,/SwitchProControllerHID/rightStick,/SwitchProControllerHID1/rightStick]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3600435831807900161}
+        m_TargetAssemblyTypeName: ControlFilter, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1b89aede-e12e-4474-a322-bf59326bbcf6
+    m_ActionName: 'Movement/Jump 1[/Keyboard/space,/SwitchProControllerHID/buttonEast,/SwitchProControllerHID1/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3600435831807900161}
+        m_TargetAssemblyTypeName: ControlFilter, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4f8ae400-9b80-4a17-9365-b786fbcc22ec
+    m_ActionName: 'Movement/Jump 2[/Mouse/leftButton,/SwitchProControllerHID/rightShoulder,/SwitchProControllerHID1/rightShoulder]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3600435831807900161}
+        m_TargetAssemblyTypeName: ControlFilter, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e133ab40-ccdd-48f0-b95f-688762cf30fb
+    m_ActionName: 'Movement/Jump 3[/Keyboard/enter,/SwitchProControllerHID/start,/SwitchProControllerHID1/start]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3600435831807900161}
+        m_TargetAssemblyTypeName: ControlFilter, Assembly-CSharp
+        m_MethodName: FilterSelectAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 549c3613-9c72-4c00-8a52-aca701f14620
+    m_ActionName: 'Movement/Jump 4[/Keyboard/e,/SwitchProControllerHID/buttonNorth,/SwitchProControllerHID1/buttonNorth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Controls
@@ -3371,6 +3479,8 @@ GameObject:
   - component: {fileID: 6219576664410125682}
   - component: {fileID: 587677767986778191}
   - component: {fileID: 2086135394258419260}
+  - component: {fileID: 3600435831807900161}
+  - component: {fileID: 7639300723131728246}
   m_Layer: 5
   m_Name: Character
   m_TagString: Untagged
@@ -3466,6 +3576,86 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &3600435831807900161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6815112081226161569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbbb2bfb8e08e3419af62505e7e2916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cycleActionNames:
+  - Movement 1
+  - Movement 2
+  - Movement 3
+  CycleActionIndex: 0
+  CorrectCycleInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7639300723131728246}
+        m_TargetAssemblyTypeName: ActualMovement, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  IncorrectCycleInput:
+    m_PersistentCalls:
+      m_Calls: []
+  _selectActionNames:
+  - Jump 1
+  - Jump 2
+  - Jump 3
+  - Jump 4
+  SelectActionIndex: 0
+  CorrectSelectInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7639300723131728246}
+        m_TargetAssemblyTypeName: ActualMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  IncorrectSelectInput:
+    m_PersistentCalls:
+      m_Calls: []
+  _backActionNames: []
+  BackActionIndex: 0
+  CorrectBackInput:
+    m_PersistentCalls:
+      m_Calls: []
+  IncorrectBackInput:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7639300723131728246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6815112081226161569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3278870c04b68b84c9ab232e6f97aaf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2086135394258419260}
 --- !u!1 &7046319749271598387
 GameObject:
   m_ObjectHideFlags: 0

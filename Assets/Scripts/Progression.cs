@@ -194,7 +194,7 @@ public class Progression : MonoBehaviour
 
 		rb.simulated = true;
 
-		float randomAngle = Random.Range(-30f, 30f);
-		rb.angularVelocity = randomAngle;
+		//float randomAngle = Random.Range(-30f, 30f);
+		//rb.angularVelocity = randomAngle;
 	}
 }
