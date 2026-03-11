@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -34,10 +35,54 @@ public class RoundManager : MonoBehaviour
 	{
 		if (DoingCharacters && _round > 1 && _finishers == PlayerControllerManager.Instance.Players.Count)
         {
-            DoingCharacters = false;
-            _timer.IsPaused = true;
-        }
+            DoNextRoundWait();
+		}
 	}
+
+	public void DoNextRoundWait() => StartCoroutine(NextRoundWait());
+
+	private IEnumerator NextRoundWait()
+    {
+		DoingCharacters = false;
+		_timer.IsPaused = true;
+		PlayerInputManager.instance.DisableJoining();
+
+		foreach (PlayerInput player in PlayerControllerManager.Instance.Players)
+		{
+			if (player.currentActionMap.name != "Movement")
+			{
+				player.DeactivateInput();
+			}
+		}
+
+        yield return new WaitForSeconds(1f);
+
+        // If there are finished players, give them time to play
+        // Otherwise, start next round immediately
+
+        if (_finishers > 0)
+        {
+            _timerInstruction.text = "[Next Round In]";
+            _timer.TimeLeft = 5f;
+			_timer.IsPaused = false;
+			_timer.OnComplete.RemoveListener(DoNextRoundWait);
+            _timer.OnComplete.AddListener(ResumeIntoNext);
+        }
+        else
+		{
+			ResumeGame();
+			NextRound();
+		}
+	}
+
+    public void ResumeIntoNext()
+	{
+		_timerInstruction.text = "[Choose Your Character]";
+		_timer.OnComplete.RemoveListener(ResumeIntoNext);
+		_timer.OnComplete.AddListener(DoNextRoundWait);
+		ResumeGame();
+        NextRound();
+    }
 
 	public void ResumeGame()
     {

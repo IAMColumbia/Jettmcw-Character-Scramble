@@ -2327,7 +2327,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1327283918}
         m_TargetAssemblyTypeName: RoundManager, Assembly-CSharp
-        m_MethodName: NextRound
+        m_MethodName: DoNextRoundWait
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6196,6 +6196,7 @@ MonoBehaviour:
   _roundCounter: {fileID: 1073101376}
   _timerInstruction: {fileID: 1426879635}
   _timer: {fileID: 622256258}
+  DoingCharacters: 1
   RoundPassed:
     m_PersistentCalls:
       m_Calls: []
@@ -6475,7 +6476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Next Round In]'
+  m_text: '[Choose Your Character]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
   m_sharedMaterial: {fileID: -5447032970618785277, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
@@ -6502,13 +6503,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.6
-  m_fontSizeBase: 33.6
+  m_fontSize: 37.7
+  m_fontSizeBase: 37.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 33
+  m_fontStyle: 32
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
