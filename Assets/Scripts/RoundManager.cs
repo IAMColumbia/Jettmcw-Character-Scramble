@@ -26,6 +26,11 @@ public class RoundManager : MonoBehaviour
         Instance = this;
 	}
 
+    public void ResumeGame()
+    {
+        _timer.IsPaused = false;
+    }
+
     public void SetRoundColors()
     {
         _rowManager.SetColors();

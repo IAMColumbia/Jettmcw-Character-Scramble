@@ -23,6 +23,7 @@ public class Progression : MonoBehaviour
 		_rows[0].Show(true);
 		_rows[1].Preview();
 		_selectedColors.Add(_rows[0].Current);
+		RoundManager.Instance.ResumeGame();
 	}
 
 	public void RestartProgression()
@@ -95,6 +96,7 @@ public class Progression : MonoBehaviour
 			return;
 		}
 
+		RoundManager.Instance.ResumeGame();
 		_uiToggle.EnableUI();
 		_rowIndex = 0;
 		PlayerAreas.GetArea(_playerInput).PressAnyButton.SetActive(false);
