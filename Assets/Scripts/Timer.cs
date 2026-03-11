@@ -2,6 +2,7 @@ using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -56,6 +57,5 @@ public class Timer : MonoBehaviour
 		_ones.color = color;
 		_dot.color = color;
 		_tenths.color = color;
-
 	}
 }

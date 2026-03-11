@@ -22,6 +22,7 @@ public class OptionRow : MonoBehaviour
 
 	private Color _directionTarget;
 	private PlayerCycling _playerToDirect;
+	private PlayerCycling _actingPlayer;
 
 	private void Awake()
 	{
@@ -53,9 +54,11 @@ public class OptionRow : MonoBehaviour
 
 	public void Register(PlayerCycling player)
 	{
+		_actingPlayer = player;
+
 		// Insert player at first open index from the left
 		int insertionIndex = FirstFreeIndex;
-		player.Current = Options[insertionIndex];
+		player.ChangeCurrent(Options[insertionIndex], false);
 		_playerPositions[insertionIndex] = player;
 		SetNumber(insertionIndex, player);
 
@@ -86,12 +89,14 @@ public class OptionRow : MonoBehaviour
 
 	public void Cycle(PlayerCycling player, bool right)
 	{
+		_actingPlayer = player;
+
 		// Empty the player's original space
 		int start = ClearPlayerSpace(player);
 
 		// Set the player's new color & position
 		Color newColor = right ? player.Right : player.Left;
-		player.Current = newColor;
+		player.ChangeCurrent(newColor, false);
 		int end = Options.IndexOf(newColor);
 		_playerPositions[end] = player;
 		SetNumber(end, player);
@@ -175,14 +180,14 @@ public class OptionRow : MonoBehaviour
 	{
 		foreach (PlayerCycling watcher in _watchers)
 		{
-			watcher.Current = Options[FirstFreeIndex];
+			watcher.ChangeCurrent(Options[FirstFreeIndex], true);
 		}
 	}
 
 	public void AddPreviewer(PlayerCycling watcher)
 	{
 		_watchers.Add(watcher);
-		watcher.Current = Options[FirstFreeIndex];
+		watcher.ChangeCurrent(Options[FirstFreeIndex], true);
 	}
 
 	public void RemovePreviewer(PlayerCycling watcher)
@@ -220,20 +225,20 @@ public class OptionRow : MonoBehaviour
 		{
 			if (player)
 			{
-				player.Left = _directionTarget;
-				player.Right = _directionTarget;
+				player.ChangeLeft(_directionTarget, player != _actingPlayer);
+				player.ChangeRight(_directionTarget, player != _actingPlayer);
 			}
 		}
 	}
 
 	private void DirectLeft()
 	{
-		_playerToDirect.Left = _directionTarget;
+		_playerToDirect.ChangeLeft(_directionTarget, _playerToDirect != _actingPlayer);
 	}
 
 	private void DirectRight()
 	{
-		_playerToDirect.Right = _directionTarget;
+		_playerToDirect.ChangeRight(_directionTarget, _playerToDirect != _actingPlayer);
 	}
 
 	private Color IterateOverNeighbors(IEnumerable<int> enumerable, Action action, int skip)

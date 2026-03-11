@@ -16,45 +16,16 @@ public class PlayerCycling : MonoBehaviour
 	public Sequence ProgressAnimation { get; private set; }
 
 	private Sequence _cycleAnimation;
-
-	private Color _trueCurrentColor, _trueLeftColor, _trueRightColor;
-
+	private Tween _leftColorChange, _rightColorChange, _currentColorChange;
 
 	private void Awake()
 	{
 		PlayerNumber = PlayerControllerManager.Instance.GetPlayerNumber(_playerInput) + 1;
 	}
 
-	public Color Current
-	{
-		get => _trueCurrentColor;
-		set
-		{
-			if (_trueCurrentColor == value) return;
-			_trueCurrentColor = value;
-			_current.color = value;
-		}
-	}
-
-	public Color Left
-	{
-		get => _trueLeftColor;
-		set
-		{
-			_trueLeftColor = value;
-			_left.color = value;
-		}
-	}
-
-	public Color Right
-	{
-		get => _trueRightColor;
-		set
-		{
-			_trueRightColor = value;
-			_right.color = value;
-		}
-	}
+	public Color Left { get; private set; }
+	public Color Current { get; private set; }
+	public Color Right { get; private set; }
 
 	public void Register()
 	{
@@ -251,6 +222,47 @@ public class PlayerCycling : MonoBehaviour
 	{
 		OptionRow = CycleOptionsManager.Instance.Rows[_rowIndex];
 		OptionRow.Remove(this);
+	}
+
+	public void ChangeLeft(Color color, bool animate)
+	{
+		Left = color;
+		_leftColorChange.Stop();
+		if (animate)
+		{
+			_leftColorChange = Tween.Color(_left, color, 0.1f);
+		}
+		else
+		{
+			_left.color = color;
+		}
+	}
+
+	public void ChangeRight(Color color, bool animate)
+	{
+		Right = color;
+		_rightColorChange.Stop();
+		if (animate)
+		{
+			_rightColorChange = Tween.Color(_right, color, 0.1f);
+		}
+		else
+		{
+			_right.color = color;
+		}
+	}
+	public void ChangeCurrent(Color color, bool animate)
+	{
+		Current = color;
+		_currentColorChange.Stop();
+		if (animate)
+		{
+			_currentColorChange = Tween.Color(_current, color, 0.1f);
+		}
+		else
+		{
+			_current.color = color;
+		}
 	}
 
 	public void SetPositionsToInitialForTop()
