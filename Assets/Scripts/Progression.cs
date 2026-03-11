@@ -48,9 +48,6 @@ public class Progression : MonoBehaviour
 
 		// Return character to starting position
 		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
-		Debug.Log($"[Restart] Position at restart: {_finalCharacter.position}");
-		Debug.Log($"[Restart] Velocity at restart: {rb.linearVelocity}");
-		Debug.Log($"[Restart] Simulated at restart: {rb.simulated}");
 		_finalCharacter.SetPositionAndRotation(_anchors.Finished[1].position, Quaternion.identity);
 		rb.bodyType = RigidbodyType2D.Kinematic;
 		rb.linearVelocity = Vector2.zero;
@@ -149,18 +146,14 @@ public class Progression : MonoBehaviour
 		{
 			row.OptionRow.HidePlayer(row);
 		}
+
 		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();
 
 		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
 
 		rb.simulated = true;
 
-		// Log state AFTER enabling
-
 		float randomAngle = Random.Range(-30f, 30f);
 		rb.angularVelocity = randomAngle;
-
-		// Log one frame later
-		yield return null;
 	}
 }

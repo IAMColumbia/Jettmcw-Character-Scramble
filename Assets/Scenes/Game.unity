@@ -881,7 +881,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
   m_sharedMaterial: {fileID: -5447032970618785277, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
@@ -2020,7 +2020,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1327283918}
+        m_TargetAssemblyTypeName: RoundManager, Assembly-CSharp
+        m_MethodName: NextRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TimeLeft: 15
   IsPaused: 0
   _tens: {fileID: 2128139126}
@@ -3254,7 +3266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
   m_sharedMaterial: {fileID: -5447032970618785277, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
@@ -5521,6 +5533,9 @@ MonoBehaviour:
   - {fileID: 1870246693}
   - {fileID: 2083890375}
   - {fileID: 641699299}
+  _roundCounter: {fileID: 1523422600}
+  _timerInstruction: {fileID: 1426879635}
+  _timer: {fileID: 622256258}
 --- !u!4 &1327283919
 Transform:
   m_ObjectHideFlags: 0
@@ -8684,7 +8699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
   m_sharedMaterial: {fileID: -5447032970618785277, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
@@ -9601,7 +9616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}
   m_sharedMaterial: {fileID: -5447032970618785277, guid: c02a3db92c95d394aa34cea87dfec062, type: 2}

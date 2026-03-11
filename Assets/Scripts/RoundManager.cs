@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,13 +12,17 @@ public class RoundManager : MonoBehaviour
 	[SerializeField] private CycleOptionsManager _rowManager;
     [SerializeField] private SpriteRenderer[] _primeSpecimenSprites = new SpriteRenderer[3];
 
+    [SerializeField] private TextMeshProUGUI _roundCounter;
+	[SerializeField] private TextMeshProUGUI _timerInstruction;
+    [SerializeField] private Timer _timer;
+
 	void Awake()
     {
-        StartNewRound();
+        SetRoundColors();
         Instance = this;
 	}
 
-    public void StartNewRound()
+    public void SetRoundColors()
     {
         _rowManager.SetColors();
         
@@ -31,7 +36,7 @@ public class RoundManager : MonoBehaviour
 
     public void NextRound()
     {
-        StartNewRound();
+        SetRoundColors();
 
         List<PlayerInput> players = PlayerControllerManager.Instance.Players;
         foreach (PlayerInput player in players)
@@ -39,5 +44,9 @@ public class RoundManager : MonoBehaviour
             Progression playerProgression = player.GetComponent<Progression>();
             playerProgression.RestartProgression();
         }
+
+        ControlRandomizer.Instance.RandomizeBindings();
+
+        _timer.TimeLeft = 15f;
 	}
 }

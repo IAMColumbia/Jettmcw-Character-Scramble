@@ -49,6 +49,9 @@ public class OptionRow : MonoBehaviour
 			_sprites[i].gameObject.SetActive(false);
 		}
 		_playerPositions = new PlayerCycling[_freeSlots];
+		_watchers.Clear();
+		FirstFreeIndex = 0;
+		IsFull = false;
 		LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutGroup);
 	}
 
