@@ -239,6 +239,7 @@ public class PlayerCycling : MonoBehaviour
 	public void ShowCurrent(bool show)
 	{
 		_current.enabled = show;
+		_current.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = show;
 	}
 
 	public void Release()
