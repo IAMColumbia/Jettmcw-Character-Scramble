@@ -42,7 +42,7 @@ public class Timer : MonoBehaviour
 		{
 			_bounce.Complete();
 
-			float intensity = Mathf.Max(1.1f, Mathf.Pow(1.02f, 15f - TimeLeft));
+			float intensity = Mathf.Max(1.1f, Mathf.Pow(1.03f, 15f - TimeLeft));
 			_bounce = Sequence.Create()
 				.Group(Tween.Scale(transform, Vector3.one, Vector3.one * intensity, 0.15f * intensity, Ease.OutCirc, 2, CycleMode.Rewind))
 				.Group(Tween.ShakeLocalPosition(transform, new Vector3(5f, 10f), 0.3f * intensity))
@@ -50,5 +50,12 @@ public class Timer : MonoBehaviour
 		}
 		_ones.text = onesPlace;
 		_tenths.text = Mathf.FloorToInt(TimeLeft * 10 % 10).ToString();
+
+		Color color = Color.Lerp(new Color(1f, 0.3f, 0.3f), Color.white, TimeLeft / 5f);
+		_tens.color = color;
+		_ones.color = color;
+		_dot.color = color;
+		_tenths.color = color;
+
 	}
 }
