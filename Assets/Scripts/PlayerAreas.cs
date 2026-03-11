@@ -17,4 +17,6 @@ public class PlayerAreas : MonoBehaviour
 		int idx = PlayerControllerManager.Instance.GetPlayerNumber(input);
 		return areas[idx];
 	}
+
+	public static PlayerStats GetStats(int idx) => s_instance._areas[idx];
 }

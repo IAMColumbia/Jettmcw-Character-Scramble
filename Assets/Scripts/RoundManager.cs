@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class RoundManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class RoundManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _roundCounter;
 	[SerializeField] private TextMeshProUGUI _timerInstruction;
     [SerializeField] private Timer _timer;
+
+    public UnityEvent RoundPassed;
 
     private int _round = 1;
     private int _finishers = 0;
@@ -45,6 +48,14 @@ public class RoundManager : MonoBehaviour
 
     public void NextRound()
     {
+        if (_round == 1)
+        {
+            for (int i = PlayerControllerManager.Instance.Players.Count; i < 4; i++)
+            {
+                PlayerAreas.GetStats(i).Deactivate();
+            }
+        }
+
         SetRoundColors();
         _finishers = 0;
 		_speedBonus[0].color = Color.white;

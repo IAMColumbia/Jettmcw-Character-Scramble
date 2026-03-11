@@ -37,7 +37,7 @@ public class Progression : MonoBehaviour
 
 		// Reset UI
 		_uiToggle.DisableUI();
-		PlayerAreas.GetArea(_playerInput).PressAnyButton.SetActive(true);
+		PlayerAreas.GetArea(_playerInput).PressAnyButton.gameObject.SetActive(true);
 
 		// Stop animations & hide rows
 		if (_construction != null)
@@ -84,7 +84,7 @@ public class Progression : MonoBehaviour
 
 		if (_rowIndex == -1)
 		{
-			PlayerAreas.GetArea(_playerInput).PressAnyButton.SetActive(true);
+			PlayerAreas.GetArea(_playerInput).PressAnyButton.gameObject.SetActive(true);
 			_rows[0].Show(false);
 			_rows[1].ShowCurrent(false);
 			_playerInput.SwitchCurrentActionMap("Rejoin");
@@ -112,7 +112,7 @@ public class Progression : MonoBehaviour
 		RoundManager.Instance.ResumeGame();
 		_uiToggle.EnableUI();
 		_rowIndex = 0;
-		PlayerAreas.GetArea(_playerInput).PressAnyButton.SetActive(false);
+		PlayerAreas.GetArea(_playerInput).PressAnyButton.gameObject.SetActive(false);
 		_rows[0].Register();
 		_rows[0].Show(true);
 		_rows[1].ShowCurrent(true);

@@ -7,18 +7,31 @@ public class PlayerStats : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _playerNumber;
 	[SerializeField] private TextMeshProUGUI _score;
 	[SerializeField] private TextMeshProUGUI _placement;
-	public GameObject PressAnyButton;
+	public TextMeshProUGUI PressAnyButton;
 
 	[SerializeField] private Color _color;
 	private int _scoreNum = 0;
 
 	private Sequence _scoreBounce;
+	private Sequence _colorChange;
 
 	public void Activate()
 	{
-		Tween.Color(_playerNumber, _color, 0.2f);
-		Tween.Color(_score, _color, 0.2f);
-		Tween.Color(_placement, _color, 0.2f);
+		_colorChange.Stop();
+		_colorChange = Sequence.Create()
+			.Group(Tween.Color(_playerNumber, _color, 0.2f))
+			.Group(Tween.Color(_score, _color, 0.2f))
+			.Group(Tween.Color(_placement, _color, 0.2f))
+			.Group(Tween.Color(PressAnyButton, Color.white, 0.2f))
+		;
+	}
+
+	public void Deactivate()
+	{
+		_colorChange.Stop();
+		_colorChange = Sequence.Create()
+			.Group(Tween.Color(PressAnyButton, new Color(1f, 1f, 1f, 0.2745098f), 0.2f))
+		;
 	}
 
 	public int Score

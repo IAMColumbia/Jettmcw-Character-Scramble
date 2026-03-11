@@ -361,7 +361,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 1774833352}
   _score: {fileID: 1993325931}
   _placement: {fileID: 1898898157}
-  PressAnyButton: {fileID: 1958419152}
+  PressAnyButton: {fileID: 1958419154}
   _color: {r: 0.45597476, g: 0.88293123, b: 1, a: 1}
 --- !u!1 &162267905
 GameObject:
@@ -1498,7 +1498,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 1518475883}
   _score: {fileID: 765422661}
   _placement: {fileID: 1796213358}
-  PressAnyButton: {fileID: 652935608}
+  PressAnyButton: {fileID: 652935610}
   _color: {r: 0.38431373, g: 1, b: 0.38039216, a: 1}
 --- !u!1 &446342075
 GameObject:
@@ -6196,6 +6196,9 @@ MonoBehaviour:
   _roundCounter: {fileID: 1073101376}
   _timerInstruction: {fileID: 1426879635}
   _timer: {fileID: 622256258}
+  RoundPassed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1327283919
 Transform:
   m_ObjectHideFlags: 0
@@ -7224,7 +7227,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 717129584}
   _score: {fileID: 240275323}
   _placement: {fileID: 1816736152}
-  PressAnyButton: {fileID: 178119089}
+  PressAnyButton: {fileID: 178119091}
   _color: {r: 1, g: 0.4627451, b: 0.24313726, a: 1}
 --- !u!1 &1518475881
 GameObject:
@@ -8070,7 +8073,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 1428981974}
   _score: {fileID: 1886756568}
   _placement: {fileID: 905978026}
-  PressAnyButton: {fileID: 813118859}
+  PressAnyButton: {fileID: 813118861}
   _color: {r: 1, g: 0.9607843, b: 0.24705882, a: 1}
 --- !u!1 &1713662912
 GameObject:
