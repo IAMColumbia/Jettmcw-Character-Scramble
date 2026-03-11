@@ -11,8 +11,9 @@ public class RoundManager : MonoBehaviour
 
 	[SerializeField] private CycleOptionsManager _rowManager;
     [SerializeField] private SpriteRenderer[] _primeSpecimenSprites = new SpriteRenderer[3];
+	[SerializeField] private TextMeshProUGUI[] _speedBonus = new TextMeshProUGUI[4];
 
-    [SerializeField] private TextMeshProUGUI _roundCounter;
+	[SerializeField] private TextMeshProUGUI _roundCounter;
 	[SerializeField] private TextMeshProUGUI _timerInstruction;
     [SerializeField] private Timer _timer;
 
@@ -41,6 +42,12 @@ public class RoundManager : MonoBehaviour
     {
         SetRoundColors();
         _finishers = 0;
+		_speedBonus[0].color = Color.white;
+        for (int i = 1; i < 4; i++)
+        {
+            _speedBonus[i].color = new Color(1f, 1f, 1f, 0.2745098f);
+		}
+
 		List<PlayerInput> players = PlayerControllerManager.Instance.Players;
         foreach (PlayerInput player in players)
         {
@@ -64,7 +71,14 @@ public class RoundManager : MonoBehaviour
             3 => 1,
             _ => throw new System.InvalidOperationException()
         };
+
+        _speedBonus[_finishers].color = new Color(1f, 1f, 1f, 0.2745098f);
 		_finishers++;
-        return speedBonus;
+        if (_finishers < 4)
+        {
+            _speedBonus[_finishers].color = Color.white;
+        }
+
+		return speedBonus;
     }
 }

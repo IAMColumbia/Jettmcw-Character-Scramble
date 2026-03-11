@@ -155,12 +155,10 @@ public class Progression : MonoBehaviour
 		bool full = topIsBottom && top == middle;
 		if (full)
 		{
-			Debug.Log("Full!");
 			stats.Score += 6;
 		}
 		else if (topIsBottom)
 		{
-			Debug.Log("Stripes!");
 			stats.Score += 4;
 		}
 		else
@@ -168,7 +166,6 @@ public class Progression : MonoBehaviour
 			Color[] combo = rm.PrimeSpecimenColors;
 			if (top == combo[0] && middle == combo[1] && bottom == combo[2])
 			{
-				Debug.Log("Combo!");
 				stats.Score += 10;
 			}
 		}

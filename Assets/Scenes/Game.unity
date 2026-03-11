@@ -5847,6 +5847,11 @@ MonoBehaviour:
   - {fileID: 1870246693}
   - {fileID: 2083890375}
   - {fileID: 641699299}
+  _speedBonus:
+  - {fileID: 1271857461}
+  - {fileID: 1182865845}
+  - {fileID: 1482530700}
+  - {fileID: 222151595}
   _roundCounter: {fileID: 1073101376}
   _timerInstruction: {fileID: 1426879635}
   _timer: {fileID: 622256258}
