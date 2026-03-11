@@ -61,6 +61,9 @@ public class Progression : MonoBehaviour
 		{
 			row.SetPreviewAtPosition();
 		}
+
+		// RESET COLORS
+		_selectedColors.Clear();
 	}
 
 	public void GoBack()
@@ -152,10 +155,11 @@ public class Progression : MonoBehaviour
 		Color top = _selectedColors[0];
 		Color middle = _selectedColors[1];
 		Color bottom = _selectedColors[2];
+		Color[] combo = rm.PrimeSpecimenColors;
 
 		bool topIsBottom = top == bottom;
-		bool full = topIsBottom && top == middle;
-		if (full)
+
+		if (topIsBottom && top == middle)
 		{
 			stats.Score += 6;
 		}
@@ -163,13 +167,9 @@ public class Progression : MonoBehaviour
 		{
 			stats.Score += 4;
 		}
-		else
+		else if (top == combo[0] && middle == combo[1] && bottom == combo[2])
 		{
-			Color[] combo = rm.PrimeSpecimenColors;
-			if (top == combo[0] && middle == combo[1] && bottom == combo[2])
-			{
-				stats.Score += 10;
-			}
+			stats.Score += 10;
 		}
 
 		stats.Score += rm.GetSpeedBonus();
