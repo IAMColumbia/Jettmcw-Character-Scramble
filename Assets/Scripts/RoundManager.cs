@@ -17,6 +17,7 @@ public class RoundManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _roundCounter;
 	[SerializeField] private TextMeshProUGUI _timerInstruction;
     [SerializeField] private Timer _timer;
+    public bool DoingCharacters = true;
 
     public UnityEvent RoundPassed;
 
@@ -29,10 +30,20 @@ public class RoundManager : MonoBehaviour
         Instance = this;
 	}
 
-    public void ResumeGame()
+	private void Update()
+	{
+		if (DoingCharacters && _round > 1 && _finishers == PlayerControllerManager.Instance.Players.Count)
+        {
+            DoingCharacters = false;
+            _timer.IsPaused = true;
+        }
+	}
+
+	public void ResumeGame()
     {
         _timer.IsPaused = false;
-    }
+		DoingCharacters = true;
+	}
 
     public void SetRoundColors()
     {
