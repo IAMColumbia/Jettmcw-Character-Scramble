@@ -32,8 +32,8 @@ Transform:
   m_Children:
   - {fileID: 7233813200843930915}
   - {fileID: 6831792574371082884}
-  - {fileID: 6147114519400204316}
-  - {fileID: 1953084216711757280}
+  - {fileID: 3577519106873408142}
+  - {fileID: 534435646398482176}
   - {fileID: 8019512756814499525}
   - {fileID: 4748721782665753354}
   - {fileID: 6548908022735453766}
@@ -269,6 +269,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1639302945146431088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3577519106873408142}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3577519106873408142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639302945146431088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6147114519400204316}
+  m_Father: {fileID: 137366254406453520}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1915923798705378995
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb1eac8cb9e2424baef2d6ee68ad5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requirePositive: 0
+  _move: {x: 0, y: 0, z: 0}
 --- !u!114 &8749567258486163228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,11 +599,11 @@ Transform:
   m_GameObject: {fileID: 2348622859069133483}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.15, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -1.0000191, y: 0.14999488, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 137366254406453520}
+  m_Father: {fileID: 3577519106873408142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3825279003916790335
 SpriteRenderer:
@@ -663,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb1eac8cb9e2424baef2d6ee68ad5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requirePositive: 0
+  _move: {x: -0.15, y: 0, z: 0}
 --- !u!114 &1892956450537298804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,25 +997,13 @@ MonoBehaviour:
   threshold: 0.5
   firstRepeatDelay: 0.5
   repeatRate: 0.25
-  MoveHorizontal:
+  MoveLeft:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4550318244215798457}
-        m_TargetAssemblyTypeName: IconInputResponse, Assembly-CSharp
-        m_MethodName: DoPressAnimationIf
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6833711644652655720}
-        m_TargetAssemblyTypeName: IconInputResponse, Assembly-CSharp
-        m_MethodName: DoPressAnimationIf
-        m_Mode: 0
+        m_TargetAssemblyTypeName: IconPress, Assembly-CSharp
+        m_MethodName: DoPressAnimation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -995,7 +1015,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3490192583549287113}
         m_TargetAssemblyTypeName: Progression, Assembly-CSharp
         m_MethodName: Cycle
-        m_Mode: 0
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1003,6 +1023,33 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+  MoveRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6833711644652655720}
+        m_TargetAssemblyTypeName: IconPress, Assembly-CSharp
+        m_MethodName: DoPressAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3490192583549287113}
+        m_TargetAssemblyTypeName: Progression, Assembly-CSharp
+        m_MethodName: Cycle
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &4922842801752262416
 MonoBehaviour:
@@ -1967,6 +2014,38 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5975770605663770038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 534435646398482176}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &534435646398482176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975770605663770038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1953084216711757280}
+  m_Father: {fileID: 137366254406453520}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6104559684952334411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb1eac8cb9e2424baef2d6ee68ad5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requirePositive: 0
+  _move: {x: 0, y: 0, z: 0}
 --- !u!114 &1869057057783712384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2680,11 +2759,11 @@ Transform:
   m_GameObject: {fileID: 7046319749271598387}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.15, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 1.0000191, y: 0.14999488, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 137366254406453520}
+  m_Father: {fileID: 534435646398482176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7210633490524241896
 SpriteRenderer:
@@ -2776,7 +2855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb1eac8cb9e2424baef2d6ee68ad5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requirePositive: 1
+  _move: {x: 0.15, y: 0, z: 0}
 --- !u!114 &1927721012660563861
 MonoBehaviour:
   m_ObjectHideFlags: 0

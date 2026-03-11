@@ -11,7 +11,8 @@ public class CycleInputProcessor : MonoBehaviour
 	private HoldData _horizontalData;
 	private float _horizontalRepeatWait;
 
-	public UnityEvent<bool> MoveHorizontal;
+	public UnityEvent MoveLeft;
+	public UnityEvent MoveRight;
 
 	public void OnDirectionalInput(InputAction.CallbackContext context)
 	{
@@ -67,10 +68,10 @@ public class CycleInputProcessor : MonoBehaviour
 
 	private void Update()
 	{
-		MovementUpdate(MoveHorizontal, ref _horizontalData, ref _horizontalRepeatWait);
+		MovementUpdate(ref _horizontalData, ref _horizontalRepeatWait);
 	}
 
-	private void MovementUpdate(UnityEvent<bool> moveEvent, ref HoldData data, ref float repeatWait)
+	private void MovementUpdate(ref HoldData data, ref float repeatWait)
 	{
 		if ((data & HoldData.Holding) == 0)
 		{
@@ -81,7 +82,14 @@ public class CycleInputProcessor : MonoBehaviour
 
 		if ((data & HoldData.Starting) != 0)
 		{
-			moveEvent.Invoke(holdingPositive);
+			if (holdingPositive)
+			{
+				MoveRight.Invoke();
+			}
+			else
+			{
+				MoveLeft.Invoke();
+			}
 			repeatWait = firstRepeatDelay;
 			data &= ~HoldData.Starting;
 			return;
@@ -91,7 +99,14 @@ public class CycleInputProcessor : MonoBehaviour
 
 		if (repeatWait <= 0)
 		{
-			moveEvent.Invoke(holdingPositive);
+			if (holdingPositive)
+			{
+				MoveRight.Invoke();
+			}
+			else
+			{
+				MoveLeft.Invoke();
+			}
 			repeatWait = repeatRate;
 		}
 	}
