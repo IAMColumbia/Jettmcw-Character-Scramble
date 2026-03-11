@@ -20,6 +20,7 @@ public class Progression : MonoBehaviour
 
 	public Sequence SnapShake;
 	public Transform FinalCharacter => _finalCharacter;
+	public bool Finished;
 
 	private void Start()
 	{
@@ -74,6 +75,7 @@ public class Progression : MonoBehaviour
 
 		// RESET COLORS
 		_selectedColors.Clear();
+		Finished = false;
 	}
 
 	public void GoBack()
@@ -127,6 +129,7 @@ public class Progression : MonoBehaviour
 		
 		if (_rowIndex == _rows.Length)
 		{
+			Finished = true;
 			_uiToggle.DisableUI();
 			_playerInput.SwitchCurrentActionMap("Movement");
 			_construction = StartCoroutine(ConstructCharacter());

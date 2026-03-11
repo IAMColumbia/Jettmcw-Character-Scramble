@@ -49,13 +49,23 @@ public class RoundManager : MonoBehaviour
 
 		foreach (PlayerInput player in PlayerControllerManager.Instance.Players)
 		{
-			if (player.currentActionMap.name != "Movement")
+			Progression playerProgression = player.GetComponent<Progression>();
+			if (!playerProgression.Finished)
 			{
+				playerProgression.RestartProgression();
 				player.DeactivateInput();
 			}
 		}
 
-        yield return new WaitForSeconds(1f);
+		if (_round == 1)
+		{
+			for (int i = PlayerControllerManager.Instance.Players.Count; i < 4; i++)
+			{
+				PlayerAreas.GetStats(i).Deactivate();
+			}
+		}
+
+		yield return new WaitForSeconds(1f);
 
         // If there are finished players, give them time to play
         // Otherwise, start next round immediately
@@ -63,7 +73,7 @@ public class RoundManager : MonoBehaviour
         if (_finishers > 0)
         {
             _timerInstruction.text = "[Next Round In]";
-            _timer.TimeLeft = 5f;
+            _timer.TimeLeft = 3f;
 			_timer.IsPaused = false;
             _timer.TurnRed = false;
 			_timer.OnComplete.RemoveListener(DoNextRoundWait);
@@ -105,13 +115,6 @@ public class RoundManager : MonoBehaviour
 
     public void NextRound()
     {
-        if (_round == 1)
-        {
-            for (int i = PlayerControllerManager.Instance.Players.Count; i < 4; i++)
-            {
-                PlayerAreas.GetStats(i).Deactivate();
-            }
-        }
 
         SetRoundColors();
         _finishers = 0;
