@@ -24,5 +24,6 @@ public class ActualMovement : MonoBehaviour
 		rb.AddForceY(200f);
 		float randomAngle = Random.Range(-5f, 5f);
 		rb.angularVelocity = Mathf.Clamp(rb.angularVelocity + randomAngle, -10f, 10f);
+		SFXManager.PlayUp(0.1f);
 	}
 }
