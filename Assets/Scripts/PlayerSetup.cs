@@ -12,5 +12,6 @@ public class PlayerSetup : MonoBehaviour
 		transform.localPosition = Vector3.zero;
 		transform.localScale = new Vector3(190, 190, 190);
 		area.GetChild(0).gameObject.SetActive(false); // Remove "Press any button" text
+		area.GetComponent<PlayerStats>().ActivateColors();
 	}
 }

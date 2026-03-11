@@ -21,7 +21,7 @@ public class RoundManager : MonoBehaviour
     {
         _rowManager.SetColors();
         
-        // Update Prime Specimen UI
+        // Update Combo UI
         for (int i = 0; i < 3; i++)
         {
 			PrimeSpecimenColors[i] = Utility.Choose(_rowManager.Rows[i].Options).First(c => !PrimeSpecimenColors.Take(i).Contains(c));
