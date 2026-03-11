@@ -10588,6 +10588,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1943295702}
   incorrect: {fileID: 8300000, guid: 3c2cf1f9a5ef18a4e8e8c653098da5de, type: 3}
+  timerLow: {fileID: 8300000, guid: 8cd8f6f6316837f49bd0eaedbf5eb134, type: 3}
+  move: {fileID: 8300000, guid: 521c585332f53554482f9c7abfd9695b, type: 3}
+  up: {fileID: 8300000, guid: 77d33edb69c2a4b499d6327e3bdec8c2, type: 3}
+  drop: {fileID: 8300000, guid: e663af3ec68e1ba42823f67f530c1f87, type: 3}
 --- !u!4 &1943295704
 Transform:
   m_ObjectHideFlags: 0

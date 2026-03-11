@@ -9,6 +9,7 @@ public class SFXManager : MonoBehaviour
 	public AudioClip timerLow;
 	public AudioClip move;
 	public AudioClip up;
+	public AudioClip drop;
 
 	private void Awake()
 	{
@@ -19,4 +20,5 @@ public class SFXManager : MonoBehaviour
 	public static void PlayTimerLow(float intensity) => Instance._audioSource.PlayOneShot(Instance.timerLow, intensity);
 	public static void PlayMove(float intensity) => Instance._audioSource.PlayOneShot(Instance.move, intensity);
 	public static void PlayUp(float intensity) => Instance._audioSource.PlayOneShot(Instance.up, intensity);
+	public static void PlayDrop(float intensity) => Instance._audioSource.PlayOneShot(Instance.drop, intensity);
 }

@@ -138,6 +138,7 @@ public class PlayerCycling : MonoBehaviour
 		ProgressAnimation.Complete();
 
 		_hidden.enabled = true;
+		SFXManager.PlayDrop(0.25f);
 
 		float time = 0.15f;
 
