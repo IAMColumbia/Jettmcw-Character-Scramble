@@ -16,5 +16,7 @@ public class IconWrong : MonoBehaviour
 			.Group(Tween.Color(_renderer, start, Color.red, 0.1f, Ease.OutSine, 2, CycleMode.Rewind))
 			.Group(Tween.ShakeLocalPosition(transform, Vector3.one * 0.4f, 0.2f))
 		;
+
+		SFXManager.PlayIncorrectSound();
 	}
 }
