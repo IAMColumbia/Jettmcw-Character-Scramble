@@ -140,7 +140,7 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 finalScale = _fullScale * _endFactor;
 		Vector3 sideScale = _fullScale * _sideFactor;
 
-		_current.transform.SetParent(_left.transform.parent, true);
+		DisconnectCurrentFromComplete();
 
 		ProgressAnimation = Sequence.Create()
 			.Group(Tween.Position(_current.transform, _anchors.Finished[_rowIndex].position, _anchors.Selection.position, time, Ease.InOutCubic))
@@ -150,6 +150,11 @@ public class PlayerCycling : MonoBehaviour
 			.Group(Tween.Position(_right.transform, _anchors.RightUpwards.position, _anchors.RightChoice.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_right.transform, Vector3.zero, sideScale, time, Ease.OutSine))
 		;
+	}
+
+	public void DisconnectCurrentFromComplete()
+	{
+		_current.transform.SetParent(_left.transform.parent, true);
 	}
 
 	public void SendToPosition()

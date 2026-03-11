@@ -66,6 +66,12 @@ public class Progression : MonoBehaviour
 			row.SetPreviewAtPosition();
 		}
 
+		// Stop previous parts of character from shaking
+		foreach (var row in _rows)
+		{
+			row.DisconnectCurrentFromComplete();
+		}
+
 		// RESET COLORS
 		_selectedColors.Clear();
 	}
