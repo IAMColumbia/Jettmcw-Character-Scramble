@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
 	public UnityEvent OnComplete;
 	public float TimeLeft;
 	public bool IsPaused;
+	public bool TurnRed;
 
 	[SerializeField] private TextMeshProUGUI _tens;
 	[SerializeField] private TextMeshProUGUI _ones;
@@ -51,7 +52,7 @@ public class Timer : MonoBehaviour
 		_ones.text = onesPlace;
 		_tenths.text = Mathf.FloorToInt(TimeLeft * 10 % 10).ToString();
 
-		Color color = Color.Lerp(new Color(1f, 0.3f, 0.3f), Color.white, TimeLeft / 5f);
+		Color color = TurnRed ? Color.Lerp(new Color(1f, 0.3f, 0.3f), Color.white, TimeLeft / 5f) : Color.white;
 		_tens.color = color;
 		_ones.color = color;
 		_dot.color = color;

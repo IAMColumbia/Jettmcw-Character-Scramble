@@ -2339,6 +2339,7 @@ MonoBehaviour:
         m_CallState: 2
   TimeLeft: 15
   IsPaused: 1
+  TurnRed: 1
   _tens: {fileID: 2128139126}
   _ones: {fileID: 1909293803}
   _dot: {fileID: 1952739227}

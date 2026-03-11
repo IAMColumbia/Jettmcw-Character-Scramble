@@ -65,6 +65,7 @@ public class RoundManager : MonoBehaviour
             _timerInstruction.text = "[Next Round In]";
             _timer.TimeLeft = 5f;
 			_timer.IsPaused = false;
+            _timer.TurnRed = false;
 			_timer.OnComplete.RemoveListener(DoNextRoundWait);
             _timer.OnComplete.AddListener(ResumeIntoNext);
         }
@@ -130,7 +131,8 @@ public class RoundManager : MonoBehaviour
         ControlRandomizer.Instance.RandomizeBindings();
 
         _timer.TimeLeft = 15f;
-        _round++;
+		_timer.TurnRed = true;
+		_round++;
         _roundCounter.text = _round.ToString();
 	}
 
