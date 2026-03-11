@@ -117,6 +117,7 @@ public class Progression : MonoBehaviour
 		PlayerAreas.GetArea(_playerInput).PressAnyButton.gameObject.SetActive(false);
 		_rows[0].Register();
 		_rows[0].Show(true);
+		_rows[1].Preview();
 		_rows[1].ShowCurrent(true);
 		_selectedColors.Add(_rows[0].Current);
 		_playerInput.SwitchCurrentActionMap("Player Controls");
