@@ -144,6 +144,9 @@ public class Progression : MonoBehaviour
 			row.OptionRow.HidePlayer(row);
 		}
 
+		RoundManager rm = RoundManager.Instance;
+		PlayerStats stats = PlayerAreas.GetArea(_playerInput);
+
 		Color top = _selectedColors[0];
 		Color middle = _selectedColors[1];
 		Color bottom = _selectedColors[2];
@@ -153,19 +156,24 @@ public class Progression : MonoBehaviour
 		if (full)
 		{
 			Debug.Log("Full!");
+			stats.Score += 6;
 		}
 		else if (topIsBottom)
 		{
 			Debug.Log("Stripes!");
+			stats.Score += 4;
 		}
 		else
 		{
-			Color[] combo = RoundManager.Instance.PrimeSpecimenColors;
+			Color[] combo = rm.PrimeSpecimenColors;
 			if (top == combo[0] && middle == combo[1] && bottom == combo[2])
 			{
 				Debug.Log("Combo!");
+				stats.Score += 10;
 			}
 		}
+
+		stats.Score += rm.GetSpeedBonus();
 
 		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();
 

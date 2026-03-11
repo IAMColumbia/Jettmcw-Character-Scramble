@@ -17,6 +17,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private Timer _timer;
 
     private int _round = 1;
+    private int _finishers = 0;
 
 	void Awake()
     {
@@ -39,8 +40,8 @@ public class RoundManager : MonoBehaviour
     public void NextRound()
     {
         SetRoundColors();
-
-        List<PlayerInput> players = PlayerControllerManager.Instance.Players;
+        _finishers = 0;
+		List<PlayerInput> players = PlayerControllerManager.Instance.Players;
         foreach (PlayerInput player in players)
         {
             Progression playerProgression = player.GetComponent<Progression>();
@@ -53,4 +54,17 @@ public class RoundManager : MonoBehaviour
         _round++;
         _roundCounter.text = _round.ToString();
 	}
+
+    public int GetSpeedBonus()
+    {
+		int speedBonus = _finishers switch {
+            0 => 4,
+            1 => 3,
+            2 => 2,
+            3 => 1,
+            _ => throw new System.InvalidOperationException()
+        };
+		_finishers++;
+        return speedBonus;
+    }
 }
