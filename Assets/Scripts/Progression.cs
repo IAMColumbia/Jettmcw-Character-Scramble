@@ -1,3 +1,4 @@
+using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ public class Progression : MonoBehaviour
 
 	[SerializeField] private Transform _finalCharacter;
 	private Coroutine _construction;
+
+	public Sequence SnapShake;
+	public Transform FinalCharacter => _finalCharacter;
 
 	private void Start()
 	{

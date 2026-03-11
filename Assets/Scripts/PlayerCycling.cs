@@ -114,6 +114,18 @@ public class PlayerCycling : MonoBehaviour
 			.Group(Tween.Scale(_left.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
 			.Group(Tween.Position(_right.transform, _anchors.RightChoice.position, _anchors.RightUpwards.position, time, Ease.OutCirc))
 			.Group(Tween.Scale(_right.transform, sideScale, Vector3.zero, 0.25f, Ease.InOutSine))
+			.InsertCallback(time, SnapIn)
+		;
+	}
+
+	private void SnapIn()
+	{
+		Progression progression = _playerInput.GetComponent<Progression>();
+		Transform end = progression.FinalCharacter;
+		progression.SnapShake.Complete();
+		_current.transform.SetParent(end, true);
+		progression.SnapShake = Sequence.Create()
+			.Group(Tween.ShakeLocalPosition(end, new Vector3(0.1f, 0.3f, 0f), 0.1f))
 		;
 	}
 
@@ -127,6 +139,8 @@ public class PlayerCycling : MonoBehaviour
 
 		Vector3 finalScale = _fullScale * _endFactor;
 		Vector3 sideScale = _fullScale * _sideFactor;
+
+		_current.transform.SetParent(_left.transform.parent, true);
 
 		ProgressAnimation = Sequence.Create()
 			.Group(Tween.Position(_current.transform, _anchors.Finished[_rowIndex].position, _anchors.Selection.position, time, Ease.InOutCubic))
