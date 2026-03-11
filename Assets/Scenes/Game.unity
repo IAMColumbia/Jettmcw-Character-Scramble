@@ -361,6 +361,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 1774833352}
   _score: {fileID: 1993325931}
   _placement: {fileID: 1898898157}
+  PressAnyButton: {fileID: 1958419152}
   _color: {r: 0, g: 0.7882353, b: 1, a: 1}
 --- !u!1 &162267905
 GameObject:
@@ -1370,6 +1371,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 1518475883}
   _score: {fileID: 765422661}
   _placement: {fileID: 1796213358}
+  PressAnyButton: {fileID: 652935608}
   _color: {r: 0.38431373, g: 1, b: 0.38039216, a: 1}
 --- !u!1 &446342075
 GameObject:
@@ -1469,10 +1471,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _areas:
-  - {fileID: 145397237}
-  - {fileID: 1509576392}
-  - {fileID: 426165126}
-  - {fileID: 1712874548}
+  - {fileID: 145397238}
+  - {fileID: 1509576393}
+  - {fileID: 426165127}
+  - {fileID: 1712874549}
 --- !u!4 &496881326
 Transform:
   m_ObjectHideFlags: 0
@@ -6869,6 +6871,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 717129584}
   _score: {fileID: 240275323}
   _placement: {fileID: 1816736152}
+  PressAnyButton: {fileID: 178119089}
   _color: {r: 1, g: 0.4627451, b: 0.24313726, a: 1}
 --- !u!1 &1518475881
 GameObject:
@@ -7714,6 +7717,7 @@ MonoBehaviour:
   _playerNumber: {fileID: 1428981974}
   _score: {fileID: 1886756568}
   _placement: {fileID: 905978026}
+  PressAnyButton: {fileID: 813118859}
   _color: {r: 1, g: 0.9607843, b: 0.24705882, a: 1}
 --- !u!1 &1713662912
 GameObject:

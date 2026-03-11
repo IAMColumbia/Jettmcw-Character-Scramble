@@ -7,11 +7,11 @@ public class PlayerSetup : MonoBehaviour
 
 	private void Awake()
 	{
-		Transform area = PlayerAreas.GetArea(_player);
-		transform.SetParent(area, true);
+		PlayerStats area = PlayerAreas.GetArea(_player);
+		transform.SetParent(area.transform, true);
 		transform.localPosition = Vector3.zero;
 		transform.localScale = new Vector3(190, 190, 190);
-		area.GetChild(0).gameObject.SetActive(false); // Remove "Press any button" text
+		area.PressAnyButton.SetActive(false); // Remove "Press any button" text
 		area.GetComponent<PlayerStats>().ActivateColors();
 	}
 }

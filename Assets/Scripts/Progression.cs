@@ -32,8 +32,7 @@ public class Progression : MonoBehaviour
 
 		// Reset UI
 		_uiToggle.DisableUI();
-		Transform area = PlayerAreas.GetArea(_playerInput);
-		area.GetChild(0).gameObject.SetActive(true);
+		PlayerAreas.GetArea(_playerInput).PressAnyButton.SetActive(true);
 
 		// Stop animations & hide rows
 		if (_construction != null)
@@ -71,8 +70,7 @@ public class Progression : MonoBehaviour
 
 		if (_rowIndex == -1)
 		{
-			Transform area = PlayerAreas.GetArea(_playerInput);
-			area.GetChild(0).gameObject.SetActive(true);
+			PlayerAreas.GetArea(_playerInput).PressAnyButton.SetActive(true);
 			_rows[0].Show(false);
 			_rows[1].ShowCurrent(false);
 			_playerInput.SwitchCurrentActionMap("Rejoin");
@@ -99,8 +97,7 @@ public class Progression : MonoBehaviour
 
 		_uiToggle.EnableUI();
 		_rowIndex = 0;
-		Transform area = PlayerAreas.GetArea(_playerInput);
-		area.GetChild(0).gameObject.SetActive(false);
+		PlayerAreas.GetArea(_playerInput).PressAnyButton.SetActive(false);
 		_rows[0].Register();
 		_rows[0].Show(true);
 		_rows[1].ShowCurrent(true);
@@ -145,6 +142,29 @@ public class Progression : MonoBehaviour
 		foreach (var row in _rows)
 		{
 			row.OptionRow.HidePlayer(row);
+		}
+
+		Color top = _selectedColors[0];
+		Color middle = _selectedColors[1];
+		Color bottom = _selectedColors[2];
+
+		bool topIsBottom = top == bottom;
+		bool full = topIsBottom && top == middle;
+		if (full)
+		{
+			Debug.Log("Full!");
+		}
+		else if (topIsBottom)
+		{
+			Debug.Log("Stripes!");
+		}
+		else
+		{
+			Color[] combo = RoundManager.Instance.PrimeSpecimenColors;
+			if (top == combo[0] && middle == combo[1] && bottom == combo[2])
+			{
+				Debug.Log("Combo!");
+			}
 		}
 
 		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();

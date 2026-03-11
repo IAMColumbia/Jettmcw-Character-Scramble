@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _playerNumber;
 	[SerializeField] private TextMeshProUGUI _score;
 	[SerializeField] private TextMeshProUGUI _placement;
+	public GameObject PressAnyButton;
 
 	[SerializeField] private Color _color;
 
