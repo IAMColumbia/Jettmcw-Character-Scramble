@@ -59,6 +59,8 @@ public class PlayerCycling : MonoBehaviour
 
 		float time = 0.25f;
 
+		SFXManager.PlayMove(Random.Range(0.15f, 0.25f));
+
 		_cycleAnimation.Complete();
 		ProgressAnimation.Complete();
 
