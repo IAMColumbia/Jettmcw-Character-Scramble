@@ -29,6 +29,7 @@ public class RoundManager : MonoBehaviour
     {
         SetRoundColors();
         Instance = this;
+        _timer.OnComplete.AddListener(DoNextRoundWait);
 	}
 
 	private void Update()
@@ -43,6 +44,8 @@ public class RoundManager : MonoBehaviour
 
 	private IEnumerator NextRoundWait()
     {
+        Debug.Log("Do next round wait called!");
+
 		DoingCharacters = false;
 		_timer.IsPaused = true;
 		PlayerInputManager.instance.DisableJoining();
@@ -82,6 +85,7 @@ public class RoundManager : MonoBehaviour
         else
 		{
 			ResumeGame();
+            Debug.Log("From no finishers");
 			NextRound();
 		}
 	}
@@ -92,7 +96,8 @@ public class RoundManager : MonoBehaviour
 		_timer.OnComplete.RemoveListener(ResumeIntoNext);
 		_timer.OnComplete.AddListener(DoNextRoundWait);
 		ResumeGame();
-        NextRound();
+		Debug.Log("From resume into next");
+		NextRound();
     }
 
 	public void ResumeGame()
