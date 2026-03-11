@@ -99,6 +99,7 @@ public class RoundManager : MonoBehaviour
     {
         _timer.IsPaused = false;
 		DoingCharacters = true;
+		PlayerInputManager.instance.EnableJoining();
 	}
 
     public void SetRoundColors()
