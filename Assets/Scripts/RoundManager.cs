@@ -16,6 +16,8 @@ public class RoundManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _timerInstruction;
     [SerializeField] private Timer _timer;
 
+    private int _round = 1;
+
 	void Awake()
     {
         SetRoundColors();
@@ -48,5 +50,7 @@ public class RoundManager : MonoBehaviour
         ControlRandomizer.Instance.RandomizeBindings();
 
         _timer.TimeLeft = 15f;
+        _round++;
+        _roundCounter.text = _round.ToString();
 	}
 }
