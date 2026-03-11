@@ -8,6 +8,7 @@ public class SFXManager : MonoBehaviour
 	public AudioClip incorrect;
 	public AudioClip timerLow;
 	public AudioClip move;
+	public AudioClip up;
 
 	private void Awake()
 	{
@@ -17,4 +18,5 @@ public class SFXManager : MonoBehaviour
 	public static void PlayIncorrectSound() => Instance._audioSource.PlayOneShot(Instance.incorrect);
 	public static void PlayTimerLow(float intensity) => Instance._audioSource.PlayOneShot(Instance.timerLow, intensity);
 	public static void PlayMove(float intensity) => Instance._audioSource.PlayOneShot(Instance.move, intensity);
+	public static void PlayUp(float intensity) => Instance._audioSource.PlayOneShot(Instance.up, intensity);
 }

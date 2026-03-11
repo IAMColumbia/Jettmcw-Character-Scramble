@@ -109,6 +109,8 @@ public class PlayerCycling : MonoBehaviour
 		Vector3 finalScale = _fullScale * _endFactor;
 		Vector3 sideScale = _fullScale * _sideFactor;
 
+		SFXManager.PlayUp(0.5f);
+
 		ProgressAnimation = Sequence.Create()
 			.Group(Tween.Position(_current.transform, _anchors.Selection.position, _anchors.Finished[_rowIndex].position, time, Ease.InOutCubic))
 			.Group(Tween.Scale(_current.transform, _fullScale, finalScale, time, Ease.OutCirc))
