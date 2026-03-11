@@ -6,6 +6,7 @@ public class SFXManager : MonoBehaviour
 
 	[SerializeField] private AudioSource _audioSource;
 	public AudioClip incorrect;
+	public AudioClip timerLow;
 
 	private void Awake()
 	{
@@ -13,4 +14,5 @@ public class SFXManager : MonoBehaviour
 	}
 
 	public static void PlayIncorrectSound() => Instance._audioSource.PlayOneShot(Instance.incorrect);
+	public static void PlayTimerLow(float intensity) => Instance._audioSource.PlayOneShot(Instance.timerLow, intensity);
 }

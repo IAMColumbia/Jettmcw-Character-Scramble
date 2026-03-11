@@ -48,6 +48,8 @@ public class Timer : MonoBehaviour
 				.Group(Tween.Scale(transform, Vector3.one, Vector3.one * intensity, 0.15f * intensity, Ease.OutCirc, 2, CycleMode.Rewind))
 				.Group(Tween.ShakeLocalPosition(transform, new Vector3(5f, 10f), 0.3f * intensity))
 			;
+
+			SFXManager.PlayTimerLow(intensity - 1);
 		}
 		_ones.text = onesPlace;
 		_tenths.text = Mathf.FloorToInt(TimeLeft * 10 % 10).ToString();
