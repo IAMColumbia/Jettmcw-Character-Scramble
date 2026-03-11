@@ -179,6 +179,7 @@ public class Progression : MonoBehaviour
 		stats.Score += rm.GetSpeedBonus();
 
 		yield return _rows[_rowIndex - 1].ProgressAnimation.ToYieldInstruction();
+		yield return SnapShake.ToYieldInstruction();
 
 		Rigidbody2D rb = _finalCharacter.GetComponent<Rigidbody2D>();
 
