@@ -134,6 +134,7 @@ public class RoundManager : MonoBehaviour
         foreach (PlayerInput player in players)
         {
             Progression playerProgression = player.GetComponent<Progression>();
+            playerProgression.FinalCharacter.localScale = Vector3.one;
             playerProgression.RestartProgression();
         }
 
