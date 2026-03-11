@@ -1,10 +1,11 @@
 using PrimeTween;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimatedBackground : MonoBehaviour
 {
 	[SerializeField] private Color[] _colors;
-	[SerializeField] private SpriteRenderer _renderer;
+	[SerializeField] private Image _renderer;
 	private int _index;
 
 	private void Start()
