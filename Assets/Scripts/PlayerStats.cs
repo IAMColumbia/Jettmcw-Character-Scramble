@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _playerNumber;
 	[SerializeField] private TextMeshProUGUI _score;
 	[SerializeField] private TextMeshProUGUI _placement;
+	[SerializeField] private TextMeshProUGUI _controlsChanged;
 	public TextMeshProUGUI PressAnyButton;
 
 	[SerializeField] private Color _color;
@@ -24,6 +25,7 @@ public class PlayerStats : MonoBehaviour
 			.Group(Tween.Color(_placement, _color, 0.2f))
 			.Group(Tween.Color(PressAnyButton, Color.white, 0.2f))
 		;
+		PressAnyButton.text = "Press Any Button";
 	}
 
 	public void Deactivate()
@@ -32,6 +34,7 @@ public class PlayerStats : MonoBehaviour
 		_colorChange = Sequence.Create()
 			.Group(Tween.Color(PressAnyButton, new Color(1f, 1f, 1f, 0.2745098f), 0.2f))
 		;
+		PressAnyButton.text = "Not Connected";
 	}
 
 	public int Score

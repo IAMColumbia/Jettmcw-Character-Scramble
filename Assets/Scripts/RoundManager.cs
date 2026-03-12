@@ -45,8 +45,6 @@ public class RoundManager : MonoBehaviour
 
 	private IEnumerator NextRoundWait()
     {
-        Debug.Log("Do next round wait called!");
-
 		DoingCharacters = false;
 		_timer.IsPaused = true;
 		PlayerInputManager.instance.DisableJoining();
@@ -58,6 +56,7 @@ public class RoundManager : MonoBehaviour
 			{
 				playerProgression.RestartProgression();
 				player.DeactivateInput();
+				PlayerAreas.GetArea(player).PressAnyButton.text = "Did Not Finish";
 			}
 		}
 
@@ -86,7 +85,6 @@ public class RoundManager : MonoBehaviour
         else
 		{
 			ResumeGame();
-            Debug.Log("From no finishers");
 			NextRound();
 		}
 	}
@@ -101,9 +99,7 @@ public class RoundManager : MonoBehaviour
 		_timer.OnComplete.RemoveListener(ResumeIntoNext);
 		_timer.OnComplete.AddListener(DoNextRoundWait);
 		ResumeGame();
-		Debug.Log("From resume into next");
 		NextRound();
-		yield break;
     }
 
 	public void ResumeGame()
@@ -141,7 +137,8 @@ public class RoundManager : MonoBehaviour
             Progression playerProgression = player.GetComponent<Progression>();
             playerProgression.FinalCharacter.localScale = Vector3.one;
             playerProgression.RestartProgression();
-        }
+			PlayerAreas.GetArea(player).PressAnyButton.text = "Press Any Button";
+		}
 
         ControlRandomizer.Instance.RandomizeBindings();
 
