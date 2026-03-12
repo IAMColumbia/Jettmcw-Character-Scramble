@@ -30,11 +30,12 @@ public class RoundManager : MonoBehaviour
         SetRoundColors();
         Instance = this;
         _timer.OnComplete.AddListener(DoNextRoundWait);
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	private void Update()
 	{
-		if (DoingCharacters && _round > 1 && _finishers == PlayerControllerManager.Instance.Players.Count)
+		if (DoingCharacters && _finishers == (_round > 1 ? PlayerControllerManager.Instance.Players.Count : 4))
         {
             DoNextRoundWait();
 		}
@@ -121,7 +122,6 @@ public class RoundManager : MonoBehaviour
 
     public void NextRound()
     {
-
         SetRoundColors();
         _finishers = 0;
 		_speedBonus[0].color = Color.white;
