@@ -91,14 +91,19 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-    public void ResumeIntoNext()
+    public void ResumeIntoNext() => StartCoroutine(ResumeNextRound());
+
+    private IEnumerator ResumeNextRound()
 	{
+		yield return new WaitForSeconds(1f);
+
 		_timerInstruction.text = "[Choose Your Character]";
 		_timer.OnComplete.RemoveListener(ResumeIntoNext);
 		_timer.OnComplete.AddListener(DoNextRoundWait);
 		ResumeGame();
 		Debug.Log("From resume into next");
 		NextRound();
+		yield break;
     }
 
 	public void ResumeGame()
