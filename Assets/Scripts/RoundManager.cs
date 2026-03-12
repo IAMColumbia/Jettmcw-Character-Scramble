@@ -1,3 +1,4 @@
+using PrimeTween;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ public class RoundManager : MonoBehaviour
 
     private int _round = 1;
     private int _finishers = 0;
+
+	private Sequence NumberSizing;
 
 	void Awake()
     {
@@ -159,11 +162,18 @@ public class RoundManager : MonoBehaviour
             _ => throw new System.InvalidOperationException()
         };
 
-        _speedBonus[_finishers].color = new Color(1f, 1f, 1f, 0.2745098f);
+		Color clear = new(1f, 1f, 1f, 0.2745098f);
+
+		NumberSizing.Complete();
+		NumberSizing = Sequence.Create()
+			.Group(Tween.Scale(_speedBonus[_finishers].transform, 1f, 3f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.Color(_speedBonus[_finishers], Color.white, clear, 0.75f, startDelay: 1f))
+		;
+
 		_finishers++;
         if (_finishers < 4)
         {
-            _speedBonus[_finishers].color = Color.white;
+			NumberSizing.Group(Tween.Color(_speedBonus[_finishers], clear, Color.white, 0.75f, startDelay: 1f));
         }
 
 		return speedBonus;
