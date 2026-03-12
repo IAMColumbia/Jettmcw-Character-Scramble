@@ -182,6 +182,7 @@ public class Progression : MonoBehaviour
 		else if (topIsBottom)
 		{
 			stats.Score += 4;
+			rm.DoStripesBonus();
 		}
 		else if (top == combo[0] && middle == combo[1] && bottom == combo[2])
 		{

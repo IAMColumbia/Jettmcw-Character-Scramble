@@ -19,6 +19,7 @@ public class RoundManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _roundCounter;
 	[SerializeField] private TextMeshProUGUI _timerInstruction;
     [SerializeField] private Timer _timer;
+	[SerializeField] private Transform _stripes;
     public bool DoingCharacters = true;
 
     public UnityEvent RoundPassed;
@@ -27,6 +28,7 @@ public class RoundManager : MonoBehaviour
     private int _finishers = 0;
 
 	private Sequence NumberSizing;
+	private Sequence StripesBonus;
 
 	void Awake()
     {
@@ -178,4 +180,12 @@ public class RoundManager : MonoBehaviour
 
 		return speedBonus;
     }
+
+	public void DoStripesBonus()
+	{
+		StripesBonus.Complete();
+		StripesBonus = Sequence.Create()
+			.Group(Tween.Scale(_stripes, 1f, 2f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+		;
+	}
 }
