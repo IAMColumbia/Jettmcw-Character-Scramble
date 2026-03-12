@@ -138,6 +138,7 @@ public class RoundManager : MonoBehaviour
             playerProgression.FinalCharacter.localScale = Vector3.one;
             playerProgression.RestartProgression();
 			PlayerAreas.GetArea(player).PressAnyButton.text = "Press Any Button";
+			PlayerAreas.GetArea(player).ControlsChanged(true);
 		}
 
         ControlRandomizer.Instance.RandomizeBindings();

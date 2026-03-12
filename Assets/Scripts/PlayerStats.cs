@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour
 	private Sequence _scoreBounce;
 	private Sequence _colorChange;
 
+	public void ControlsChanged(bool show) => _controlsChanged.gameObject.SetActive(show);
+
 	public void Activate()
 	{
 		_colorChange.Stop();

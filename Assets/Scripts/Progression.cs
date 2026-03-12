@@ -112,6 +112,7 @@ public class Progression : MonoBehaviour
 			return;
 		}
 
+		PlayerAreas.GetArea(_playerInput).ControlsChanged(false);
 		RoundManager.Instance.ResumeGame();
 		_uiToggle.EnableUI();
 		_rowIndex = 0;
