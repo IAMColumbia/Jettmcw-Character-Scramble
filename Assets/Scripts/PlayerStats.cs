@@ -55,6 +55,14 @@ public class PlayerStats : MonoBehaviour
 		}
 	}
 
+	public void MovePlacementsToFinal()
+	{
+		Sequence.Create()
+			.Group(Tween.LocalPositionY(_placement.transform, 225f, 0.5f))
+			.Group(Tween.Scale(_placement.transform, 6.3f, 0.5f))
+		;
+	}
+
 	public int Placement
 	{
 		set

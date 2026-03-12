@@ -90,7 +90,7 @@ public class RoundManager : MonoBehaviour
 			_timer.TurnRed = false;
 			_timer.OnComplete.RemoveListener(DoNextRoundWait);
 
-			if (_round < 2)
+			if (_round < 10)
 			{
 				_timerInstruction.text = "[Next Round In]";
 				_timer.OnComplete.AddListener(ResumeIntoNext);
@@ -223,6 +223,10 @@ public class RoundManager : MonoBehaviour
 
 	public void EndGame()
 	{
-
+		List<PlayerInput> players = PlayerControllerManager.Instance.Players;
+		foreach (PlayerInput player in players)
+		{
+			PlayerAreas.GetArea(player).MovePlacementsToFinal();
+		}
 	}
 }
