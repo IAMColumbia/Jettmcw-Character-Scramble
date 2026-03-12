@@ -17,4 +17,4 @@ So, stumble over your friends, race to figure out what the controls are **(they 
 
 [Process Journal](ProcessJournal.md)
 
-https://jettmcw.itch.io/character-scramble
+[Game on Itch](https://jettmcw.itch.io/character-scramble)
