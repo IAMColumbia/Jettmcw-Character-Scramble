@@ -59,7 +59,7 @@ public class PlayerStats : MonoBehaviour
 	{
 		Sequence.Create()
 			.Group(Tween.LocalPositionY(_placement.transform, 225f, 0.5f))
-			.Group(Tween.Scale(_placement.transform, 6.3f, 0.5f))
+			.Group(Tween.Scale(_placement.transform, 6f, 0.5f))
 		;
 	}
 
