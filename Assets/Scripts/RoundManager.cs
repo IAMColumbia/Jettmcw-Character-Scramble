@@ -190,7 +190,7 @@ public class RoundManager : MonoBehaviour
 	{
 		StripesBonus.Complete();
 		StripesBonus = Sequence.Create()
-			.Group(Tween.Scale(_stripes, 1f, 1.3f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.Scale(_stripes, 1f, 1.1f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
 		;
 	}
 
@@ -198,8 +198,8 @@ public class RoundManager : MonoBehaviour
 	{
 		FullBonus.Complete();
 		FullBonus = Sequence.Create()
-			.Group(Tween.Scale(_full, 1f, 1.3f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
-			.Group(Tween.LocalPositionY(_full, -12.815f, 30f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.Scale(_full, 1f, 1.1f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.LocalPositionY(_full, -12.815f, 20f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
 		;
 	}
 
@@ -207,8 +207,8 @@ public class RoundManager : MonoBehaviour
 	{
 		ComboBonus.Complete();
 		ComboBonus = Sequence.Create()
-			.Group(Tween.Scale(_combo, 1f, 1.3f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
-			.Group(Tween.LocalPositionY(_combo, -12.815f, 30f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.Scale(_combo, 1f, 1.1f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.LocalPositionY(_combo, -12.815f, 20f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
 		;
 	}
 }
