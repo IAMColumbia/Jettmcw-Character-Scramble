@@ -84,14 +84,23 @@ public class RoundManager : MonoBehaviour
         // Otherwise, start next round immediately
 
         if (_finishers > 0)
-        {
-            _timerInstruction.text = "[Next Round In]";
-            _timer.TimeLeft = 3f;
+		{
+			_timer.TimeLeft = 3f;
 			_timer.IsPaused = false;
-            _timer.TurnRed = false;
+			_timer.TurnRed = false;
 			_timer.OnComplete.RemoveListener(DoNextRoundWait);
-            _timer.OnComplete.AddListener(ResumeIntoNext);
-        }
+
+			if (_round < 2)
+			{
+				_timerInstruction.text = "[Next Round In]";
+				_timer.OnComplete.AddListener(ResumeIntoNext);
+			}
+			else
+			{
+				_timerInstruction.text = "[Game Ends In]";
+				_timer.OnComplete.AddListener(EndGame);
+			}
+		}
         else
 		{
 			ResumeGame();
@@ -210,5 +219,10 @@ public class RoundManager : MonoBehaviour
 			.Group(Tween.Scale(_combo, 1f, 1.1f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
 			.Group(Tween.LocalPositionY(_combo, -12.815f, 20f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
 		;
+	}
+
+	public void EndGame()
+	{
+
 	}
 }
