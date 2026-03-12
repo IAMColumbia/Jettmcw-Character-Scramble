@@ -178,6 +178,7 @@ public class Progression : MonoBehaviour
 		if (topIsBottom && top == middle)
 		{
 			stats.Score += 6;
+			rm.DoFullBonus();
 		}
 		else if (topIsBottom)
 		{
@@ -187,6 +188,7 @@ public class Progression : MonoBehaviour
 		else if (top == combo[0] && middle == combo[1] && bottom == combo[2])
 		{
 			stats.Score += 10;
+			rm.DoComboBonus();
 		}
 
 		stats.Score += rm.GetSpeedBonus();

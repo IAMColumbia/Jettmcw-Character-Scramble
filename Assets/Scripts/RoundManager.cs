@@ -20,7 +20,9 @@ public class RoundManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _timerInstruction;
     [SerializeField] private Timer _timer;
 	[SerializeField] private Transform _stripes;
-    public bool DoingCharacters = true;
+	[SerializeField] private Transform _full;
+	[SerializeField] private Transform _combo;
+	public bool DoingCharacters = true;
 
     public UnityEvent RoundPassed;
 
@@ -29,6 +31,8 @@ public class RoundManager : MonoBehaviour
 
 	private Sequence NumberSizing;
 	private Sequence StripesBonus;
+	private Sequence FullBonus;
+	private Sequence ComboBonus;
 
 	void Awake()
     {
@@ -62,6 +66,7 @@ public class RoundManager : MonoBehaviour
 				playerProgression.RestartProgression();
 				player.DeactivateInput();
 				PlayerAreas.GetArea(player).PressAnyButton.text = "Did Not Finish";
+				PlayerAreas.GetArea(player).ControlsChanged(false);
 			}
 		}
 
@@ -185,7 +190,25 @@ public class RoundManager : MonoBehaviour
 	{
 		StripesBonus.Complete();
 		StripesBonus = Sequence.Create()
-			.Group(Tween.Scale(_stripes, 1f, 2f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.Scale(_stripes, 1f, 1.3f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+		;
+	}
+
+	public void DoFullBonus()
+	{
+		FullBonus.Complete();
+		FullBonus = Sequence.Create()
+			.Group(Tween.Scale(_full, 1f, 1.3f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.LocalPositionY(_full, -12.815f, 30f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+		;
+	}
+
+	public void DoComboBonus()
+	{
+		ComboBonus.Complete();
+		ComboBonus = Sequence.Create()
+			.Group(Tween.Scale(_combo, 1f, 1.3f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
+			.Group(Tween.LocalPositionY(_combo, -12.815f, 30f, 0.75f, Ease.OutCirc, 2, CycleMode.Rewind))
 		;
 	}
 }
