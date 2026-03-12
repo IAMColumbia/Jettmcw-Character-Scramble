@@ -89,6 +89,7 @@ public class Progression : MonoBehaviour
 			PlayerAreas.GetArea(_playerInput).PressAnyButton.gameObject.SetActive(true);
 			_rows[0].Show(false);
 			_rows[1].ShowCurrent(false);
+			_rows[1].StopPreview();
 			_playerInput.SwitchCurrentActionMap("Rejoin");
 			_uiToggle.DisableUI();
 			return;
