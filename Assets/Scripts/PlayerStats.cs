@@ -48,8 +48,9 @@ public class PlayerStats : MonoBehaviour
 			_scoreNum = value;
 			ScoreManager.Instance.UpdatePlacements();
 			_scoreBounce.Complete();
-			_scoreBounce = Sequence.Create().
-				Group(Tween.ShakeLocalPosition(_score.transform, new Vector3(0f, 25f, 0f), 0.3f))
+			_scoreBounce = Sequence.Create()
+				.Chain(Tween.Scale(_score.transform, Vector3.one * 2.05f, Vector3.one * 5f, 0.75f, Ease.InOutSine))
+				.Chain(Tween.Scale(_score.transform, Vector3.one * 5f, Vector3.one * 2.05f, 0.5f, Ease.InCirc))
 			;
 		}
 	}
