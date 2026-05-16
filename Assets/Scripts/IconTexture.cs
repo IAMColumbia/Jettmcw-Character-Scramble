@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.Switch;
 
 public class IconTexture : MonoBehaviour
 {
@@ -7,8 +9,7 @@ public class IconTexture : MonoBehaviour
 	[SerializeField] private int _actionIndex;
 
 	[SerializeField] private SpriteRenderer _renderer;
-	[SerializeField] private Sprite[] _keyboardTextures, _xboxTextures, _psTextures;
-	[SerializeField] [UnityEngine.Serialization.FormerlySerializedAs("_gamepadTextures")] private Sprite[] _switchTextures;
+	[SerializeField] private Sprite[] _keyboardTextures, _xboxTextures, _psTextures, _switchTextures;
 
 	private void OnEnable()
 	{
@@ -23,18 +24,31 @@ public class IconTexture : MonoBehaviour
 
 	public void ChangeTexture()
 	{
-		string controlScheme = _playerInput.currentControlScheme;
-		Sprite[] textures = controlScheme switch
-		{
-			"Keyboard" => _keyboardTextures,
-			"Gamepad" => _switchTextures,
-			_ => throw new System.InvalidOperationException()
-		};
-
 		int textureIndex = ControlRandomizer.Instance.FilterIdxs[_actionIndex];
+		_renderer.sprite = DetermineSpriteSheet()[textureIndex];
+	}
 
-		Sprite texture = textures[textureIndex];
+	private Sprite[] DetermineSpriteSheet()
+	{
+		string controlScheme = _playerInput.currentControlScheme;
 
-		_renderer.sprite = texture;
+		if (controlScheme == "Keyboard")
+		{
+			return _keyboardTextures;
+		}
+
+		string layout = _playerInput.GetDevice<Gamepad>().layout;
+
+		if (layout.Contains("Switch") || layout.Contains("JoyCon"))
+		{
+			return _switchTextures;
+		}
+
+		if (layout.Contains("DualShock") || layout.Contains("DualSense"))
+		{
+			return _psTextures;
+		}
+
+		return _xboxTextures;
 	}
 }
