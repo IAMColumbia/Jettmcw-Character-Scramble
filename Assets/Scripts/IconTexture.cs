@@ -7,7 +7,8 @@ public class IconTexture : MonoBehaviour
 	[SerializeField] private int _actionIndex;
 
 	[SerializeField] private SpriteRenderer _renderer;
-	[SerializeField] private Sprite[] _keyboardTextures, _gamepadTextures;
+	[SerializeField] private Sprite[] _keyboardTextures, _xboxTextures, _psTextures;
+	[SerializeField] [UnityEngine.Serialization.FormerlySerializedAs("_gamepadTextures")] private Sprite[] _switchTextures;
 
 	private void OnEnable()
 	{
@@ -26,7 +27,7 @@ public class IconTexture : MonoBehaviour
 		Sprite[] textures = controlScheme switch
 		{
 			"Keyboard" => _keyboardTextures,
-			"Gamepad" => _gamepadTextures,
+			"Gamepad" => _switchTextures,
 			_ => throw new System.InvalidOperationException()
 		};
 

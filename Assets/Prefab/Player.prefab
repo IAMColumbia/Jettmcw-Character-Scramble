@@ -871,7 +871,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0a40270d5350df04585e587f439ffd7b, type: 3}
   - {fileID: 21300000, guid: d2d84bccc1445164f8e4a2506f378a07, type: 3}
   - {fileID: 21300000, guid: abe889c2fd496e945af562bee6181c2a, type: 3}
-  _gamepadTextures:
+  _xboxTextures:
+  - {fileID: 21300000, guid: e5a16095b1b24de498a3b313a1bef531, type: 3}
+  - {fileID: 21300000, guid: f4f1807e128958f43bca9ac25e60d8bb, type: 3}
+  - {fileID: 21300000, guid: 537c1b437bc01dd44afbc7b2d4d60c7e, type: 3}
+  - {fileID: 21300000, guid: 6f9d529fe26c47a429252dcafde7d9d2, type: 3}
+  _psTextures:
+  - {fileID: 21300000, guid: 8626b0cf7c69cfd48a77c1dff6e2df1f, type: 3}
+  - {fileID: 21300000, guid: d74668d4017f848418cf3753458bba04, type: 3}
+  - {fileID: 21300000, guid: 76305f27bb60a284a989251ad8652efa, type: 3}
+  - {fileID: 21300000, guid: 3841f6be2e9ec944f98c095599ace39a, type: 3}
+  _switchTextures:
   - {fileID: 21300000, guid: 875a7c7a56bc6a04782d6957b368712b, type: 3}
   - {fileID: 21300000, guid: 841ff78d3001de94dac4e42feec74eec, type: 3}
   - {fileID: 21300000, guid: 302f8aa44b1a0d3498b5bce7b9550c14, type: 3}
@@ -1046,7 +1056,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 681cc10679532654985521f6dbfc1aa9, type: 3}
   - {fileID: 21300000, guid: 5d8c86ae60e1aba4e9b4501f96b23c44, type: 3}
   - {fileID: 21300000, guid: 7715134458d1b604aa7e1fc3f17c3647, type: 3}
-  _gamepadTextures:
+  _xboxTextures:
+  - {fileID: 21300000, guid: 96d949906486ddb409987024102e2ade, type: 3}
+  - {fileID: 21300000, guid: df9d91e4747864240ad0e1bd69947a96, type: 3}
+  - {fileID: 21300000, guid: 4e006c3497456b74daebd6364a6580b4, type: 3}
+  _psTextures:
+  - {fileID: 21300000, guid: 89850dec0d1517b4b97bedc639a738af, type: 3}
+  - {fileID: 21300000, guid: 57cecabfa47c3194f9072ac64f10e9e1, type: 3}
+  - {fileID: 21300000, guid: 40dbcc73fb67db847a6fc79724fee41c, type: 3}
+  _switchTextures:
   - {fileID: 21300000, guid: c8b92325b57854f4dad6658d56eab5be, type: 3}
   - {fileID: 21300000, guid: 1d83fe1da69fae84f8b58138f81907e0, type: 3}
   - {fileID: 21300000, guid: 87660f953a8c1c5419fa747e55855a6f, type: 3}
@@ -3218,7 +3236,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f36c62a58f80d64fb609fcadcc96644, type: 3}
   - {fileID: 21300000, guid: 3c2d249686d28eb43ad93cee415deb63, type: 3}
   - {fileID: 21300000, guid: b5fbe0998b1ab1749895e971a0a6734d, type: 3}
-  _gamepadTextures:
+  _xboxTextures:
+  - {fileID: 21300000, guid: c21a3cd23bfc8594185bd313cbb3da9d, type: 3}
+  - {fileID: 21300000, guid: a6f51c5d4cf4a514db397e48d0a7a76b, type: 3}
+  - {fileID: 21300000, guid: 864cadf698f2b3f4fb5d73de85193117, type: 3}
+  - {fileID: 21300000, guid: 0b14117e8e75fe04580bb28ae6e7ea92, type: 3}
+  _psTextures:
+  - {fileID: 21300000, guid: 6ec2e586375195c4cbb7dd67a963c10b, type: 3}
+  - {fileID: 21300000, guid: b0b075e3d843ce1498146a21204b8b29, type: 3}
+  - {fileID: 21300000, guid: 9383d680634656345a19dc3c6a7ed9ce, type: 3}
+  - {fileID: 21300000, guid: 41cb8d36d1b37a749a1185ccd033b05a, type: 3}
+  _switchTextures:
   - {fileID: 21300000, guid: 52f724fa80afd76499f49030b5df9ef0, type: 3}
   - {fileID: 21300000, guid: 4bfc68a74cc3ed941811b8b16bc4bf58, type: 3}
   - {fileID: 21300000, guid: c746226e035a44e42a3b8f39a82ea297, type: 3}
@@ -3765,7 +3793,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be26bc94609eaa64c9e8b8e091ed7adb, type: 3}
   - {fileID: 21300000, guid: 02ddfaee24af56f46b1661ef42bf6503, type: 3}
   - {fileID: 21300000, guid: 3330c02b6bba44244879763ed402fcb1, type: 3}
-  _gamepadTextures:
+  _xboxTextures:
+  - {fileID: 21300000, guid: ba59027e52923e14db4c77501b5cd356, type: 3}
+  - {fileID: 21300000, guid: 2f4ded9703b6b5e4eb10bae06f639585, type: 3}
+  - {fileID: 21300000, guid: 415fc669be3e0cf45965952555236852, type: 3}
+  _psTextures:
+  - {fileID: 21300000, guid: 78f881714f53fcf4381c01ffd515bb12, type: 3}
+  - {fileID: 21300000, guid: 7950bf352c024a24093465fbd5df7e54, type: 3}
+  - {fileID: 21300000, guid: d83a64a1cef94ca47ab15058464c5e70, type: 3}
+  _switchTextures:
   - {fileID: 21300000, guid: acf179ba2293ec44d8d014280c2b2640, type: 3}
   - {fileID: 21300000, guid: a817ce79e4dc69642b6163beca091fe9, type: 3}
   - {fileID: 21300000, guid: b8c0b124fdf649b4c9694a0dfa7cbc08, type: 3}
